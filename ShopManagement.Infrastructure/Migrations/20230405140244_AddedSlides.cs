@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShopManagement.Infrastructure.EfCore.Migrations
 {
-    public partial class AddedSlide : Migration
+    public partial class AddedSlides : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,6 +20,7 @@ namespace ShopManagement.Infrastructure.EfCore.Migrations
                     Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Text = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     BtnText = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Link = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     IsRemoved = table.Column<bool>(type: "bit", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

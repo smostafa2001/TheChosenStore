@@ -21,7 +21,8 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             PictureAlt = s.PictureAlt,
             PictureTitle = s.PictureTitle,
             Text = s.Text,
-            Title = s.Title
+            Title = s.Title,
+            Link = s.Link
         }).FirstOrDefault(s => s.Id == id);
         public List<SlideViewModel> GetSlides() => _context.Slides.Select(s => new SlideViewModel
         {

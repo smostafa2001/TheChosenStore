@@ -10,8 +10,8 @@ using ShopManagement.Infrastructure.EfCore;
 namespace ShopManagement.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230405110659_AddedSlide")]
-    partial class AddedSlide
+    [Migration("20230405140244_AddedSlides")]
+    partial class AddedSlides
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -200,6 +200,11 @@ namespace ShopManagement.Infrastructure.EfCore.Migrations
 
                     b.Property<bool>("IsRemoved")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Picture")
                         .IsRequired()

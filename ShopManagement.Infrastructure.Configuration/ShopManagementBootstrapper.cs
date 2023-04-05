@@ -10,6 +10,7 @@ using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using ShopManagement.Domain.SlideAggregate;
 using ShopManagement.Infrastructure.EfCore;
+using ShopManagement.Infrastructure.EfCore.Query;
 using ShopManagement.Infrastructure.EfCore.Repository;
 
 namespace ShopManagement.Infrastructure.Configuration
@@ -29,6 +30,7 @@ namespace ShopManagement.Infrastructure.Configuration
 
             services.AddTransient<ISlideApplication, SlideApplication>();
             services.AddTransient<ISlideRepository, SlideRepository>();
+            services.AddTransient<ISlideQuery, SlideQuery>();
 
             services.AddDbContext<ShopContext>(x => x.UseSqlServer(connectionString));
         }
