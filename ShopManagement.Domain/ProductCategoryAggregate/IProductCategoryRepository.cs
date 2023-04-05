@@ -1,11 +1,12 @@
-﻿using _01.Framework.Domain;
+﻿using ShopManagement.Domain.Shared;
 using System.Collections.Generic;
 
 namespace ShopManagement.Domain.ProductCategoryAggregate
 {
     public interface IProductCategoryRepository : IRepository<long, ProductCategory>
     {
-        ProductCategory GetDetails(long id);
-        List<ProductCategory> Search(string name);
+        EditProductCategory GetDetails(long id);
+        List<ProductCategoryViewModel> GetProductCategories();
+        List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
     }
 }

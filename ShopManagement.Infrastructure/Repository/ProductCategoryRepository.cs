@@ -1,6 +1,7 @@
-﻿using _01.Framework.Infrastructure;
-using ShopManagement.Domain.ProductCategoryAggregate;
+﻿using ShopManagement.Domain.ProductCategoryAggregate;
+using ShopManagement.Infrastructure.EfCore.Shared;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace ShopManagement.Infrastructure.EfCore.Repository
@@ -9,21 +10,38 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
     {
         private readonly ShopContext _context;
 
-        public ProductCategoryRepository(ShopContext context) : base(context)
-        {
-            _context = context;
-        }
+        public ProductCategoryRepository(ShopContext context) : base(context) => _context = context;
 
-        public ProductCategory GetDetails(long id)
+        public EditProductCategory GetDetails(long id) => _context.ProductCategories.Select(pc => new EditProductCategory()
         {
-            return _context.ProductCategories.FirstOrDefault(x => x.Id == id);
-        }
+            Id = pc.Id,
+            Description = pc.Description,
+            Name = pc.Name,
+            Keywords = pc.Keywords,
+            MetaDescription = pc.MetaDescription,
+            Picture = pc.Picture,
+            PictureAlt = pc.PictureAlt,
+            PictureTitle = pc.PictureTitle,
+            Slug = pc.Slug
+        }).FirstOrDefault(x => x.Id == id);
+        public List<ProductCategoryViewModel> GetProductCategories() => _context.ProductCategories.Select(pc => new ProductCategoryViewModel
+        {
+            Id = pc.Id,
+            Name = pc.Name
+        }).ToList();
+        public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
+        {
+            var query = _context.ProductCategories.Select(pc => new ProductCategoryViewModel
+            {
+                Id = pc.Id,
+                Picture = pc.Picture,
+                Name = pc.Name,
+                CreationDate = pc.CreationDate.ToString(CultureInfo.InvariantCulture)
+            });
 
-        public List<ProductCategory> Search(string name)
-        {
-            var query = _context.ProductCategories.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(name))
-                query = query.Where(x => x.Name.Contains(name));
+            if (!string.IsNullOrWhiteSpace(searchModel.Name))
+                query = query.Where(x => x.Name.Contains(searchModel.Name));
+
             return query.OrderByDescending(x => x.Id).ToList();
         }
     }

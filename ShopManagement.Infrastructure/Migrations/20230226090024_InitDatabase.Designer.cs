@@ -21,7 +21,7 @@ namespace ShopManagement.Infrastructure.EfCore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAggregate.ProductCategory", b =>
+            modelBuilder.Entity("ShopManagement.Domain.ProductCategoryAggregate.Category", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()

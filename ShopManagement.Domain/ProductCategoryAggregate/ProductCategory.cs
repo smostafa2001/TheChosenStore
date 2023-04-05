@@ -1,4 +1,6 @@
-﻿using _01.Framework.Domain;
+﻿using ShopManagement.Domain.ProductAggregate;
+using ShopManagement.Domain.Shared;
+using System.Collections.Generic;
 
 namespace ShopManagement.Domain.ProductCategoryAggregate
 {
@@ -12,8 +14,16 @@ namespace ShopManagement.Domain.ProductCategoryAggregate
         public string Keywords { get; private set; }
         public string MetaDescription { get; private set; }
         public string Slug { get; private set; }
+        public List<Product> Products { get; private set; }
 
-        public ProductCategory(string name, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
+        public ProductCategory()
+        {
+            Products = new List<Product>();
+        }
+
+        public ProductCategory(string name, string description, string picture,
+            string pictureAlt, string pictureTitle, string keywords,
+            string metaDescription, string slug)
         {
             Name = name;
             Description = description;
@@ -25,7 +35,9 @@ namespace ShopManagement.Domain.ProductCategoryAggregate
             Slug = slug;
         }
 
-        public void Edit(string name, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
+        public void Edit(string name, string description, string picture,
+            string pictureAlt, string pictureTitle, string keywords,
+            string metaDescription, string slug)
         {
             Name = name;
             Description = description;

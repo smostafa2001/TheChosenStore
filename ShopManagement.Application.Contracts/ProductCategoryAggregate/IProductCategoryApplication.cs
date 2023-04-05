@@ -1,4 +1,5 @@
-﻿using _01.Framework.Application;
+﻿using ShopManagement.Application.Contracts.Shared;
+using ShopManagement.Domain.ProductCategoryAggregate;
 using System.Collections.Generic;
 
 namespace ShopManagement.Application.Contracts.ProductCategoryAggregate
@@ -7,6 +8,7 @@ namespace ShopManagement.Application.Contracts.ProductCategoryAggregate
     {
         OperationResult Create(CreateProductCategory command);
         OperationResult Edit(EditProductCategory command);
+        List<ProductCategoryViewModel> GetProductCategories();
         EditProductCategory GetDetails(long id);
         List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
 

@@ -1,12 +1,22 @@
 ﻿@page
-@model ServiceHost.Areas.Administration.Pages.Shop.ProductCategories.IndexModel
-@{
-}
-
+@model IndexModel
 @{
     Layout = "Shared/_AdminLayout";
     ViewData["title"] = "مدیریت گروه محصولات";
 }
+
+@if (Model.Message != null)
+{
+    @if (Model.Message == OperationMessages.IsSucceeded)
+    {
+        <div id="message" class="alert alert-success">@Model.Message</div>
+    }
+    else
+    {
+        <div id="message" class="alert alert-danger">@Model.Message</div>
+    }
+}
+
 
 <div class="row">
     <div class="col-sm-12">
@@ -52,7 +62,7 @@
                                     <th>#</th>
                                     <th>عکس</th>
                                     <th>نام</th>
-                                    <th>تاریخ تولید</th>
+                                    <th>تاریخ ایجاد</th>
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
@@ -67,8 +77,8 @@
                                         <td>@item.Name</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" 
-                                               href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.Id})">
+                                            <a class="btn btn-warning pull-right m-rl-5"
+                                           href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                         </td>
@@ -86,7 +96,12 @@
 @section Scripts {
     <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
     <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
-
+    <script type="text/javascript">
+        setTimeout(function () {
+            var element = document.getElementById('message');
+            element.parentNode.removeChild(element);
+        }, 3000);
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#datatable').dataTable();
