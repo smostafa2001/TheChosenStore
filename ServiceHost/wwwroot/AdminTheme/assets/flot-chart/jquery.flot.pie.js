@@ -56,7 +56,6 @@ More detail and specific examples can be found in the included HTML file.
 */
 
 (function($) {
-
 	// Maximum redraw attempts when fitting labels within the plot
 
 	var REDRAW_ATTEMPTS = 10;
@@ -66,7 +65,6 @@ More detail and specific examples can be found in the included HTML file.
 	var REDRAW_SHRINK = 0.95;
 
 	function init(plot) {
-
 		var canvas = null,
 			target = null,
 			options = null,
@@ -84,7 +82,6 @@ More detail and specific examples can be found in the included HTML file.
 
 		plot.hooks.processOptions.push(function(plot, options) {
 			if (options.series.pie.show) {
-
 				options.grid.show = false;
 
 				// set labels.show
@@ -161,7 +158,6 @@ More detail and specific examples can be found in the included HTML file.
 		}
 
 		function combine(data) {
-
 			var total = 0,
 				combined = 0,
 				numCombined = 0,
@@ -171,7 +167,6 @@ More detail and specific examples can be found in the included HTML file.
 			// Fix up the raw data from Flot, ensuring the data is numeric
 
 			for (var i = 0; i < data.length; ++i) {
-
 				var value = data[i].data;
 
 				// If the data is an array, we'll assume that it's a standard
@@ -251,7 +246,6 @@ More detail and specific examples can be found in the included HTML file.
 		}
 
 		function draw(plot, newCtx) {
-
 			if (!target) {
 				return; // if no series were passed
 			}
@@ -341,7 +335,6 @@ More detail and specific examples can be found in the included HTML file.
 			}
 
 			function drawShadow() {
-
 				var shadowLeft = options.series.pie.shadow.left;
 				var shadowTop = options.series.pie.shadow.top;
 				var edge = 10;
@@ -375,7 +368,6 @@ More detail and specific examples can be found in the included HTML file.
 			}
 
 			function drawPie() {
-
 				var startAngle = Math.PI * options.series.pie.startAngle;
 				var radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius;
 
@@ -421,7 +413,6 @@ More detail and specific examples can be found in the included HTML file.
 				} else return true;
 
 				function drawSlice(angle, color, fill) {
-
 					if (angle <= 0 || isNaN(angle)) {
 						return;
 					}
@@ -453,7 +444,6 @@ More detail and specific examples can be found in the included HTML file.
 				}
 
 				function drawLabels() {
-
 					var currentAngle = startAngle;
 					var radius = options.series.pie.label.radius > 1 ? options.series.pie.label.radius : maxRadius * options.series.pie.label.radius;
 
@@ -469,7 +459,6 @@ More detail and specific examples can be found in the included HTML file.
 					return true;
 
 					function drawLabel(slice, startAngle, index) {
-
 						if (slice.data[0][1] == 0) {
 							return true;
 						}
@@ -509,7 +498,6 @@ More detail and specific examples can be found in the included HTML file.
 						}
 
 						if (options.series.pie.label.background.opacity != 0) {
-
 							// put in the transparent background separately to avoid blended labels and label boxes
 
 							var c = options.series.pie.label.background.color;
@@ -534,7 +522,6 @@ More detail and specific examples can be found in the included HTML file.
 
 		function drawDonutHole(layer) {
 			if (options.series.pie.innerRadius > 0) {
-
 				// subtract the center
 
 				layer.save();
@@ -572,18 +559,15 @@ More detail and specific examples can be found in the included HTML file.
 		}
 
 		function findNearbySlice(mouseX, mouseY) {
-
 			var slices = plot.getData(),
 				options = plot.getOptions(),
 				radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius,
 				x, y;
 
 			for (var i = 0; i < slices.length; ++i) {
-
 				var s = slices[i];
 
 				if (s.pie.show) {
-
 					ctx.save();
 					ctx.beginPath();
 					ctx.moveTo(0, 0); // Center of the pie
@@ -605,7 +589,6 @@ More detail and specific examples can be found in the included HTML file.
 							};
 						}
 					} else {
-
 						// excanvas for IE doesn;t support isPointInPath, this is a workaround.
 
 						var p1X = radius * Math.cos(s.startAngle),
@@ -652,14 +635,12 @@ More detail and specific examples can be found in the included HTML file.
 		// trigger click or hover event (they send the same parameters so we share their code)
 
 		function triggerClickHoverEvent(eventname, e) {
-
 			var offset = plot.offset();
 			var canvasX = parseInt(e.pageX - offset.left);
 			var canvasY =  parseInt(e.pageY - offset.top);
 			var item = findNearbySlice(canvasX, canvasY);
 
 			if (options.grid.autoHighlight) {
-
 				// clear auto-highlights
 
 				for (var i = 0; i < highlights.length; ++i) {
@@ -725,7 +706,6 @@ More detail and specific examples can be found in the included HTML file.
 		}
 
 		function drawOverlay(plot, octx) {
-
 			var options = plot.getOptions();
 
 			var radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius;
@@ -743,7 +723,6 @@ More detail and specific examples can be found in the included HTML file.
 			octx.restore();
 
 			function drawHighlight(series) {
-
 				if (series.angle <= 0 || isNaN(series.angle)) {
 					return;
 				}
@@ -816,5 +795,4 @@ More detail and specific examples can be found in the included HTML file.
 		name: "pie",
 		version: "1.1"
 	});
-
 })(jQuery);

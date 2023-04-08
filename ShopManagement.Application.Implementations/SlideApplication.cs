@@ -1,6 +1,5 @@
 ﻿using ShopManagement.Application.Contracts.Shared;
 using ShopManagement.Application.Contracts.SlideAggregate;
-using ShopManagement.Domain.Shared;
 using ShopManagement.Domain.SlideAggregate;
 using System.Collections.Generic;
 
@@ -30,6 +29,7 @@ namespace ShopManagement.Application.Implementations
             _repository.Save();
             return operation.Succeeded();
         }
+
         public OperationResult Edit(EditSlide command)
         {
             var operation = new OperationResult();
@@ -51,8 +51,11 @@ namespace ShopManagement.Application.Implementations
             _repository.Save();
             return operation.Succeeded();
         }
+
         public EditSlide GetDetails(long id) => _repository.GetDetails(id);
+
         public List<SlideViewModel> GetSlides() => _repository.GetSlides();
+
         public OperationResult Remove(long id)
         {
             var operation = new OperationResult();
@@ -64,6 +67,7 @@ namespace ShopManagement.Application.Implementations
             _repository.Save();
             return operation.Succeeded();
         }
+
         public OperationResult Restore(long id)
         {
             var operation = new OperationResult();

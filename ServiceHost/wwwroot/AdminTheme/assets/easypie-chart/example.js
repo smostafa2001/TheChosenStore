@@ -51,7 +51,7 @@
     $.EasyPieChart = new EasyPieChart, $.EasyPieChart.Constructor = EasyPieChart
 }(window.jQuery),
 
-//initializing 
+//initializing
 function($) {
     "use strict";
     $.EasyPieChart.init()

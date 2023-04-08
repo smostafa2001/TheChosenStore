@@ -78,13 +78,12 @@
                       fill: '#dcdcdc'
                     }
                   }});
-
   },
     //init
     $.VectorMap = new VectorMap, $.VectorMap.Constructor = VectorMap
 }(window.jQuery),
 
-//initializing 
+//initializing
 function($) {
     "use strict";
     $.VectorMap.init()

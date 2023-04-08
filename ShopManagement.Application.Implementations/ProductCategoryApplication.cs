@@ -1,7 +1,6 @@
 ﻿using ShopManagement.Application.Contracts.ProductCategoryAggregate;
 using ShopManagement.Application.Contracts.Shared;
 using ShopManagement.Domain.ProductCategoryAggregate;
-using ShopManagement.Domain.Shared;
 using System.Collections.Generic;
 
 namespace ShopManagement.Application.Implementations
@@ -24,8 +23,8 @@ namespace ShopManagement.Application.Implementations
             _repository.Create(productCategory);
             _repository.Save();
             return operation.Succeeded();
-
         }
+
         public OperationResult Edit(EditProductCategory command)
         {
             var operation = new OperationResult();
@@ -40,10 +39,12 @@ namespace ShopManagement.Application.Implementations
                 command.MetaDescription, slug);
             _repository.Save();
             return operation.Succeeded();
-
         }
+
         public EditProductCategory GetDetails(long id) => _repository.GetDetails(id);
+
         public List<ProductCategoryViewModel> GetProductCategories() => _repository.GetProductCategories();
+
         public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel) => _repository.Search(searchModel);
     }
 }

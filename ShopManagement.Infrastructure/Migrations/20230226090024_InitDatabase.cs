@@ -1,13 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace ShopManagement.Infrastructure.EfCore.Migrations
+namespace ShopManagement.Infrastructure.EFCore.Migrations
 {
     public partial class InitDatabase : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.CreateTable(
+        protected override void Up(MigrationBuilder migrationBuilder) => migrationBuilder.CreateTable(
                 name: "ProductCategories",
                 columns: table => new
                 {
@@ -27,12 +25,8 @@ namespace ShopManagement.Infrastructure.EfCore.Migrations
                 {
                     table.PrimaryKey("PK_ProductCategories", x => x.Id);
                 });
-        }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
+        protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.DropTable(
                 name: "ProductCategories");
-        }
     }
 }

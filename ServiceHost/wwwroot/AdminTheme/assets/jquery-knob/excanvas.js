@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 // Known Issues:
 //
 // * Patterns are not implemented.
@@ -33,9 +32,7 @@
 
 // Only add this code if we do not already have a canvas implementation
 if (!document.createElement('canvas').getContext) {
-
 (function() {
-
   // alias some functions to make (compiled) code shorter
   var m = Math;
   var mr = m.round;
@@ -99,7 +96,6 @@ if (!document.createElement('canvas').getContext) {
       if (!doc.namespaces['g_vml_']) {
         doc.namespaces.add('g_vml_', 'urn:schemas-microsoft-com:vml',
                            '#default#VML');
-
       }
       if (!doc.namespaces['g_o_']) {
         doc.namespaces.add('g_o_', 'urn:schemas-microsoft-com:office:office',
@@ -115,7 +111,6 @@ if (!document.createElement('canvas').getContext) {
             'text-align:left;width:300px;height:150px}' +
             'g_vml_\\:*{behavior:url(#default#VML)}' +
             'g_o_\\:*{behavior:url(#default#VML)}';
-
       }
 
       // find all canvas elements
@@ -135,7 +130,6 @@ if (!document.createElement('canvas').getContext) {
      */
     initElement: function(el) {
       if (!el.getContext) {
-
         el.getContext = getContext;
 
         // Remove fallback content. There is no way to hide text nodes so we
@@ -414,7 +408,6 @@ if (!document.createElement('canvas').getContext) {
                            yStart: pStart.y,
                            xEnd: pEnd.x,
                            yEnd: pEnd.y});
-
   };
 
   contextPrototype.rect = function(aX, aY, aWidth, aHeight) {
@@ -636,7 +629,6 @@ if (!document.createElement('canvas').getContext) {
                        mr(p.xEnd), ',', mr(p.yEnd));
           break;
       }
-
 
       // TODO: Following is broken for curves due to
       //       move to proper paths.
@@ -918,7 +910,5 @@ if (!document.createElement('canvas').getContext) {
   CanvasRenderingContext2D = CanvasRenderingContext2D_;
   CanvasGradient = CanvasGradient_;
   CanvasPattern = CanvasPattern_;
-
 })();
-
 } // if

@@ -1,13 +1,11 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace ShopManagement.Infrastructure.EfCore.Migrations
+namespace ShopManagement.Infrastructure.EFCore.Migrations
 {
     public partial class AddedSlides : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.CreateTable(
+        protected override void Up(MigrationBuilder migrationBuilder) => migrationBuilder.CreateTable(
                 name: "Slides",
                 columns: table => new
                 {
@@ -28,12 +26,8 @@ namespace ShopManagement.Infrastructure.EfCore.Migrations
                 {
                     table.PrimaryKey("PK_Slides", x => x.Id);
                 });
-        }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
+        protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.DropTable(
                 name: "Slides");
-        }
     }
 }

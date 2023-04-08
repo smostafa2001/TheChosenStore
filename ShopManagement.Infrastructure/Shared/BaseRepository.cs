@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace ShopManagement.Infrastructure.EfCore.Shared
+namespace ShopManagement.Infrastructure.EFCore.Shared
 {
     public class BaseRepository<TKey, T> : IRepository<TKey, T> where T : class
     {

@@ -13,7 +13,7 @@ namespace ShopManagement.Application.Contracts.Shared
                 ""); // remove invalid characters
             s = Regex.Replace(s, @"\s+", " ").Trim(); // single space
             s = s.Substring(0, s.Length <= 100 ? s.Length : 45).Trim(); // cut and trim
-            s = Regex.Replace(s, @"\s", "-"); // insert hyphens        
+            s = Regex.Replace(s, @"\s", "-"); // insert hyphens
             s = Regex.Replace(s, @"‌", "-"); // half space
             return s.ToLower();
         }

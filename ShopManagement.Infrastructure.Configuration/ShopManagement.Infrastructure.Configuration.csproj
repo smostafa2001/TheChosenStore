@@ -7,7 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ShopManagement.Application.Contracts\ShopManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\ShopManagement.Application.Implementations\ShopManagement.Application.Implementations.csproj" />
-    <ProjectReference Include="..\ShopManagement.Infrastructure\ShopManagement.Infrastructure.EfCore.csproj" />
+    <ProjectReference Include="..\ShopManagement.Infrastructure\ShopManagement.Infrastructure.EFCore.csproj" />
   </ItemGroup>
 
 </Project>

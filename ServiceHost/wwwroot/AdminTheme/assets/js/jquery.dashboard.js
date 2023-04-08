@@ -4,7 +4,6 @@
 * Module/App: Dashboard
 */
 
-
 !function($) {
     "use strict";
 
@@ -118,8 +117,6 @@
         $.plot($(selector), data, options);
     },
 
-    
-
         //initializing various charts and components
         Dashboard.prototype.init = function() {
           //plot graph data
@@ -136,12 +133,10 @@
             var datas = [20,30, 20];
             var colors = ["rgba(30, 136, 229, 0.7)", "rgba(41, 182, 246, 0.7)", "rgba(126, 87, 194, 0.7)"];
             this.createPieGraph("#pie-chart #pie-chart-container", pielabels , datas, colors);
-
         },
 
     //init Dashboard
     $.Dashboard = new Dashboard, $.Dashboard.Constructor = Dashboard
-    
 }(window.jQuery),
 
 //initializing Dashboard
@@ -149,5 +144,3 @@ function($) {
     "use strict";
     $.Dashboard.init()
 }(window.jQuery);
-
-

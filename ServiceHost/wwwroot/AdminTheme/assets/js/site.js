@@ -177,7 +177,6 @@ function handleAjaxCall(method, url, data) {
             "application/json; charset=utf-8",
             "json",
             function (data) {
-
             }).fail(function (error) {
                 alert("خطایی رخ داده است. لطفا با مدیر سیستم تماس بگیرید.");
             });

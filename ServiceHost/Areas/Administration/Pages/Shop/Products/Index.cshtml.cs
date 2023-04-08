@@ -15,6 +15,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
 
         [TempData]
         public string Message { get; set; }
+
         public ProductSearchModel SearchModel { get; set; }
         public List<ProductViewModel> Products { get; set; }
         public SelectList ProductCategories { get; set; }
@@ -30,6 +31,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
             ProductCategories = new SelectList(_categoryApplication.GetProductCategories(), "Id", "Name");
             Products = _productApplication.Search(searchModel);
         }
+
         public IActionResult OnGetCreate()
         {
             var command = new CreateProduct
@@ -38,35 +40,26 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
             };
             return Partial("./Create", command);
         }
+
         public JsonResult OnPostCreate(CreateProduct command)
         {
             var result = _productApplication.Create(command);
             Message = result.Message;
             return new JsonResult(result);
         }
+
         public IActionResult OnGetEdit(long id)
         {
             var product = _productApplication.GetDetails(id);
             product.Categories = _categoryApplication.GetProductCategories();
             return Partial("./Edit", product);
         }
+
         public JsonResult OnPostEdit(EditProduct command)
         {
             var result = _productApplication.Edit(command);
             Message = result.Message;
             return new JsonResult(result);
-        }
-        public IActionResult OnGetMakeAvailableInStock(long id)
-        {
-            var result = _productApplication.MakeAvailableInStock(id);
-            Message = result.Message;
-            return RedirectToPage("./Index");
-        }
-        public IActionResult OnGetMakeUnavailableInStock(long id)
-        {
-            var result = _productApplication.MakeUnavailableInStock(id);
-            Message = result.Message;
-            return RedirectToPage("./Index");
         }
     }
 }

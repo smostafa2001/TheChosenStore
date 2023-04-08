@@ -3,9 +3,9 @@ using ShopManagement.Domain.ProductAggregate;
 using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using ShopManagement.Domain.SlideAggregate;
-using ShopManagement.Infrastructure.EfCore.Mapping;
+using ShopManagement.Infrastructure.EFCore.Mapping;
 
-namespace ShopManagement.Infrastructure.EfCore
+namespace ShopManagement.Infrastructure.EFCore
 {
     public class ShopContext : DbContext
     {
@@ -16,7 +16,6 @@ namespace ShopManagement.Infrastructure.EfCore
 
         public ShopContext(DbContextOptions<ShopContext> options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

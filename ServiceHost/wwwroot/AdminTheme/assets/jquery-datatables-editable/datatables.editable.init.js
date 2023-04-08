@@ -2,15 +2,13 @@
 * Theme: Montran Admin Template
 * Author: Coderthemes
 * Component: Editable
-* 
+*
 */
 
 (function( $ ) {
-
 	'use strict';
 
 	var EditableTable = {
-
 		options: {
 			addButton: '#addToTable',
 			table: '#datatable-editable',
@@ -156,7 +154,6 @@
 			if ( $row.hasClass('adding') ) {
 				this.rowRemove( $row );
 			} else {
-
 				data = this.datatable.row( $row.get(0) ).data();
 				this.datatable.row( $row.get(0) ).data( data );
 
@@ -234,11 +231,9 @@
 			$row.find( '.on-editing' ).addClass( 'hidden' );
 			$row.find( '.on-default' ).removeClass( 'hidden' );
 		}
-
 	};
 
 	$(function() {
 		EditableTable.initialize();
 	});
-
 }).apply( this, [ jQuery ]);

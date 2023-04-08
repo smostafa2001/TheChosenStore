@@ -2,7 +2,7 @@
 * Theme: Montran Admin Template
 * Author: Coderthemes
 * Component: Datatable
-* 
+*
 */
 
 (function (factory) {
@@ -363,7 +363,6 @@
 		}
 	} );
 
-
 	/*
 	 * TableTools Bootstrap compatibility
 	 * Required TableTools 2.1+
@@ -401,7 +400,3 @@
 		} );
 	}
 }));
-
-
-
-

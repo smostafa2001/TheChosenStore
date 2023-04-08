@@ -2,7 +2,7 @@
 * Theme: Montran Admin Template
 * Author: Coderthemes
 * Chart Js Page
-* 
+*
 */
 
 !function($) {
@@ -44,7 +44,6 @@
                     break;
             }
             // Initiate new chart or Redraw
-
         };
         // run function - render chart at first load
         generateChart();
@@ -62,7 +61,7 @@
                     pointStrokeColor : "rgba(49, 126, 235, 0.75)",
                     data : [33,52,63,92,50,53,46]
                 },
-                
+
                 {
                     fillColor : "#dcdcdc",
                     strokeColor : "#dcdcdc",
@@ -73,7 +72,7 @@
 
             ]
         };
-        
+
         this.respChart($("#lineChart"),'Line',data);
 
         //donut chart
@@ -98,7 +97,6 @@
         ]
         this.respChart($("#doughnut"),'Doughnut',data1);
 
-
         //Pie chart
         var data2 = [
             {
@@ -115,7 +113,6 @@
             }
         ]
         this.respChart($("#pie"),'Pie',data2);
-
 
         //barchart
         var data3 = {
@@ -187,10 +184,9 @@
         this.respChart($("#polarArea"),'PolarArea',data5);
     },
     $.ChartJs = new ChartJs, $.ChartJs.Constructor = ChartJs
-
 }(window.jQuery),
 
-//initializing 
+//initializing
 function($) {
     "use strict";
     $.ChartJs.init()

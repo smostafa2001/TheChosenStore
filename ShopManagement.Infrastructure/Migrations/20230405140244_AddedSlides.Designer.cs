@@ -5,9 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ShopManagement.Infrastructure.EfCore;
+using ShopManagement.Infrastructure.EFCore
+    
+    
+    ;
 
-namespace ShopManagement.Infrastructure.EfCore.Migrations
+namespace ShopManagement.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(ShopContext))]
     [Migration("20230405140244_AddedSlides")]

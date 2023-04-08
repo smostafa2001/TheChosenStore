@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ShopManagement.Infrastructure.EfCore.Query
+namespace ShopManagement.Infrastructure.EFCore.Query
 {
     public class SlideQuery : ISlideQuery
     {
@@ -19,7 +19,7 @@ namespace ShopManagement.Infrastructure.EfCore.Query
             Heading = s.Heading,
             Text = s.Text,
             BtnText = s.BtnText,
-            Link = s.Link 
+            Link = s.Link
         }).ToList();
     }
 }

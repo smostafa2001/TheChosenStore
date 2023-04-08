@@ -1,7 +1,7 @@
 /**
 * Theme: Velonic Admin Template
 * Author: Coderthemes
-* Chat application 
+* Chat application
 */
 
 !function($) {
@@ -32,7 +32,7 @@
     },
     ChatApp.prototype.init = function () {
         var $this = this;
-        //binding keypress event on chat input box - on enter we are adding the chat into chat list - 
+        //binding keypress event on chat input box - on enter we are adding the chat into chat list -
         $this.$chatInput.keypress(function (ev) {
             var p = ev.which;
             if (p == 13) {
@@ -40,7 +40,6 @@
                 return false;
             }
         });
-
 
         //binding send button click
         $this.$chatSendBtn.click(function (ev) {
@@ -50,7 +49,6 @@
     },
     //init ChatApp
     $.ChatApp = new ChatApp, $.ChatApp.Constructor = ChatApp
-    
 }(window.jQuery),
 
 //initializing main application module

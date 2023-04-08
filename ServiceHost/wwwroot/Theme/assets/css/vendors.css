@@ -11134,9 +11134,7 @@ a.text-dark:hover {
     }
 }
 
-
 /*# sourceMappingURL=bootstrap.min.css.map */
-
 
 /*!
   *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
@@ -14184,7 +14182,6 @@ a.text-dark:hover {
     overflow: visible;
     clip: auto
 }
-
 
 /*!
   Ionicons, v2.0.0
@@ -17885,7 +17882,6 @@ a.text-dark:hover {
 .ion-xbox:before {
     content: "\f30c"
 }
-
 
 /*=============================================
  =            Helper CSS            =
@@ -22353,9 +22349,7 @@ a.text-dark:hover {
         margin: 0
     }
 
-
 /*=====  End of Helper CSS  ======*/
-
 
 /*=============================================
 =             Perfect scrollbar            =
@@ -22460,9 +22454,7 @@ a.text-dark:hover {
     }
 }
 
-
 /*=====  End of Perfect scrollbar  ======*/
-
 
 /*!
  * animate.css -http://daneden.me/animate
@@ -25962,7 +25954,6 @@ a.text-dark:hover {
     }
 }
 
-
 /**
  *
  * slick CSS
@@ -26074,10 +26065,9 @@ a.text-dark:hover {
     display: none
 }
 
-
 /*  jQuery Nice Select - v1.0
  https://github.com/hernansartorio/jquery-nice-select
- Made by Hernán Sartorio 
+ Made by Hernán Sartorio
  */
 
 .nice-select {

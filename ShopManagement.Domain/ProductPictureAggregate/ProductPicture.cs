@@ -11,6 +11,7 @@ namespace ShopManagement.Domain.ProductPictureAggregate
         public bool IsRemoved { get; private set; }
         public long ProductId { get; private set; }
         public Product Product { get; private set; }
+
         public ProductPicture(long productId, string picture, string pictureAlt, string pictureTitle)
         {
             ProductId = productId;
@@ -27,6 +28,7 @@ namespace ShopManagement.Domain.ProductPictureAggregate
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
         }
+
         public void Remove() => IsRemoved = true;
 
         public void Restore() => IsRemoved = false;

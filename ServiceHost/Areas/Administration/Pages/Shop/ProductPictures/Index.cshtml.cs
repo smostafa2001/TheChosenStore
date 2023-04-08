@@ -15,6 +15,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.ProductPictures
 
         [TempData]
         public string Message { get; set; }
+
         public ProductPictureSearchModel SearchModel { get; set; }
         public List<ProductPictureViewModel> ProductPictures { get; set; }
         public SelectList Products { get; set; }
@@ -30,6 +31,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.ProductPictures
             Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
             ProductPictures = _pictureApplication.Search(searchModel);
         }
+
         public IActionResult OnGetCreate()
         {
             var command = new CreateProductPicture
@@ -38,30 +40,35 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.ProductPictures
             };
             return Partial("./Create", command);
         }
+
         public JsonResult OnPostCreate(CreateProductPicture command)
         {
             var result = _pictureApplication.Create(command);
             Message = result.Message;
             return new JsonResult(result);
         }
+
         public IActionResult OnGetEdit(long id)
         {
             var productPicture = _pictureApplication.GetDetails(id);
             productPicture.Products = _productApplication.GetProducts();
             return Partial("./Edit", productPicture);
         }
+
         public JsonResult OnPostEdit(EditProductPicture command)
         {
             var result = _pictureApplication.Edit(command);
             Message = result.Message;
             return new JsonResult(result);
         }
+
         public IActionResult OnGetRemove(long id)
         {
             var result = _pictureApplication.Remove(id);
             Message = result.Message;
             return RedirectToPage("./Index");
         }
+
         public IActionResult OnGetRestore(long id)
         {
             var result = _pictureApplication.Restore(id);

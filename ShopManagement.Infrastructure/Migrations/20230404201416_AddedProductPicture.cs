@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace ShopManagement.Infrastructure.EfCore.Migrations
+namespace ShopManagement.Infrastructure.EFCore.Migrations
 {
     public partial class AddedProductPicture : Migration
     {
@@ -37,10 +37,7 @@ namespace ShopManagement.Infrastructure.EfCore.Migrations
                 column: "ProductId");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
+        protected override void Down(MigrationBuilder migrationBuilder) => migrationBuilder.DropTable(
                 name: "ProductPictures");
-        }
     }
 }

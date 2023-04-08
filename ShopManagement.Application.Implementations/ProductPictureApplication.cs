@@ -1,7 +1,6 @@
 ﻿using ShopManagement.Application.Contracts.ProductPictureAggregate;
 using ShopManagement.Application.Contracts.Shared;
 using ShopManagement.Domain.ProductPictureAggregate;
-using ShopManagement.Domain.Shared;
 using System.Collections.Generic;
 
 namespace ShopManagement.Application.Implementations
@@ -10,10 +9,8 @@ namespace ShopManagement.Application.Implementations
     {
         private readonly IProductPictureRepository _repository;
 
-        public ProductPictureApplication(IProductPictureRepository repository)
-        {
-            _repository = repository;
-        }
+        public ProductPictureApplication(IProductPictureRepository repository) => _repository = repository;
+
         public OperationResult Create(CreateProductPicture command)
         {
             var operation = new OperationResult();
@@ -79,6 +76,7 @@ namespace ShopManagement.Application.Implementations
             _repository.Save();
             return operation.Succeeded();
         }
+
         public OperationResult Restore(long id)
         {
             var operation = new OperationResult();

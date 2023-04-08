@@ -1,5 +1,4 @@
 (function() {
-
   CodeMirror.extendMode("css", {
     commentStart: "/*",
     commentEnd: "*/",

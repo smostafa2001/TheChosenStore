@@ -2,11 +2,8 @@
 * Theme: Montran Admin Template
 * Author: Coderthemes
 * Component: Full-Calendar
-* 
+*
 */
-
-
-
 
 !function($) {
     "use strict";
@@ -22,9 +19,8 @@
         this.$calendarObj = null
     };
 
-
     /* on drop */
-    CalendarApp.prototype.onDrop = function (eventObj, date) { 
+    CalendarApp.prototype.onDrop = function (eventObj, date) {
         var $this = this;
             // retrieve the dropped element's stored Event Object
             var originalEventObject = eventObj.data('eventObject');
@@ -97,14 +93,13 @@
                         end: end,
                         allDay: false,
                         className: categoryClass
-                    }, true);  
+                    }, true);
                     $this.$modal.modal('hide');
                 }
                 else{
                     alert('You have to give a title to your event');
                 }
                 return false;
-                
             });
             $this.$calendarObj.fullCalendar('unselect');
     },
@@ -156,10 +151,10 @@
         $this.$calendarObj = $this.$calendar.fullCalendar({
             slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
             minTime: '08:00:00',
-            maxTime: '19:00:00',  
-            defaultView: 'month',  
-            handleWindowResize: true,   
-            height: $(window).height() - 200,   
+            maxTime: '19:00:00',
+            defaultView: 'month',
+            handleWindowResize: true,
+            height: $(window).height() - 200,
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -173,7 +168,6 @@
             drop: function(date) { $this.onDrop($(this), date); },
             select: function (start, end, allDay) { $this.onSelect(start, end, allDay); },
             eventClick: function(calEvent, jsEvent, view) { $this.onEventClick(calEvent, jsEvent, view); },
-
         });
 
         //on new event
@@ -184,13 +178,11 @@
                 $this.$extEvents.append('<div class="external-event bg-' + categoryColor + '" data-class="bg-' + categoryColor + '" style="position: relative;"><i class="fa fa-move"></i>' + categoryName + '</div>')
                 $this.enableDrag();
             }
-
         });
     },
 
    //init CalendarApp
     $.CalendarApp = new CalendarApp, $.CalendarApp.Constructor = CalendarApp
-    
 }(window.jQuery),
 
 //initializing CalendarApp

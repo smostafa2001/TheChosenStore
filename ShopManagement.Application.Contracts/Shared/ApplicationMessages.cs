@@ -1,4 +1,4 @@
-﻿namespace ShopManagement.Domain.Shared
+﻿namespace ShopManagement.Application.Contracts.Shared
 {
     public class ApplicationMessages
     {

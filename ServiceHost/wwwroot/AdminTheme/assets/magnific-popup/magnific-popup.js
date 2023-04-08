@@ -2,14 +2,12 @@
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2013 Dmitry Semenov; */
 ;(function($) {
-
 /*>>core*/
 /**
  *
  * Magnific Popup Core JS file
  *
  */
-
 
 /**
  * Private static constants
@@ -27,7 +25,6 @@ var CLOSE_EVENT = 'Close',
 	REMOVING_CLASS = 'mfp-removing',
 	PREVENT_CLOSE_CLASS = 'mfp-prevent-close';
 
-
 /**
  * Private vars
  */
@@ -41,7 +38,6 @@ var mfp, // As we have only one instance of MagnificPopup object, we define it l
 	_prevContentType,
 	_wrapClasses,
 	_currPopupType;
-
 
 /**
  * Private functions
@@ -109,13 +105,10 @@ var _mfpOn = function(name, f) {
 		return false;
 	};
 
-
-
 /**
  * Public functions
  */
 MagnificPopup.prototype = {
-
 	constructor: MagnificPopup,
 
 	/**
@@ -144,7 +137,6 @@ MagnificPopup.prototype = {
 	 * @param  data [description]
 	 */
 	open: function(data) {
-
 		if(!_body) {
 			_body = $(document.body);
 		}
@@ -196,8 +188,6 @@ MagnificPopup.prototype = {
 			mfp.currTemplate = {};
 		}
 
-
-
 		mfp.st = $.extend(true, {}, $.magnificPopup.defaults, data );
 		mfp.fixedContentPos = mfp.st.fixedContentPos === 'auto' ? !mfp.probablyMobile : mfp.st.fixedContentPos;
 
@@ -208,11 +198,9 @@ MagnificPopup.prototype = {
 			mfp.st.enableEscapeKey = false;
 		}
 
-
 		// Building markup
 		// main containers are created only once
 		if(!mfp.bgOverlay) {
-
 			// Dark overlay
 			mfp.bgOverlay = _getEl('bg').on('click'+EVENT_NS, function() {
 				mfp.close();
@@ -232,7 +220,6 @@ MagnificPopup.prototype = {
 			mfp.preloader = _getEl('preloader', mfp.container, mfp.st.tLoading);
 		}
 
-
 		// Initializing modules
 		var modules = $.magnificPopup.modules;
 		for(i = 0; i < modules.length; i++) {
@@ -241,7 +228,6 @@ MagnificPopup.prototype = {
 			mfp['init'+n].call(mfp);
 		}
 		_mfpTrigger('BeforeOpen');
-
 
 		if(mfp.st.showCloseBtn) {
 			// Close button
@@ -258,8 +244,6 @@ MagnificPopup.prototype = {
 		if(mfp.st.alignTop) {
 			_wrapClasses += ' mfp-align-top';
 		}
-
-
 
 		if(mfp.fixedContentPos) {
 			mfp.wrap.css({
@@ -280,8 +264,6 @@ MagnificPopup.prototype = {
 			});
 		}
 
-
-
 		if(mfp.st.enableEscapeKey) {
 			// Close on ESC key
 			_document.on('keyup' + EVENT_NS, function(e) {
@@ -295,7 +277,6 @@ MagnificPopup.prototype = {
 			mfp.updateSize();
 		});
 
-
 		if(!mfp.st.closeOnContentClick) {
 			_wrapClasses += ' mfp-auto-cursor';
 		}
@@ -303,10 +284,8 @@ MagnificPopup.prototype = {
 		if(_wrapClasses)
 			mfp.wrap.addClass(_wrapClasses);
 
-
 		// this triggers recalculation of layout, so we get it once to not to trigger twice
 		var windowHeight = mfp.wH = _window.height();
-
 
 		var windowStyles = {};
 
@@ -327,8 +306,6 @@ MagnificPopup.prototype = {
 				$('body, html').css('overflow', 'hidden');
 			}
 		}
-
-
 
 		var classesToadd = mfp.st.mainClass;
 		if(mfp.isIE7) {
@@ -354,7 +331,6 @@ MagnificPopup.prototype = {
 
 		// Wait for next cycle to allow CSS transition
 		setTimeout(function() {
-
 			if(mfp.content) {
 				mfp._addClassToMFP(READY_CLASS);
 				mfp._setFocus();
@@ -365,7 +341,6 @@ MagnificPopup.prototype = {
 
 			// Trap the focus in popup
 			_document.on('focusin' + EVENT_NS, mfp._onFocusIn);
-
 		}, 16);
 
 		mfp.isOpen = true;
@@ -437,7 +412,6 @@ MagnificPopup.prototype = {
 				mfp.currTemplate.closeBtn.detach();
 		}
 
-
 		if(mfp._lastFocusedEl) {
 			$(mfp._lastFocusedEl).focus(); // put tab focus back
 		}
@@ -450,7 +424,6 @@ MagnificPopup.prototype = {
 	},
 
 	updateSize: function(winHeight) {
-
 		if(mfp.isIOS) {
 			// fixes iOS nav bars https://github.com/dimsemenov/Magnific-Popup/issues/2
 			var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
@@ -466,7 +439,6 @@ MagnificPopup.prototype = {
 		}
 
 		_mfpTrigger('Resize');
-
 	},
 
 	/**
@@ -492,10 +464,6 @@ MagnificPopup.prototype = {
 		// _mfpOn('BeforeChange', function(e, prevType, newType) { });
 
 		mfp.currItem = item;
-
-
-
-
 
 		if(!mfp.currTemplate[type]) {
 			var markup = mfp.st[type] ? mfp.st[type].markup : false;
@@ -529,7 +497,6 @@ MagnificPopup.prototype = {
 		_mfpTrigger('AfterChange');
 	},
 
-
 	/**
 	 * Set HTML content of popup
 	 */
@@ -555,9 +522,6 @@ MagnificPopup.prototype = {
 
 		mfp.contentContainer.append(mfp.content);
 	},
-
-
-
 
 	/**
 	 * Creates Magnific Popup data object based on given data
@@ -600,7 +564,6 @@ MagnificPopup.prototype = {
 		return mfp.items[index];
 	},
 
-
 	/**
 	 * Initializes single popup or a group of popups
 	 */
@@ -633,7 +596,6 @@ MagnificPopup.prototype = {
 	_openClick: function(e, el, options) {
 		var midClick = options.midClick !== undefined ? options.midClick : $.magnificPopup.defaults.midClick;
 
-
 		if(!midClick && ( e.which === 2 || e.ctrlKey || e.metaKey ) ) {
 			return;
 		}
@@ -661,7 +623,6 @@ MagnificPopup.prototype = {
 			}
 		}
 
-
 		options.el = $(e.mfpEl);
 		if(options.delegate) {
 			options.items = el.find(options.delegate);
@@ -669,12 +630,10 @@ MagnificPopup.prototype = {
 		mfp.open(options);
 	},
 
-
 	/**
 	 * Updates text on preloader
 	 */
 	updateStatus: function(status, text) {
-
 		if(mfp.preloader) {
 			if(_prevStatus !== status) {
 				mfp.container.removeClass('mfp-s-'+_prevStatus);
@@ -705,14 +664,12 @@ MagnificPopup.prototype = {
 		}
 	},
 
-
 	/*
 		"Private" helpers that aren't private at all
 	 */
 	// Check to close popup or not
 	// "target" is an element that was clicked
 	_checkIfClose: function(target) {
-
 		if($(target).hasClass(PREVENT_CLOSE_CLASS)) {
 			return;
 		}
@@ -723,7 +680,6 @@ MagnificPopup.prototype = {
 		if(closeOnContent && closeOnBg) {
 			return true;
 		} else {
-
 			// We close the popup if click is on close button or on preloader. Or if there is no content.
 			if(!mfp.content || $(target).hasClass('mfp-close') || (mfp.preloader && target === mfp.preloader[0]) ) {
 				return true;
@@ -740,7 +696,6 @@ MagnificPopup.prototype = {
 			} else if(closeOnContent) {
 				return true;
 			}
-
 		}
 		return false;
 	},
@@ -795,7 +750,6 @@ MagnificPopup.prototype = {
 						el.attr(arr[1], value);
 					}
 				}
-
 			} else {
 				template.find(EVENT_NS + '-'+key).html(value);
 			}
@@ -814,11 +768,7 @@ MagnificPopup.prototype = {
 		}
 		return mfp.scrollbarSize;
 	}
-
 }; /* MagnificPopup core prototype end */
-
-
-
 
 /**
  * Public static functions
@@ -836,7 +786,6 @@ $.magnificPopup = {
 		} else {
 			options = $.extend(true, {}, options);
 		}
-
 
 		options.isObj = true;
 		options.index = index || 0;
@@ -856,7 +805,6 @@ $.magnificPopup = {
 	},
 
 	defaults: {
-
 		// Info about options is in docs:
 		// http://dimsemenov.com/plugins/magnific-popup/documentation.html#options
 
@@ -901,11 +849,8 @@ $.magnificPopup = {
 		tClose: 'Close (Esc)',
 
 		tLoading: 'Loading...'
-
 	}
 };
-
-
 
 $.fn.magnificPopup = function(options) {
 	_checkInstance();
@@ -914,7 +859,6 @@ $.fn.magnificPopup = function(options) {
 
 	// We call some API method of first param is a string
 	if (typeof options === "string" ) {
-
 		if(options === 'open') {
 			var items,
 				itemOpts = _isJQ ? jqEl.data('magnificPopup') : jqEl[0].magnificPopup,
@@ -934,7 +878,6 @@ $.fn.magnificPopup = function(options) {
 			if(mfp.isOpen)
 				mfp[options].apply(mfp, Array.prototype.slice.call(arguments, 1));
 		}
-
 	} else {
 		// clone options obj
 		options = $.extend(true, {}, options);
@@ -951,11 +894,9 @@ $.fn.magnificPopup = function(options) {
 		}
 
 		mfp.addGroup(jqEl, options);
-
 	}
 	return jqEl;
 };
-
 
 //Quick benchmark
 /*
@@ -964,17 +905,14 @@ var start = performance.now(),
 	rounds = 1000;
 
 for(i = 0; i < rounds; i++) {
-
 }
 console.log('Test #1:', performance.now() - start);
 
 start = performance.now();
 for(i = 0; i < rounds; i++) {
-
 }
 console.log('Test #2:', performance.now() - start);
 */
-
 
 /*>>core*/
 
@@ -998,7 +936,6 @@ $.magnificPopup.registerModule(INLINE_NS, {
 		tNotFound: 'Content not found'
 	},
 	proto: {
-
 		initInline: function() {
 			mfp.types.push(INLINE_NS);
 
@@ -1008,7 +945,6 @@ $.magnificPopup.registerModule(INLINE_NS, {
 		},
 
 		getInline: function(item, template) {
-
 			_putInlineElementsBack();
 
 			if(item.src) {
@@ -1016,7 +952,6 @@ $.magnificPopup.registerModule(INLINE_NS, {
 					el = $(item.src);
 
 				if(el.length) {
-
 					// If target element has parent - we replace it with placeholder and put it back after popup is closed
 					var parent = el[0].parentNode;
 					if(parent && parent.tagName) {
@@ -1064,7 +999,6 @@ var AJAX_NS = 'ajax',
 	};
 
 $.magnificPopup.registerModule(AJAX_NS, {
-
 	options: {
 		settings: null,
 		cursor: 'mfp-ajax-cur',
@@ -1080,7 +1014,6 @@ $.magnificPopup.registerModule(AJAX_NS, {
 			_mfpOn('BeforeChange.' + AJAX_NS, _destroyAjaxRequest);
 		},
 		getAjax: function(item) {
-
 			if(_ajaxCur)
 				_body.addClass(_ajaxCur);
 
@@ -1126,12 +1059,6 @@ $.magnificPopup.registerModule(AJAX_NS, {
 	}
 });
 
-
-
-
-
-
-
 /*>>ajax*/
 
 /*>>image*/
@@ -1153,7 +1080,6 @@ var _imgInterval,
 	};
 
 $.magnificPopup.registerModule('image', {
-
 	options: {
 		markup: '<div class="mfp-figure">'+
 					'<div class="mfp-close"></div>'+
@@ -1213,7 +1139,6 @@ $.magnificPopup.registerModule('image', {
 		},
 		_onImageHasSize: function(item) {
 			if(item.img) {
-
 				item.hasSize = true;
 
 				if(_imgInterval) {
@@ -1230,7 +1155,6 @@ $.magnificPopup.registerModule('image', {
 
 					item.imgHidden = false;
 				}
-
 			}
 		},
 
@@ -1238,11 +1162,9 @@ $.magnificPopup.registerModule('image', {
 		 * Function that loops until the image has size to display elements that rely on it asap
 		 */
 		findImageSize: function(item) {
-
 			var counter = 0,
 				img = item.img[0],
 				mfpSetInterval = function(delay) {
-
 					if(_imgInterval) {
 						clearInterval(_imgInterval);
 					}
@@ -1272,7 +1194,6 @@ $.magnificPopup.registerModule('image', {
 		},
 
 		getImage: function(item, template) {
-
 			var guard = 0,
 
 				// image load complete handler
@@ -1291,7 +1212,6 @@ $.magnificPopup.registerModule('image', {
 							item.loaded = true;
 
 							_mfpTrigger('ImageLoadComplete');
-
 						}
 						else {
 							// if image complete check fails 200 times (20 sec), we assume that there was an error.
@@ -1320,7 +1240,6 @@ $.magnificPopup.registerModule('image', {
 					}
 				},
 				imgSt = mfp.st.image;
-
 
 			var el = template.find('.mfp-img');
 			if(el.length) {
@@ -1377,8 +1296,6 @@ $.magnificPopup.registerModule('image', {
 	}
 });
 
-
-
 /*>>image*/
 
 /*>>zoom*/
@@ -1391,7 +1308,6 @@ var hasMozTransform,
 	};
 
 $.magnificPopup.registerModule('zoom', {
-
 	options: {
 		enabled: false,
 		easing: 'ease-in-out',
@@ -1402,7 +1318,6 @@ $.magnificPopup.registerModule('zoom', {
 	},
 
 	proto: {
-
 		initZoom: function() {
 			var zoomSt = mfp.st.zoom,
 				ns = '.zoom',
@@ -1438,7 +1353,6 @@ $.magnificPopup.registerModule('zoom', {
 
 			_mfpOn('BuildControls'+ns, function() {
 				if(mfp._allowZoom()) {
-
 					clearTimeout(openTimeout);
 					mfp.content.css('visibility', 'hidden');
 
@@ -1460,7 +1374,6 @@ $.magnificPopup.registerModule('zoom', {
 					openTimeout = setTimeout(function() {
 						animatedImg.css( mfp._getOffset( true ) );
 						openTimeout = setTimeout(function() {
-
 							showMainContent();
 
 							setTimeout(function() {
@@ -1468,18 +1381,14 @@ $.magnificPopup.registerModule('zoom', {
 								image = animatedImg = null;
 								_mfpTrigger('ZoomAnimationEnded');
 							}, 16); // avoid blink when switching images
-
 						}, duration); // this timeout equals animation duration
-
 					}, 16); // by adding this timeout we avoid short glitch at the beginning of animation
-
 
 					// Lots of timeouts...
 				}
 			});
 			_mfpOn(BEFORE_CLOSE_EVENT+ns, function() {
 				if(mfp._allowZoom()) {
-
 					clearTimeout(openTimeout);
 
 					mfp.st.removalDelay = duration;
@@ -1492,7 +1401,6 @@ $.magnificPopup.registerModule('zoom', {
 						animatedImg = getElToAnimate(image);
 					}
 
-
 					animatedImg.css( mfp._getOffset(true) );
 					mfp.wrap.append(animatedImg);
 					mfp.content.css('visibility', 'hidden');
@@ -1501,7 +1409,6 @@ $.magnificPopup.registerModule('zoom', {
 						animatedImg.css( mfp._getOffset() );
 					}, 16);
 				}
-
 			});
 
 			_mfpOn(CLOSE_EVENT+ns, function() {
@@ -1541,7 +1448,6 @@ $.magnificPopup.registerModule('zoom', {
 			var paddingBottom = parseInt(el.css('padding-bottom'),10);
 			offset.top -= ( $(window).scrollTop() - paddingTop );
 
-
 			/*
 
 			Animating left + top + width/height looks glitchy in Firefox, but perfect in Chrome. And vice-versa.
@@ -1562,11 +1468,8 @@ $.magnificPopup.registerModule('zoom', {
 			}
 			return obj;
 		}
-
 	}
 });
-
-
 
 /*>>zoom*/
 
@@ -1593,7 +1496,6 @@ var IFRAME_NS = 'iframe',
 	};
 
 $.magnificPopup.registerModule(IFRAME_NS, {
-
 	options: {
 		markup: '<div class="mfp-iframe-scaler">'+
 					'<div class="mfp-close"></div>'+
@@ -1673,8 +1575,6 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 	}
 });
 
-
-
 /*>>iframe*/
 
 /*>>gallery*/
@@ -1695,7 +1595,6 @@ var _getLoopedId = function(index) {
 	};
 
 $.magnificPopup.registerModule('gallery', {
-
 	options: {
 		enabled: false,
 		arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
@@ -1710,7 +1609,6 @@ $.magnificPopup.registerModule('gallery', {
 
 	proto: {
 		initGallery: function() {
-
 			var gSt = mfp.st.gallery,
 				ns = '.mfp-gallery',
 				supportsFastClick = Boolean($.fn.mfpFastClick);
@@ -1722,7 +1620,6 @@ $.magnificPopup.registerModule('gallery', {
 			_wrapClasses += ' mfp-gallery';
 
 			_mfpOn(OPEN_EVENT+ns, function() {
-
 				if(gSt.navigateByImgClick) {
 					mfp.wrap.on('click'+ns, '.mfp-img', function() {
 						if(mfp.items.length > 1) {
@@ -1787,7 +1684,6 @@ $.magnificPopup.registerModule('gallery', {
 				}, 16);
 			});
 
-
 			_mfpOn(CLOSE_EVENT+ns, function() {
 				_document.off(ns);
 				mfp.wrap.off('click'+ns);
@@ -1797,7 +1693,6 @@ $.magnificPopup.registerModule('gallery', {
 				}
 				mfp.arrowRight = mfp.arrowLeft = null;
 			});
-
 		},
 		next: function() {
 			mfp.direction = true;
@@ -1850,7 +1745,6 @@ $.magnificPopup.registerModule('gallery', {
 					_mfpTrigger('LazyLoadError', item);
 				}).attr('src', item.src);
 			}
-
 
 			item.preloaded = true;
 		}
@@ -1908,7 +1802,6 @@ addSwipeGesture: function() {
 },
 */
 
-
 /*>>gallery*/
 
 /*>>retina*/
@@ -1925,7 +1818,6 @@ $.magnificPopup.registerModule(RETINA_NS, {
 	proto: {
 		initRetina: function() {
 			if(window.devicePixelRatio > 1) {
-
 				var st = mfp.st.retina,
 					ratio = st.ratio;
 
@@ -1943,7 +1835,6 @@ $.magnificPopup.registerModule(RETINA_NS, {
 					});
 				}
 			}
-
 		}
 	}
 });
@@ -1979,17 +1870,13 @@ $.magnificPopup.registerModule(RETINA_NS, {
 		eName = 'mfpFastClick',
 		ns = '.'+eName;
 
-
 	// As Zepto.js doesn't have an easy way to add custom events (like jQuery), so we implement it in this way
 	$.fn.mfpFastClick = function(callback) {
-
 		return $(this).each(function() {
-
 			var elem = $(this),
 				lock;
 
 			if( supportsTouch ) {
-
 				var timeout,
 					startX,
 					startY,
@@ -2028,7 +1915,6 @@ $.magnificPopup.registerModule(RETINA_NS, {
 						callback();
 					});
 				});
-
 			}
 
 			elem.on('click' + ns, function() {

@@ -1,10 +1,10 @@
-﻿using ShopManagement.Domain.SlideAggregate;
-using ShopManagement.Infrastructure.EfCore.Shared;
+﻿using ShopManagement.Domain.Shared;
+using ShopManagement.Domain.SlideAggregate;
+using ShopManagement.Infrastructure.EFCore.Shared;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
-namespace ShopManagement.Infrastructure.EfCore.Repository
+namespace ShopManagement.Infrastructure.EFCore.Repository
 {
     public class SlideRepository : BaseRepository<long, Slide>, ISlideRepository
     {
@@ -24,6 +24,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             Title = s.Title,
             Link = s.Link
         }).FirstOrDefault(s => s.Id == id);
+
         public List<SlideViewModel> GetSlides() => _context.Slides.Select(s => new SlideViewModel
         {
             Id = s.Id,
@@ -31,7 +32,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             Picture = s.Picture,
             Title = s.Title,
             IsRemoved = s.IsRemoved,
-            CreationDate = s.CreationDate.ToString(CultureInfo.InvariantCulture)
+            CreationDate = s.CreationDate.ToFarsi()
         }).OrderByDescending(s => s.Id).ToList();
     }
 }

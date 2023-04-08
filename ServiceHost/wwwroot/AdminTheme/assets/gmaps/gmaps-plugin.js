@@ -219,7 +219,7 @@
     $.GoogleMap = new GoogleMap, $.GoogleMap.Constructor = GoogleMap
 }(window.jQuery),
 
-//initializing 
+//initializing
 function($) {
     "use strict";
     $.GoogleMap.init()

@@ -10,9 +10,7 @@
 */
 
 !function ($) {
-
   "use strict";
-
 
  /* MULTISELECT CLASS DEFINITION
   * ====================== */
@@ -138,11 +136,11 @@
             optgroupId = that.sanitize(optgroupLabel, that.sanitizeRegexp),
             $selectableOptgroup = that.$selectableUl.find('#optgroup-selectable-'+optgroupId),
             $selectionOptgroup = that.$selectionUl.find('#optgroup-selection-'+optgroupId);
-        
+
         if ($selectableOptgroup.length === 0){
           var optgroupContainerTpl = '<li class="ms-optgroup-container"></li>',
               optgroupTpl = '<ul class="ms-optgroup"><li class="ms-optgroup-label"><span>'+optgroupLabel+'</span></li></ul>';
-          
+
           $selectableOptgroup = $(optgroupContainerTpl);
           $selectionOptgroup = $(optgroupContainerTpl);
           $selectableOptgroup.attr('id', 'optgroup-selectable-'+optgroupId);
@@ -216,7 +214,6 @@
 
       $elems.removeClass('ms-hover');
       if (direction === 1){ // DOWN
-
         $nextElem = $currElem.nextAll(this.elemsSelector).first();
         if ($nextElem.length === 0){
           var $optgroupUl = $currElem.parent();
@@ -235,7 +232,6 @@
           }
         }
       } else if (direction === -1){ // UP
-
         $nextElem = $currElem.prevAll(this.elemsSelector).first();
         if ($nextElem.length === 0){
           var $optgroupUl = $currElem.parent();
@@ -256,7 +252,7 @@
       }
       if ($nextElem.length > 0){
         $nextElem.addClass('ms-hover');
-        var scrollTo = $list.scrollTop() + $nextElem.position().top - 
+        var scrollTo = $list.scrollTop() + $nextElem.position().top -
                        containerHeight / 2 + elemHeight / 2;
 
         $list.scrollTop(scrollTo);
@@ -342,7 +338,7 @@
           });
         } else {
           if (that.options.keepOrder){
-            var selectionLiLast = that.$selectionUl.find('.ms-selected'); 
+            var selectionLiLast = that.$selectionUl.find('.ms-selected');
             if((selectionLiLast.length > 1) && (selectionLiLast.last().get(0) != selections.get(0))) {
               selections.insertAfter(selectionLiLast.last());
             }
@@ -466,5 +462,4 @@
   };
 
   $.fn.multiSelect.Constructor = MultiSelect;
-
 }(window.jQuery);

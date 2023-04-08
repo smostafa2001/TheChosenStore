@@ -1,5 +1,4 @@
 $(function() {
-
 	// Get the form.
 	var form = $('#contact-form');
 
@@ -44,5 +43,4 @@ $(function() {
 			}
 		});
 	});
-
 });

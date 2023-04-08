@@ -9,7 +9,6 @@ API.txt for details.
 */
 
 (function($) {
-
 	var options = {
 		xaxis: {
 			timezone: null,		// "browser" for local to the client or timezone for timezone-js
@@ -29,7 +28,6 @@ API.txt for details.
 	// A subset of the Open Group's strftime format is supported.
 
 	function formatDate(d, fmt, monthNames, dayNames) {
-
 		if (typeof d.strftime == "function") {
 			return d.strftime(fmt);
 		}
@@ -64,7 +62,6 @@ API.txt for details.
 		}
 
 		for (var i = 0; i < fmt.length; ++i) {
-
 			var c = fmt.charAt(i);
 
 			if (escape) {
@@ -109,7 +106,6 @@ API.txt for details.
 	// versions of the accessor methods.
 
 	function makeUtcWrapper(d) {
-
 		function addProxyMethod(sourceObj, sourceMethod, targetObj, targetMethod) {
 			sourceObj[sourceMethod] = function() {
 				return targetObj[targetMethod].apply(targetObj, arguments);
@@ -158,7 +154,7 @@ API.txt for details.
 			return makeUtcWrapper(new Date(ts));
 		}
 	}
-	
+
 	// map of app. size of time units in milliseconds
 
 	var timeUnitSize = {
@@ -176,9 +172,9 @@ API.txt for details.
 
 	var baseSpec = [
 		[1, "second"], [2, "second"], [5, "second"], [10, "second"],
-		[30, "second"], 
+		[30, "second"],
 		[1, "minute"], [2, "minute"], [5, "minute"], [10, "minute"],
-		[30, "minute"], 
+		[30, "minute"],
 		[1, "hour"], [2, "hour"], [4, "hour"],
 		[8, "hour"], [12, "hour"],
 		[1, "day"], [2, "day"], [3, "day"],
@@ -197,12 +193,10 @@ API.txt for details.
 	function init(plot) {
 		plot.hooks.processOptions.push(function (plot, options) {
 			$.each(plot.getAxes(), function(axisName, axis) {
-
 				var opts = axis.options;
 
 				if (opts.mode == "time") {
 					axis.tickGenerator = function(axis) {
-
 						var ticks = [];
 						var d = dateGenerator(axis.min, opts);
 						var minSize = 0;
@@ -237,14 +231,12 @@ API.txt for details.
 						// special-case the possibility of several years
 
 						if (unit == "year") {
-
 							// if given a minTickSize in years, just use it,
 							// ensuring that it's an integer
 
 							if (opts.minTickSize != null && opts.minTickSize[1] == "year") {
 								size = Math.floor(opts.minTickSize[0]);
 							} else {
-
 								var magn = Math.pow(10, Math.floor(Math.log(axis.delta / timeUnitSize.year) / Math.LN10));
 								var norm = (axis.delta / timeUnitSize.year) / magn;
 
@@ -320,14 +312,12 @@ API.txt for details.
 						var prev;
 
 						do {
-
 							prev = v;
 							v = d.getTime();
 							ticks.push(v);
 
 							if (unit == "month" || unit == "quarter") {
 								if (tickSize < 1) {
-
 									// a bit complicated - we'll divide the
 									// month/quarter up but we need to take
 									// care of fractions so we don't end up in
@@ -356,7 +346,6 @@ API.txt for details.
 					};
 
 					axis.tickFormatter = function (v, axis) {
-
 						var d = dateGenerator(v, axis.options);
 
 						// first check global format
@@ -428,5 +417,4 @@ API.txt for details.
 
 	$.plot.formatDate = formatDate;
 	$.plot.dateGenerator = dateGenerator;
-
 })(jQuery);

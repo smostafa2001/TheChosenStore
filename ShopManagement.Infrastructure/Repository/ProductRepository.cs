@@ -1,19 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShopManagement.Domain.ProductAggregate;
-using ShopManagement.Infrastructure.EfCore.Shared;
+using ShopManagement.Domain.Shared;
+using ShopManagement.Infrastructure.EFCore.Shared;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
-namespace ShopManagement.Infrastructure.EfCore.Repository
+namespace ShopManagement.Infrastructure.EFCore.Repository
 {
     public class ProductRepository : BaseRepository<long, Product>, IProductRepository
     {
-        private readonly ShopContext _context;
+        private readonly ShopContext _shopContext;
 
-        public ProductRepository(ShopContext context) : base(context) => _context = context;
+        public ProductRepository(ShopContext context) : base(context) => _shopContext = context;
 
-        public EditProduct GetDetails(long id) => _context.Products.Select(x => new EditProduct
+        public EditProduct GetDetails(long id) => _shopContext.Products.Select(x => new EditProduct
         {
             Id = x.Id,
             Name = x.Name,
@@ -21,7 +21,6 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             Slug = x.Slug,
             CategoryId = x.CategoryId,
             Description = x.Description,
-            UnitPrice = x.UnitPrice,
             Picture = x.Picture,
             Keywords = x.Keywords,
             MetaDescription = x.MetaDescription,
@@ -29,14 +28,16 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             PictureTitle = x.PictureTitle,
             ShortDescription = x.ShortDescription
         }).FirstOrDefault(x => x.Id == id);
-        public List<ProductViewModel> GetProducts() => _context.Products.Select(x => new ProductViewModel
+
+        public List<ProductViewModel> GetProducts() => _shopContext.Products.Select(x => new ProductViewModel
         {
             Id = x.Id,
             Name = x.Name
         }).ToList();
+
         public List<ProductViewModel> Search(ProductSearchModel searchModel)
         {
-            var query = _context.Products.Include(x => x.Category)
+            var query = _shopContext.Products.Include(x => x.Category)
                 .Select(x => new ProductViewModel
                 {
                     Id = x.Id,
@@ -45,9 +46,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                     CategoryId = x.CategoryId,
                     Code = x.Code,
                     Picture = x.Picture,
-                    UnitPrice = x.UnitPrice,
-                    CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture),
-                    IsInStock = x.IsInStock
+                    CreationDate = x.CreationDate.ToFarsi(),
                 });
 
             if (!string.IsNullOrWhiteSpace(searchModel.Name))
@@ -63,4 +62,3 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
         }
     }
 }
-

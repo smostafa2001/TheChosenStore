@@ -9,9 +9,9 @@ using ShopManagement.Domain.ProductAggregate;
 using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using ShopManagement.Domain.SlideAggregate;
-using ShopManagement.Infrastructure.EfCore;
-using ShopManagement.Infrastructure.EfCore.Query;
-using ShopManagement.Infrastructure.EfCore.Repository;
+using ShopManagement.Infrastructure.EFCore;
+using ShopManagement.Infrastructure.EFCore.Query;
+using ShopManagement.Infrastructure.EFCore.Repository;
 
 namespace ShopManagement.Infrastructure.Configuration
 {
@@ -21,6 +21,7 @@ namespace ShopManagement.Infrastructure.Configuration
         {
             services.AddTransient<IProductCategoryApplication, ProductCategoryApplication>();
             services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
+            services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
 
             services.AddTransient<IProductApplication, ProductApplication>();
             services.AddTransient<IProductRepository, ProductRepository>();

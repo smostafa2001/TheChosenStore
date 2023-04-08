@@ -38,7 +38,9 @@ namespace ShopManagement.Domain.SlideAggregate
             BtnText = btnText;
             Link = link;
         }
+
         public void Remove() => IsRemoved = true;
+
         public void Restore() => IsRemoved = false;
     }
 }
