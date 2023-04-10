@@ -55,7 +55,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Infrast
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Infrastructure.Configuration", "InventoryManagement.Infrastructure.Configure\InventoryManagement.Infrastructure.Configuration.csproj", "{F8D084F2-5EBE-4DCA-A677-5E9B3AC7C04C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LampShadeQuery", "LampShadeQuery\LampShadeQuery.csproj", "{FF4C8D0F-0BA8-4806-B683-1EED057926CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LampShadeQuery", "LampShadeQuery\LampShadeQuery.csproj", "{FF4C8D0F-0BA8-4806-B683-1EED057926CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

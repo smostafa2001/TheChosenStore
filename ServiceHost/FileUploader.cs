@@ -22,7 +22,7 @@ namespace ServiceHost
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
 
-            var fileName = $"{file.FileName}-{DateTime.Now.ToFileName()}";
+            var fileName = $"{DateTime.Now.ToFileName()}-{file.FileName}"; 
             var filePath = $"{directoryPath}//{fileName}";
             using var output = File.Create(filePath);
             file.CopyTo(output);
