@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
 
-namespace ShopManagement.Domain.SlideAggregate
+namespace LampShadeQuery.Contracts.SlideAggregate
 {
-    public class SlideQueryModel : CreateSlide
-    {
-    }
-
     public interface ISlideQuery
     {
         List<SlideQueryModel> GetSlides();

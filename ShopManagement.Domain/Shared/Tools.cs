@@ -36,8 +36,7 @@ namespace ShopManagement.Domain.Shared
 
         public static string ToDiscountFormat(this DateTime date)
         {
-            if (date == new DateTime())
-                return "";
+            if (date == new DateTime()) return "";
             return $"{date.Year}/{date.Month}/{date.Day}";
         }
 

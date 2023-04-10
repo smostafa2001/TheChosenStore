@@ -270,6 +270,7 @@ select {
 
 .header-area {
     background-color: #fff;
+    
 }
 
 .header-area--transparent-color {
@@ -2350,9 +2351,6 @@ select {
         color: #e33;
     }
 
-.single-grid-product__price {
-    font-family: 'IranSans', sans-serif;
-}
 
     .single-grid-product__price .main-price {
         font-size: 16px;

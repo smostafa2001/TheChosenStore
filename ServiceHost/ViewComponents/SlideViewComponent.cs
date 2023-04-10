@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ShopManagement.Domain.SlideAggregate;
+﻿using LampShadeQuery.Contracts.SlideAggregate;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.ViewComponents
 {

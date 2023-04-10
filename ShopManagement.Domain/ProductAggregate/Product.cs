@@ -54,7 +54,8 @@ namespace ShopManagement.Domain.ProductAggregate
             Code = code;
             ShortDescription = shortDescription;
             Description = description;
-            Picture = picture;
+            if(!string.IsNullOrWhiteSpace(picture))
+                Picture = picture;
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;
             CategoryId = categoryId;

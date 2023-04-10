@@ -1380,7 +1380,8 @@ html {
 }
 
 .flex-row {
-    -ms-flex-direction: row !important;
+    -ms-flex-
+        : row !important;
     flex-direction: row !important;
 }
 

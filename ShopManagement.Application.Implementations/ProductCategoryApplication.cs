@@ -7,9 +7,14 @@ namespace ShopManagement.Application.Implementations
 {
     public class ProductCategoryApplication : IProductCategoryApplication
     {
+        private readonly IFileUploader _fileUploader;
         private readonly IProductCategoryRepository _repository;
 
-        public ProductCategoryApplication(IProductCategoryRepository repository) => _repository = repository;
+        public ProductCategoryApplication(IProductCategoryRepository repository, IFileUploader fileUploader)
+        {
+            _repository = repository;
+            _fileUploader = fileUploader;
+        }
 
         public OperationResult Create(CreateProductCategory command)
         {
@@ -17,7 +22,9 @@ namespace ShopManagement.Application.Implementations
             if (_repository.DoesExist(x => x.Name == command.Name))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             var slug = command.Slug.Slugify();
-            var productCategory = new ProductCategory(command.Name, command.Description, command.Picture,
+            var picturePath = $"{command.Slug}";
+            var fileName = _fileUploader.Upload(command.Picture, picturePath);
+            var productCategory = new ProductCategory(command.Name, command.Description, fileName, 
                 command.PictureAlt, command.PictureTitle, command.Keywords,
                 command.MetaDescription, slug);
             _repository.Create(productCategory);
@@ -34,7 +41,9 @@ namespace ShopManagement.Application.Implementations
             if (_repository.DoesExist(x => x.Name == command.Name && x.Id != command.Id))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
             var slug = command.Slug.Slugify();
-            productCategory.Edit(command.Name, command.Description, command.Picture,
+            var picturePath = $"{command.Slug}";
+            var fileName = _fileUploader.Upload(command.Picture, picturePath);
+            productCategory.Edit(command.Name, command.Description, fileName,
                 command.PictureAlt, command.PictureTitle, command.Keywords,
                 command.MetaDescription, slug);
             _repository.Save();

@@ -20,8 +20,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             Code = x.Code,
             Slug = x.Slug,
             CategoryId = x.CategoryId,
-            Description = x.Description,
-            Picture = x.Picture,
+            Description = x.Description, 
             Keywords = x.Keywords,
             MetaDescription = x.MetaDescription,
             PictureAlt = x.PictureAlt,
@@ -34,6 +33,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             Id = x.Id,
             Name = x.Name
         }).ToList();
+        public Product GetProductWithCategory(long id) => _shopContext.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == id);
 
         public List<ProductViewModel> Search(ProductSearchModel searchModel)
         {

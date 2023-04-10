@@ -47,13 +47,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{EFB23F0E-75CE-4BC3-8B0D-A3BF8CDB9BB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Domain", "InventoryManagement.Domain\InventoryManagement.Domain.csproj", "{048670E6-A1A2-45F3-AD28-2AF582FC6D01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Domain", "InventoryManagement.Domain\InventoryManagement.Domain.csproj", "{048670E6-A1A2-45F3-AD28-2AF582FC6D01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Application", "InventoryManagement.Application\InventoryManagement.Application.csproj", "{7A602545-8B8F-4317-9E66-80B0B2EF56C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Application", "InventoryManagement.Application\InventoryManagement.Application.csproj", "{7A602545-8B8F-4317-9E66-80B0B2EF56C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Infrastructure.EFCore", "InventoryManagement.Infrastructure.EFCore\InventoryManagement.Infrastructure.EFCore.csproj", "{8708EBA3-3286-4C8E-ABC6-1F8302696352}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Infrastructure.EFCore", "InventoryManagement.Infrastructure.EFCore\InventoryManagement.Infrastructure.EFCore.csproj", "{8708EBA3-3286-4C8E-ABC6-1F8302696352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Infrastructure.Configuration", "InventoryManagement.Infrastructure.Configure\InventoryManagement.Infrastructure.Configuration.csproj", "{F8D084F2-5EBE-4DCA-A677-5E9B3AC7C04C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Infrastructure.Configuration", "InventoryManagement.Infrastructure.Configure\InventoryManagement.Infrastructure.Configuration.csproj", "{F8D084F2-5EBE-4DCA-A677-5E9B3AC7C04C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LampShadeQuery", "LampShadeQuery\LampShadeQuery.csproj", "{FF4C8D0F-0BA8-4806-B683-1EED057926CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{F8D084F2-5EBE-4DCA-A677-5E9B3AC7C04C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8D084F2-5EBE-4DCA-A677-5E9B3AC7C04C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8D084F2-5EBE-4DCA-A677-5E9B3AC7C04C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF4C8D0F-0BA8-4806-B683-1EED057926CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF4C8D0F-0BA8-4806-B683-1EED057926CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF4C8D0F-0BA8-4806-B683-1EED057926CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF4C8D0F-0BA8-4806-B683-1EED057926CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

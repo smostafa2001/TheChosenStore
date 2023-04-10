@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LampShadeQuery.Contracts.ProductAggregate;
+using LampShadeQuery.Contracts.ProductCategoryAggregate;
+using LampShadeQuery.Contracts.SlideAggregate;
+using LampShadeQuery.Query;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShopManagement.Application.Contracts.ProductAggregate;
 using ShopManagement.Application.Contracts.ProductCategoryAggregate;
@@ -10,7 +14,6 @@ using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using ShopManagement.Domain.SlideAggregate;
 using ShopManagement.Infrastructure.EFCore;
-using ShopManagement.Infrastructure.EFCore.Query;
 using ShopManagement.Infrastructure.EFCore.Repository;
 
 namespace ShopManagement.Infrastructure.Configuration
@@ -25,6 +28,7 @@ namespace ShopManagement.Infrastructure.Configuration
 
             services.AddTransient<IProductApplication, ProductApplication>();
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductQuery, ProductQuery>();
 
             services.AddTransient<IProductPictureApplication, ProductPictureApplication>();
             services.AddTransient<IProductPictureRepository, ProductPictureRepository>();

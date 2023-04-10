@@ -6,7 +6,8 @@
 }
 
 body {
-    font-family: 'IranSans' direction: rtl;
+    font-family: 'IranSans';
+    direction: rtl;
     text-align: right;
 }
 

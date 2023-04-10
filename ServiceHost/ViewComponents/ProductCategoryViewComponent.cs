@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ShopManagement.Domain.ProductCategoryAggregate;
+﻿using LampShadeQuery.Contracts.ProductCategoryAggregate;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.ViewComponents
 {

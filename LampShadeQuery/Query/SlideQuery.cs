@@ -1,8 +1,9 @@
-﻿using ShopManagement.Domain.SlideAggregate;
+﻿using LampShadeQuery.Contracts.SlideAggregate;
+using ShopManagement.Infrastructure.EFCore;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ShopManagement.Infrastructure.EFCore.Query
+namespace LampShadeQuery.Query
 {
     public class SlideQuery : ISlideQuery
     {

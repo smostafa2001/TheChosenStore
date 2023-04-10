@@ -1,12 +1,12 @@
-﻿using ShopManagement.Domain.Shared;
+﻿using Microsoft.AspNetCore.Http;
+using ShopManagement.Domain.Shared;
 using System.ComponentModel.DataAnnotations;
 
 namespace ShopManagement.Domain.SlideAggregate
 {
     public class CreateSlide
     {
-        [Required(ErrorMessage = ValidationMessages.IsRequired)]
-        public string Picture { get; set; }
+        public IFormFile Picture { get; set; }
 
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public string PictureAlt { get; set; }

@@ -19,7 +19,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             Name = pc.Name,
             Keywords = pc.Keywords,
             MetaDescription = pc.MetaDescription,
-            Picture = pc.Picture,
+            //Picture = pc.Picture,
             PictureAlt = pc.PictureAlt,
             PictureTitle = pc.PictureTitle,
             Slug = pc.Slug
@@ -30,6 +30,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             Id = pc.Id,
             Name = pc.Name
         }).ToList();
+        public string GetSlug(long id) => _context.ProductCategories.Select(pc=>new {pc.Id, pc.Slug }).FirstOrDefault(pc=>pc.Id == id).Slug;
 
         public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
         {

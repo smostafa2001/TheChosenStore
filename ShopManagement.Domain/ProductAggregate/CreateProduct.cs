@@ -1,4 +1,5 @@
-﻿using ShopManagement.Domain.ProductCategoryAggregate;
+﻿using Microsoft.AspNetCore.Http;
+using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.Shared;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +17,7 @@ namespace ShopManagement.Domain.ProductAggregate
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public string ShortDescription { get; set; }
         public string Description { get; set; }
-        public string Picture { get; set; }
+        public IFormFile Picture { get; set; }
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
 
