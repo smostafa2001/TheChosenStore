@@ -1,4 +1,5 @@
-﻿using ShopManagement.Domain.ProductCategoryAggregate;
+﻿using ShopManagement.Domain.CommentAggregate;
+using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using ShopManagement.Domain.Shared;
 using System.Collections.Generic;
@@ -20,12 +21,13 @@ namespace ShopManagement.Domain.ProductAggregate
         public long CategoryId { get; private set; }
         public ProductCategory Category { get; private set; }
         public List<ProductPicture> ProductPictures { get; private set; }
+        public List<Comment> Comments { get; private set; }
 
         public Product
         (
-            string name, string code,string shortDescription, 
-            string description, string picture,string pictureAlt, 
-            string pictureTitle, long categoryId,string slug, 
+            string name, string code, string shortDescription,
+            string description, string picture, string pictureAlt,
+            string pictureTitle, long categoryId, string slug,
             string keywords, string metaDescription
         )
         {
@@ -54,7 +56,7 @@ namespace ShopManagement.Domain.ProductAggregate
             Code = code;
             ShortDescription = shortDescription;
             Description = description;
-            if(!string.IsNullOrWhiteSpace(picture))
+            if (!string.IsNullOrWhiteSpace(picture))
                 Picture = picture;
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;

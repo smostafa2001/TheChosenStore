@@ -1,7 +1,11 @@
 ﻿using DiscountManagement.Infrastructure.EFCore;
 using InventoryManagement.Infrastructure.EFCore;
+using LampShadeQuery.Contracts;
 using LampShadeQuery.Contracts.ProductAggregate;
+using LampShadeQuery.Contracts.ProductPictureAggregate;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Domain.CommentAggregate;
+using ShopManagement.Domain.ProductPictureAggregate;
 using ShopManagement.Domain.Shared;
 using ShopManagement.Infrastructure.EFCore;
 using System;
@@ -32,7 +36,7 @@ namespace LampShadeQuery.Query
                 .Select(cd => new { cd.DiscountRate, cd.ProductId, cd.EndDate })
                 .ToList();
 
-            var product = _shopContext.Products.Include(p => p.Category)
+            var product = _shopContext.Products.Include(p => p.Category).Include(p => p.ProductPictures).Include(p => p.Comments)
                 .Select(p => new ProductQueryModel
                 {
                     Id = p.Id,
@@ -47,7 +51,9 @@ namespace LampShadeQuery.Query
                     Description = p.Description,
                     Keywords = p.Keywords,
                     MetaDescription = p.MetaDescription,
-                    ShortDescription = p.ShortDescription
+                    ShortDescription = p.ShortDescription,
+                    Pictures = MapProductPictures(p.ProductPictures),
+                    Comments = MapComments(p.Comments)
                 }).FirstOrDefault(p => p.Slug == slug);
 
             if (product is null)
@@ -73,6 +79,21 @@ namespace LampShadeQuery.Query
 
             return product;
         }
+
+        private static List<CommentQueryModel> MapComments(List<Comment> comments) => comments.Where(c => !c.IsCanceled && c.IsConfirmed).Select(c => new CommentQueryModel
+        {
+            Id = c.Id,
+            Message = c.Message,
+            Name = c.Name
+        }).OrderByDescending(c=>c.Id).ToList();
+        private static List<ProductPictureQueryModel> MapProductPictures(List<ProductPicture> productPictures) => productPictures.Select(pp => new ProductPictureQueryModel
+        {
+            IsRemoved = pp.IsRemoved,
+            Picture = pp.Picture,
+            PictureAlt = pp.PictureAlt,
+            PictureTitle = pp.PictureTitle,
+            ProductId = pp.ProductId
+        }).Where(pp => !pp.IsRemoved).ToList();
 
         public List<ProductQueryModel> GetLatestArrivals()
         {

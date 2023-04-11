@@ -1,8 +1,5 @@
-﻿using System;
+﻿using LampShadeQuery.Contracts.ProductPictureAggregate;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LampShadeQuery.Contracts.ProductAggregate
 {
@@ -18,14 +15,16 @@ namespace LampShadeQuery.Contracts.ProductAggregate
         public int DiscountRate { get; set; }
         public bool HasDiscount { get; set; }
         public string DiscountExpireDate { get; set; }
-        public string Code { get;  set; }
-        public string Description { get;  set; }
-        public string ShortDescription { get;  set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
+        public string ShortDescription { get; set; }
         public string Slug { get; set; }
-        public string Keywords { get;  set; }
-        public string MetaDescription { get;  set; }
+        public string Keywords { get; set; }
+        public string MetaDescription { get; set; }
         public string Category { get; set; }
-        public string CategorySlug { get;  set; }
+        public string CategorySlug { get; set; }
         public bool IsInStock { get; set; }
+        public List<ProductPictureQueryModel> Pictures { get; set; }
+        public List<CommentQueryModel> Comments { get; set; }
     }
 }
