@@ -1,6 +1,6 @@
 ﻿using DiscountManagement.Domain.ColleagueDiscountAggregate;
 using DiscountManagement.Domain.CustomerDiscountAggregate;
-using DiscountManagement.Infrastructure.EFCore.Mapping;
+using DiscountManagement.Infrastructure.EFCore.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiscountManagement.Infrastructure.EFCore

@@ -42,7 +42,7 @@ namespace ShopManagement.Infrastructure.Configuration
             services.AddTransient<ICommentApplication, CommentApplication>();
             services.AddTransient<ICommentRepository, CommentRepository>();
 
-            services.AddDbContext<ShopContext>(x => x.UseSqlServer(connectionString));
+            services.AddDbContext<ShopDbContext>(x => x.UseSqlServer(connectionString));
         }
     }
 }

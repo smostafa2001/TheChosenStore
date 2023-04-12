@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DiscountManagement.Application\DiscountManagement.Application.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DiscountManagement.Application.Contracts\DiscountManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="..\DiscountManagement.Application.Implementations\DiscountManagement.Application.Implementations.csproj" />
+    <ProjectReference Include="..\DiscountManagement.Domain\DiscountManagement.Domain.csproj" />
     <ProjectReference Include="..\DiscountManagement.Infrastructure.EFCore\DiscountManagement.Infrastructure.EFCore.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-﻿using ShopManagement.Domain.Shared;
+﻿using Framework.Domain;
 
 namespace ShopManagement.Domain.SlideAggregate
 {

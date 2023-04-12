@@ -9,7 +9,7 @@ using ShopManagement.Infrastructure.EFCore;
 
 namespace ShopManagement.Infrastructure.EFCore.Migrations
 {
-    [DbContext(typeof(ShopContext))]
+    [DbContext(typeof(ShopDbContext))]
     [Migration("20230408095159_ProductRefactored")]
     partial class ProductRefactored
     {

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contracts.ProductAggregate;
 using ShopManagement.Application.Contracts.ProductPictureAggregate;
-using ShopManagement.Domain.ProductPictureAggregate;
 using System.Collections.Generic;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.ProductPictures

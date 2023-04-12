@@ -1,5 +1,4 @@
-﻿using ShopManagement.Application.Contracts.Shared;
-using ShopManagement.Domain.ProductPictureAggregate;
+﻿using Framework.Application;
 using System.Collections.Generic;
 
 namespace ShopManagement.Application.Contracts.ProductPictureAggregate

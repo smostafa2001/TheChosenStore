@@ -9,7 +9,7 @@
 
 @if (Model.Message != null)
 {
-    @if (Model.Message == DMShared.OperationMessages.IsSucceeded)
+    @if (Model.Message == OperationMessages.IsSucceeded)
     {
         <div id="message" class="alert alert-success">@Model.Message</div>
     }

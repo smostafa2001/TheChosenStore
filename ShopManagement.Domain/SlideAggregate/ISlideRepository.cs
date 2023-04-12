@@ -1,4 +1,5 @@
-﻿using ShopManagement.Domain.Shared;
+﻿using Framework.Domain;
+using ShopManagement.Application.Contracts.SlideAggregate;
 using System.Collections.Generic;
 
 namespace ShopManagement.Domain.SlideAggregate

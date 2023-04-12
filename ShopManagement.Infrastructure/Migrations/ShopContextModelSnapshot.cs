@@ -8,7 +8,7 @@ using ShopManagement.Infrastructure.EFCore;
 
 namespace ShopManagement.Infrastructure.EFCore.Migrations
 {
-    [DbContext(typeof(ShopContext))]
+    [DbContext(typeof(ShopDbContext))]
     partial class ShopContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

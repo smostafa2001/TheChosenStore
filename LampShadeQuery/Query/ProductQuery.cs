@@ -1,4 +1,5 @@
 ﻿using DiscountManagement.Infrastructure.EFCore;
+using Framework.Application;
 using InventoryManagement.Infrastructure.EFCore;
 using LampShadeQuery.Contracts;
 using LampShadeQuery.Contracts.ProductAggregate;
@@ -6,7 +7,6 @@ using LampShadeQuery.Contracts.ProductPictureAggregate;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Domain.CommentAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
-using ShopManagement.Domain.Shared;
 using ShopManagement.Infrastructure.EFCore;
 using System;
 using System.Collections.Generic;
@@ -16,11 +16,11 @@ namespace LampShadeQuery.Query
 {
     public class ProductQuery : IProductQuery
     {
-        private readonly ShopContext _shopContext;
+        private readonly ShopDbContext _shopContext;
         private readonly InventoryDbContext _inventoryContext;
         private readonly DiscountDbContext _discountContext;
 
-        public ProductQuery(ShopContext shopContext, InventoryDbContext inventoryContext, DiscountDbContext discountContext)
+        public ProductQuery(ShopDbContext shopContext, InventoryDbContext inventoryContext, DiscountDbContext discountContext)
         {
             _shopContext = shopContext;
             _inventoryContext = inventoryContext;
@@ -85,7 +85,7 @@ namespace LampShadeQuery.Query
             Id = c.Id,
             Message = c.Message,
             Name = c.Name
-        }).OrderByDescending(c=>c.Id).ToList();
+        }).OrderByDescending(c => c.Id).ToList();
         private static List<ProductPictureQueryModel> MapProductPictures(List<ProductPicture> productPictures) => productPictures.Select(pp => new ProductPictureQueryModel
         {
             IsRemoved = pp.IsRemoved,

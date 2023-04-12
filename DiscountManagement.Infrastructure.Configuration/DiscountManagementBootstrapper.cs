@@ -1,4 +1,5 @@
-﻿using DiscountManagement.Application.Contracts;
+﻿using DiscountManagement.Application.Contracts.ColleagueDiscountAggregate;
+using DiscountManagement.Application.Contracts.CustomerDiscountAggregate;
 using DiscountManagement.Application.Implementations;
 using DiscountManagement.Domain.ColleagueDiscountAggregate;
 using DiscountManagement.Domain.CustomerDiscountAggregate;

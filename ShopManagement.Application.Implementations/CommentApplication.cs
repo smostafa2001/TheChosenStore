@@ -1,11 +1,7 @@
-﻿using ShopManagement.Application.Contracts.CommentAggregate;
-using ShopManagement.Application.Contracts.Shared;
+﻿using Framework.Application;
+using ShopManagement.Application.Contracts.CommentAggregate;
 using ShopManagement.Domain.CommentAggregate;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopManagement.Application.Implementations
 {

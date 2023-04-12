@@ -1,5 +1,5 @@
-﻿using ShopManagement.Application.Contracts.ProductCategoryAggregate;
-using ShopManagement.Application.Contracts.Shared;
+﻿using Framework.Application;
+using ShopManagement.Application.Contracts.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductCategoryAggregate;
 using System.Collections.Generic;
 
@@ -24,7 +24,7 @@ namespace ShopManagement.Application.Implementations
             var slug = command.Slug.Slugify();
             var picturePath = $"{command.Slug}";
             var fileName = _fileUploader.Upload(command.Picture, picturePath);
-            var productCategory = new ProductCategory(command.Name, command.Description, fileName, 
+            var productCategory = new ProductCategory(command.Name, command.Description, fileName,
                 command.PictureAlt, command.PictureTitle, command.Keywords,
                 command.MetaDescription, slug);
             _repository.Create(productCategory);

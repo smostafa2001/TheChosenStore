@@ -1,6 +1,7 @@
-﻿using DiscountManagement.Domain.ColleagueDiscountAggregate;
-using DiscountManagement.Domain.Shared;
-using DiscountManagement.Infrastructure.EFCore.Shared;
+﻿using DiscountManagement.Application.Contracts.ColleagueDiscountAggregate;
+using DiscountManagement.Domain.ColleagueDiscountAggregate;
+using Framework.Application;
+using Framework.Infrastructure;
 using ShopManagement.Infrastructure.EFCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace DiscountManagement.Infrastructure.EFCore.Repository
     public class ColleagueDiscountRepository : BaseRepository<long, ColleagueDiscount>, IColleagueDiscountRepository
     {
         private readonly DiscountDbContext _discountContext;
-        private readonly ShopContext _shopContext;
+        private readonly ShopDbContext _shopContext;
 
-        public ColleagueDiscountRepository(DiscountDbContext context, ShopContext shopContext) : base(context)
+        public ColleagueDiscountRepository(DiscountDbContext context, ShopDbContext shopContext) : base(context)
         {
             _discountContext = context;
             _shopContext = shopContext;

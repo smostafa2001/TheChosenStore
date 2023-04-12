@@ -1,6 +1,7 @@
-﻿using ShopManagement.Domain.Shared;
+﻿using Framework.Application;
+using Framework.Infrastructure;
+using ShopManagement.Application.Contracts.SlideAggregate;
 using ShopManagement.Domain.SlideAggregate;
-using ShopManagement.Infrastructure.EFCore.Shared;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,9 +9,9 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 {
     public class SlideRepository : BaseRepository<long, Slide>, ISlideRepository
     {
-        private readonly ShopContext _context;
+        private readonly ShopDbContext _context;
 
-        public SlideRepository(ShopContext context) : base(context) => _context = context;
+        public SlideRepository(ShopDbContext context) : base(context) => _context = context;
 
         public EditSlide GetDetails(long id) => _context.Slides.Select(s => new EditSlide
         {

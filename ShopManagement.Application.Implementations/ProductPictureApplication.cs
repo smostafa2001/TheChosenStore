@@ -1,5 +1,5 @@
-﻿using ShopManagement.Application.Contracts.ProductPictureAggregate;
-using ShopManagement.Application.Contracts.Shared;
+﻿using Framework.Application;
+using ShopManagement.Application.Contracts.ProductPictureAggregate;
 using ShopManagement.Domain.ProductAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using System.Collections.Generic;
@@ -50,7 +50,6 @@ namespace ShopManagement.Application.Implementations
             {
                 return operation.Failed(ApplicationMessages.RecordNotFound);
             }
-
 
             productPicture.Edit
             (

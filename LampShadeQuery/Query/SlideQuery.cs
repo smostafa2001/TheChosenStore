@@ -7,9 +7,9 @@ namespace LampShadeQuery.Query
 {
     public class SlideQuery : ISlideQuery
     {
-        private readonly ShopContext _shopContext;
+        private readonly ShopDbContext _shopContext;
 
-        public SlideQuery(ShopContext shopContext) => _shopContext = shopContext;
+        public SlideQuery(ShopDbContext shopContext) => _shopContext = shopContext;
 
         public List<SlideQueryModel> GetSlides() => _shopContext.Slides.Where(s => s.IsRemoved == false).Select(s => new SlideQueryModel
         {

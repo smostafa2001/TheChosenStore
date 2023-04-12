@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Framework.Application;
+using Framework.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using ShopManagement.Application.Contracts.ProductAggregate;
 using ShopManagement.Domain.ProductAggregate;
-using ShopManagement.Domain.Shared;
-using ShopManagement.Infrastructure.EFCore.Shared;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +10,9 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 {
     public class ProductRepository : BaseRepository<long, Product>, IProductRepository
     {
-        private readonly ShopContext _shopContext;
+        private readonly ShopDbContext _shopContext;
 
-        public ProductRepository(ShopContext context) : base(context) => _shopContext = context;
+        public ProductRepository(ShopDbContext context) : base(context) => _shopContext = context;
 
         public EditProduct GetDetails(long id) => _shopContext.Products.Select(x => new EditProduct
         {
@@ -20,7 +21,7 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
             Code = x.Code,
             Slug = x.Slug,
             CategoryId = x.CategoryId,
-            Description = x.Description, 
+            Description = x.Description,
             Keywords = x.Keywords,
             MetaDescription = x.MetaDescription,
             PictureAlt = x.PictureAlt,

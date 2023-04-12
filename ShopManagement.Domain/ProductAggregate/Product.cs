@@ -1,7 +1,7 @@
-﻿using ShopManagement.Domain.CommentAggregate;
+﻿using Framework.Domain;
+using ShopManagement.Domain.CommentAggregate;
 using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
-using ShopManagement.Domain.Shared;
 using System.Collections.Generic;
 
 namespace ShopManagement.Domain.ProductAggregate

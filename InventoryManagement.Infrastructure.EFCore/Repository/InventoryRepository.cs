@@ -1,6 +1,7 @@
-﻿using InventoryManagement.Domain.InventoryAggregate;
-using InventoryManagement.Domain.Shared;
-using InventoryManagement.Infrastructure.EFCore.Shared;
+﻿using Framework.Application;
+using Framework.Infrastructure;
+using InventoryManagement.Application.Contracts.InventoryAggregate;
+using InventoryManagement.Domain.InventoryAggregate;
 using ShopManagement.Infrastructure.EFCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace InventoryManagement.Infrastructure.EFCore.Repository
     public class InventoryRepository : BaseRepository<long, Inventory>, IInventoryRepository
     {
         private readonly InventoryDbContext _inventoryContext;
-        private readonly ShopContext _shopContext;
+        private readonly ShopDbContext _shopContext;
 
-        public InventoryRepository(InventoryDbContext context, ShopContext shopContext) : base(context)
+        public InventoryRepository(InventoryDbContext context, ShopDbContext shopContext) : base(context)
         {
             _inventoryContext = context;
             _shopContext = shopContext;

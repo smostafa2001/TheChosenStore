@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Framework.Application;
+using Framework.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using ShopManagement.Application.Contracts.CommentAggregate;
 using ShopManagement.Domain.CommentAggregate;
-using ShopManagement.Domain.Shared;
-using ShopManagement.Infrastructure.EFCore.Shared;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +10,9 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 {
     public class CommentRepository : BaseRepository<long, Comment>, ICommentRepository
     {
-        private readonly ShopContext _context;
+        private readonly ShopDbContext _context;
 
-        public CommentRepository(ShopContext context) : base(context) => _context = context;
+        public CommentRepository(ShopDbContext context) : base(context) => _context = context;
 
         public List<CommentViewModel> Search(CommentSearchModel searchModel)
         {

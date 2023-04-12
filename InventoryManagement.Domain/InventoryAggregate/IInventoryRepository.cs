@@ -1,4 +1,5 @@
-﻿using InventoryManagement.Domain.Shared;
+﻿using Framework.Domain;
+using InventoryManagement.Application.Contracts.InventoryAggregate;
 using System.Collections.Generic;
 
 namespace InventoryManagement.Domain.InventoryAggregate

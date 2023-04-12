@@ -1,5 +1,5 @@
-﻿using ShopManagement.Domain.ProductAggregate;
-using ShopManagement.Domain.Shared;
+﻿using Framework.Domain;
+using ShopManagement.Domain.ProductAggregate;
 
 namespace ShopManagement.Domain.CommentAggregate
 {
@@ -38,7 +38,5 @@ namespace ShopManagement.Domain.CommentAggregate
             IsCanceled = false;
             IsConfirmed = true;
         }
-
-
     }
 }

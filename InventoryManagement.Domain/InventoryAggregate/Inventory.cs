@@ -1,4 +1,4 @@
-﻿using InventoryManagement.Domain.Shared;
+﻿using Framework.Domain;
 using System.Collections.Generic;
 using System.Linq;
 

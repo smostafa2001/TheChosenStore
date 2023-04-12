@@ -1,11 +1,12 @@
+using BlogManagement.Infrastructure.Configuration;
 using DiscountManagement.Infrastructure.Configuration;
+using Framework.Application;
 using InventoryManagement.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ShopManagement.Application.Contracts.Shared;
 using ShopManagement.Infrastructure.Configuration;
 
 namespace ServiceHost
@@ -23,8 +24,10 @@ namespace ServiceHost
             ShopManagementBootstrapper.Configure(services, connectionString);
             DiscountManagementBootstrapper.Configure(services, connectionString);
             InventoryManagementBootstrapper.Configure(services, connectionString);
+            BlogManagementBootstarpper.Configure(services, connectionString);
 
             services.AddTransient<IFileUploader, FileUploader>();
+
             services.AddRazorPages();
         }
 

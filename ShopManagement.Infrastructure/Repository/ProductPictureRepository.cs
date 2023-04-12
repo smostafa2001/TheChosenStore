@@ -1,7 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Framework.Application;
+using Framework.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using ShopManagement.Application.Contracts.ProductPictureAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
-using ShopManagement.Domain.Shared;
-using ShopManagement.Infrastructure.EFCore.Shared;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +10,9 @@ namespace ShopManagement.Infrastructure.EFCore.Repository
 {
     public class ProductPictureRepository : BaseRepository<long, ProductPicture>, IProductPictureRepository
     {
-        private readonly ShopContext _context;
+        private readonly ShopDbContext _context;
 
-        public ProductPictureRepository(ShopContext context) : base(context) => _context = context;
+        public ProductPictureRepository(ShopDbContext context) : base(context) => _context = context;
 
         public EditProductPicture GetDetails(long id) => _context.ProductPictures.Select(pp => new EditProductPicture
         {

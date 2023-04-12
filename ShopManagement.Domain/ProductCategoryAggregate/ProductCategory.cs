@@ -1,5 +1,5 @@
-﻿using ShopManagement.Domain.ProductAggregate;
-using ShopManagement.Domain.Shared;
+﻿using Framework.Domain;
+using ShopManagement.Domain.ProductAggregate;
 using System.Collections.Generic;
 
 namespace ShopManagement.Domain.ProductCategoryAggregate
@@ -38,7 +38,7 @@ namespace ShopManagement.Domain.ProductCategoryAggregate
         {
             Name = name;
             Description = description;
-            if(!string.IsNullOrWhiteSpace(picture))
+            if (!string.IsNullOrWhiteSpace(picture))
                 Picture = picture;
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;

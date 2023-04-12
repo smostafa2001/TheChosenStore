@@ -1,4 +1,4 @@
-﻿using DiscountManagement.Domain.Shared;
+﻿using Framework.Domain;
 using System;
 
 namespace DiscountManagement.Domain.CustomerDiscountAggregate

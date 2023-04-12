@@ -2,7 +2,6 @@ using LampShadeQuery.Contracts.ProductAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManagement.Application.Contracts.CommentAggregate;
-using ShopManagement.Domain.CommentAggregate;
 
 namespace ServiceHost.Pages
 {

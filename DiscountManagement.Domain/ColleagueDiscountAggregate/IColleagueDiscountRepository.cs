@@ -1,4 +1,5 @@
-﻿using DiscountManagement.Domain.Shared;
+﻿using DiscountManagement.Application.Contracts.ColleagueDiscountAggregate;
+using Framework.Domain;
 using System.Collections.Generic;
 
 namespace DiscountManagement.Domain.ColleagueDiscountAggregate

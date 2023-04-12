@@ -1,4 +1,4 @@
-﻿using ShopManagement.Application.Contracts.Shared;
+﻿using Framework.Application;
 using ShopManagement.Application.Contracts.SlideAggregate;
 using ShopManagement.Domain.SlideAggregate;
 using System.Collections.Generic;

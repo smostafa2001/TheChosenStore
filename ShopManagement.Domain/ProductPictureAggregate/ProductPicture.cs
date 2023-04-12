@@ -1,5 +1,5 @@
-﻿using ShopManagement.Domain.ProductAggregate;
-using ShopManagement.Domain.Shared;
+﻿using Framework.Domain;
+using ShopManagement.Domain.ProductAggregate;
 
 namespace ShopManagement.Domain.ProductPictureAggregate
 {
@@ -24,7 +24,7 @@ namespace ShopManagement.Domain.ProductPictureAggregate
         public void Edit(long productId, string picture, string pictureAlt, string pictureTitle)
         {
             ProductId = productId;
-            if(!string.IsNullOrWhiteSpace(picture))
+            if (!string.IsNullOrWhiteSpace(picture))
                 Picture = picture;
             PictureAlt = pictureAlt;
             PictureTitle = pictureTitle;

@@ -1,5 +1,5 @@
-﻿using ShopManagement.Application.Contracts.ProductAggregate;
-using ShopManagement.Application.Contracts.Shared;
+﻿using Framework.Application;
+using ShopManagement.Application.Contracts.ProductAggregate;
 using ShopManagement.Domain.ProductAggregate;
 using ShopManagement.Domain.ProductCategoryAggregate;
 using System.Collections.Generic;

@@ -1,4 +1,5 @@
 using DiscountManagement.Application.Contracts;
+using DiscountManagement.Application.Contracts.CustomerDiscountAggregate;
 using DiscountManagement.Domain.CustomerDiscountAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

@@ -1,5 +1,4 @@
-using InventoryManagement.Application.Contracts;
-using InventoryManagement.Domain.InventoryAggregate;
+using InventoryManagement.Application.Contracts.InventoryAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;

@@ -1,5 +1,5 @@
 ﻿using DiscountManagement.Infrastructure.EFCore;
-using InventoryManagement.Domain.Shared;
+using Framework.Application;
 using InventoryManagement.Infrastructure.EFCore;
 using LampShadeQuery.Contracts.ProductAggregate;
 using LampShadeQuery.Contracts.ProductCategoryAggregate;
@@ -14,11 +14,11 @@ namespace LampShadeQuery.Query
 {
     public class ProductCategoryQuery : IProductCategoryQuery
     {
-        private readonly ShopContext _shopContext;
+        private readonly ShopDbContext _shopContext;
         private readonly InventoryDbContext _inventoryContext;
         private readonly DiscountDbContext _discountContext;
 
-        public ProductCategoryQuery(ShopContext shopContext, InventoryDbContext inventoryContext, DiscountDbContext discountContext)
+        public ProductCategoryQuery(ShopDbContext shopContext, InventoryDbContext inventoryContext, DiscountDbContext discountContext)
         {
             _shopContext = shopContext;
             _inventoryContext = inventoryContext;
@@ -121,7 +121,6 @@ namespace LampShadeQuery.Query
                     }
                 }
             }
-
 
             return category;
         }

@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Framework.Application;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using ShopManagement.Application.Contracts.Shared;
-using ShopManagement.Domain.Shared;
 using System;
 using System.IO;
 
@@ -22,7 +21,7 @@ namespace ServiceHost
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
 
-            var fileName = $"{DateTime.Now.ToFileName()}-{file.FileName}"; 
+            var fileName = $"{DateTime.Now.ToFileName()}-{file.FileName}";
             var filePath = $"{directoryPath}//{fileName}";
             using var output = File.Create(filePath);
             file.CopyTo(output);
