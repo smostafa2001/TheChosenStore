@@ -12,5 +12,6 @@ namespace ShopManagement.Application.Contracts.CommentAggregate
         OperationResult Restore(long id);
         OperationResult Review(long id);
         List<CommentViewModel> Search(CommentSearchModel searchModel);
+        CommentViewModel GetFullMessage(long id);
     }
 }

@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShopManagement.Infrastructure.Configuration;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace ServiceHost
 {
@@ -27,6 +29,8 @@ namespace ServiceHost
             BlogManagementBootstarpper.Configure(services, connectionString);
 
             services.AddTransient<IFileUploader, FileUploader>();
+
+            services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 
             services.AddRazorPages();
         }

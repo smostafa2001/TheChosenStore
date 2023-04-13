@@ -8,6 +8,7 @@ namespace DiscountManagement.Application.Contracts.CustomerDiscountAggregate
         OperationResult Define(DefineCustomerDiscount command);
         OperationResult Edit(EditCustomerDiscount command);
         EditCustomerDiscount GetDetails(long id);
+        CustomerDiscountViewModel GetFullReason(long id);
         List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel);
     }
 }

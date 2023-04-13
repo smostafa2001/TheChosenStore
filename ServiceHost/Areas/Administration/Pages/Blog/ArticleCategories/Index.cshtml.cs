@@ -36,5 +36,11 @@ namespace ServiceHost.Areas.Administration.Pages.Blog.ArticleCategories
             Message = result.Message;
             return new JsonResult(result);
         }
+
+        public IActionResult OnGetMore(long id)
+        {
+            var model = _application.GetFullDescription(id);
+            return Partial("More", model);
+        }
     }
 }

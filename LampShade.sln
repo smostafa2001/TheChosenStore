@@ -71,15 +71,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountManagement.Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogManagement.Application.Contracts", "BlogManagement.Application.Contracts\BlogManagement.Application.Contracts.csproj", "{0488653B-E1E0-4D71-B670-44F2BD70AF05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Application.Implementations", "InventoryManagement.Application.Implementations\InventoryManagement.Application.Implementations.csproj", "{73153194-CB5B-4E83-A5F2-FFB310EC4780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Application.Implementations", "InventoryManagement.Application.Implementations\InventoryManagement.Application.Implementations.csproj", "{73153194-CB5B-4E83-A5F2-FFB310EC4780}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountManagement.Application.Implementations", "DiscountManagement.Application.Implementations\DiscountManagement.Application.Implementations.csproj", "{A1C758BB-E239-49E5-8FC8-D3A892F2ADEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscountManagement.Application.Implementations", "DiscountManagement.Application.Implementations\DiscountManagement.Application.Implementations.csproj", "{A1C758BB-E239-49E5-8FC8-D3A892F2ADEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogManagement.Infrastructure.Configuration", "BlogManagement.Infrastructure.Configuration\BlogManagement.Infrastructure.Configuration.csproj", "{2CF48496-D753-433F-BDBE-97D28F469E3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogManagement.Infrastructure.Configuration", "BlogManagement.Infrastructure.Configuration\BlogManagement.Infrastructure.Configuration.csproj", "{2CF48496-D753-433F-BDBE-97D28F469E3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManagement.Infrastructure.Configuration", "InventoryManagement.Infrastructure.Configuration\InventoryManagement.Infrastructure.Configuration.csproj", "{5B129B63-827E-4752-937D-34F26F154AE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryManagement.Infrastructure.Configuration", "InventoryManagement.Infrastructure.Configuration\InventoryManagement.Infrastructure.Configuration.csproj", "{5B129B63-827E-4752-937D-34F26F154AE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogManagement.Application.Implementations", "BlogManagement.Application.Implementations\BlogManagement.Application.Implementations.csproj", "{7D761F7B-826A-442A-BD75-9CF3BAD81C7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogManagement.Application.Implementations", "BlogManagement.Application.Implementations\BlogManagement.Application.Implementations.csproj", "{7D761F7B-826A-442A-BD75-9CF3BAD81C7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

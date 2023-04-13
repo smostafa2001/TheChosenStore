@@ -91,7 +91,17 @@
                                         <td>@item.DiscountRate%</td>
                                         <td>@item.StartDateShamsi</td>
                                         <td>@item.EndDateShamsi</td>
-                                        <td>@item.Reason</td>
+                                        <td>
+                                            @if (item.Reason.Length > 50)
+                                            {
+                                                @item.Reason.Substring(0, 50)
+                                                <a class="text-primary" href="#showmodal=@Url.Page("./Index", "More", new { id = item.Id})">...</a>
+                                            }
+                                            else
+                                            {
+                                                @item.Reason
+                                            }
+                                        </td>
                                         <td>@item.CreationDate</td>
                                         <td>
                                             <a href="#showmodal=@Url.Page("./Index", "Edit", new {item.Id})" class="btn btn-warning waves-effect waves-dark m-b-5">

@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace Framework.Application
 {
     public static class Tools
     {
-        public static string[] MonthNames =
+        public static string[] monthNames =
             {"فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"};
 
-        public static string[] DayNames = { "شنبه", "یکشنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه" };
-        public static string[] DayNamesG = { "یکشنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه", "شنبه" };
-
+        public static string[] dayNames = { "شنبه", "یکشنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه" };
+        public static string[] dayNamesG = { "یکشنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه", "شنبه" };
 
         public static string ToFarsi(this DateTime? date)
         {
             try
             {
-                if (date != null) return date.Value.ToFarsi();
+                if (date != null)
+                    return date.Value.ToFarsi();
             }
             catch (Exception)
             {
@@ -28,20 +29,37 @@ namespace Framework.Application
 
         public static string ToFarsi(this DateTime date)
         {
-            if (date == new DateTime()) return "";
+            if (date == new DateTime())
+                return "";
             var pc = new PersianCalendar();
             return $"{pc.GetYear(date)}/{pc.GetMonth(date):00}/{pc.GetDayOfMonth(date):00}";
         }
 
         public static string ToDiscountFormat(this DateTime date)
         {
-            if (date == new DateTime()) return "";
+            if (date == new DateTime())
+                return "";
             return $"{date.Year}/{date.Month}/{date.Day}";
         }
 
-        public static string GetTime(this DateTime date)
+        public static string GetTime(this DateTime date) => $"_{date.Hour:00}_{date.Minute:00}_{date.Second:00}";
+
+        public static string GetMonthShamsi(this string date)
         {
-            return $"_{date.Hour:00}_{date.Minute:00}_{date.Second:00}";
+            var dateTime = DateTime.Parse(date);
+            return monthNames[dateTime.Month - 1];
+        }
+
+        public static string GetYearShamsi(this string date)
+        {
+            var dateTime = DateTime.Parse(date);
+            return dateTime.Year.ToPersianNumber();
+        }
+
+        public static string GetDayWithPersianNumber(this string date)
+        {
+            var dateTime = DateTime.Parse(date);
+            return dateTime.Day.ToPersianNumber().ToString();
         }
 
         public static string ToFarsiFull(this DateTime date)
@@ -91,7 +109,6 @@ namespace Framework.Application
             return c.ToDateTime(year, month, day, 0, 0, 0, 0);
         }
 
-
         public static DateTime ToGeorgianDateTime(this string persianDate)
         {
             persianDate = persianDate.ToEnglishNumber();
@@ -101,14 +118,8 @@ namespace Framework.Application
             return new DateTime(year, month, day, new PersianCalendar());
         }
 
-        public static string ToMoney(this double myMoney)
-        {
-            return myMoney.ToString("N0", CultureInfo.CreateSpecificCulture("fa-ir"));
-        }
+        public static string ToMoney(this double myMoney) => myMoney.ToString("N0", CultureInfo.CreateSpecificCulture("fa-ir"));
 
-        public static string ToFileName(this DateTime date)
-        {
-            return $"{date.Year:0000}-{date.Month:00}-{date.Day:00}-{date.Hour:00}-{date.Minute:00}-{date.Second:00}";
-        }
+        public static string ToFileName(this DateTime date) => $"{date.Year:0000}-{date.Month:00}-{date.Day:00}-{date.Hour:00}-{date.Minute:00}-{date.Second:00}";
     }
 }

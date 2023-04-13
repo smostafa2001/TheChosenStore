@@ -37,7 +37,7 @@
                 <form class="form-inline" role="form" method="get">
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.Name"></label>
-                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام گروه مقالهه">
+                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام گروه مقاله">
                     </div>
                     <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
                     <a class="btn btn-primary waves-effect waves-light m-l-10" asp-page="./Index">مشاهده همه</a>
@@ -78,7 +78,17 @@
                                             <img src="~/UploadedFiles/@item.Picture" style="width: 70px; height: 70px" />
                                         </td>
                                         <td>@item.Name</td>
-                                        <td>@item.Description</td>
+                                        <td>
+                                            @if (item.Description.Length > 50)
+                                            {
+                                                @item.Description.Substring(0, 50)
+                                                <a class="text-primary" href="#showmodal=@Url.Page("./Index", "More", new { id = item.Id})">...</a>
+                                            }
+                                            else
+                                            {
+                                                @item.Description
+                                            }
+                                        </td>
                                         <td>@item.ShowOrder</td>
                                         <td>@item.ArticlesCount</td>
                                         <td>@item.CreationDate</td>

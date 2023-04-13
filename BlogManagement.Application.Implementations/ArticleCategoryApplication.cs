@@ -59,7 +59,18 @@ namespace BlogManagement.Application.Implementations
             return operation.Succeeded();
         }
 
+        public List<ArticleCategoryViewModel> GetArticleCategories() => _categoryRepository.GetArticleCategories();
         public EditArticleCategory GetDetails(long id) => _categoryRepository.GetDetails(id);
+        public ArticleCategoryViewModel GetFullDescription(long id)
+        {
+            var category = _categoryRepository.Get(id);
+            return new ArticleCategoryViewModel
+            {
+                Name = category.Name,
+                Description = category.Description
+            };
+        }
+
         public List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel) => _categoryRepository.Search(searchModel);
     }
 }

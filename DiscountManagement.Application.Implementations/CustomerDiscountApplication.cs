@@ -1,6 +1,7 @@
 ﻿using DiscountManagement.Application.Contracts.CustomerDiscountAggregate;
 using DiscountManagement.Domain.CustomerDiscountAggregate;
 using Framework.Application;
+using ShopManagement.Domain.ProductAggregate;
 using System.Collections.Generic;
 
 namespace DiscountManagement.Application.Implementations
@@ -8,8 +9,13 @@ namespace DiscountManagement.Application.Implementations
     public class CustomerDiscountApplication : ICustomerDiscountApplication
     {
         private readonly ICustomerDiscountRepository _repository;
+        private readonly IProductRepository _productRepository;
 
-        public CustomerDiscountApplication(ICustomerDiscountRepository repository) => _repository = repository;
+        public CustomerDiscountApplication(ICustomerDiscountRepository repository, IProductRepository productRepository)
+        {
+            _repository = repository;
+            _productRepository = productRepository;
+        }
 
         public OperationResult Define(DefineCustomerDiscount command)
         {
@@ -56,7 +62,15 @@ namespace DiscountManagement.Application.Implementations
         }
 
         public EditCustomerDiscount GetDetails(long id) => _repository.GetDetails(id);
-
+        public CustomerDiscountViewModel GetFullReason(long id)
+        {
+            var customerDiscount = _repository.Get(id);
+            return new CustomerDiscountViewModel
+            {
+                Product = _productRepository.Get(customerDiscount.ProductId).Name,
+                Reason = customerDiscount.Reason
+            };
+        }
         public List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel) => _repository.Search(searchModel);
     }
 }

@@ -52,5 +52,11 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Comments
             Message = result.Message;
             return RedirectToPage("./Index");
         }
+
+        public IActionResult OnGetMore(long id)
+        {
+            var model = _commentApplication.GetFullMessage(id);
+            return Partial("More", model);
+        }
     }
 }

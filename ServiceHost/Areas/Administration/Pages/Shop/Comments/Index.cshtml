@@ -81,7 +81,18 @@
                                         <td>@item.Id</td>
                                         <td>@item.Name</td>
                                         <td>@item.Email</td>
-                                        <td>@item.Message</td>
+
+                                        <td>
+                                            @if (item.Message.Length > 50)
+                                            {
+                                                @item.Message.Substring(0, 50)
+                                                <a class="text-primary" href="#showmodal=@Url.Page("./Index", "More", new { id = item.Id})">...</a>
+                                            }
+                                            else
+                                            {
+                                                @item.Message
+                                            }
+                                        </td>
                                         <td>@item.CommentDate</td>
                                         <td class="text-center">
                                             @if (item.IsCanceled && !item.IsConfirmed)

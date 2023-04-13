@@ -62,5 +62,11 @@ namespace ServiceHost.Areas.Administration.Pages.Discounts.CustomerDiscounts
             Message = result.Message;
             return new JsonResult(result);
         }
+
+        public IActionResult OnGetMore(long id)
+        {
+            var model = _discountApplication.GetFullReason(id);
+            return Partial("More", model);
+        }
     }
 }

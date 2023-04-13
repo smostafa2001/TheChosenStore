@@ -1,4 +1,6 @@
-﻿using Framework.Domain;
+﻿using BlogManagement.Domain.ArticleAggregate;
+using Framework.Domain;
+using System.Collections.Generic;
 
 namespace BlogManagement.Domain.ArticleCategoryAggregate
 {
@@ -14,6 +16,7 @@ namespace BlogManagement.Domain.ArticleCategoryAggregate
         public string Keywords { get; private set; }
         public string MetaDescription { get; private set; }
         public string CanonicalAddress { get; private set; }
+        public List<Article> Articles { get; private set; }
 
         public ArticleCategory
         (

@@ -3,6 +3,7 @@ using Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Application.Contracts.CommentAggregate;
 using ShopManagement.Domain.CommentAggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 

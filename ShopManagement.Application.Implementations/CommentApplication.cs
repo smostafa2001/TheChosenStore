@@ -51,6 +51,18 @@ namespace ShopManagement.Application.Implementations
             return operationResult.Succeeded();
         }
 
+        public CommentViewModel GetFullMessage(long id)
+        {
+            var comment = _commentRepository.Get(id);
+            CommentViewModel model = new CommentViewModel
+            {
+                Name = comment.Name,
+                Message = comment.Message
+            };
+
+            return model;
+        }
+
         public OperationResult RemoveComment(long id)
         {
             OperationResult operationResult = new OperationResult();
