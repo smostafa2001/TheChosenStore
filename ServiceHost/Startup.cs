@@ -1,4 +1,5 @@
 using BlogManagement.Infrastructure.Configuration;
+using CommentManagement.Infrastructure.Configuration;
 using DiscountManagement.Infrastructure.Configuration;
 using Framework.Application;
 using InventoryManagement.Infrastructure.Configuration;
@@ -27,6 +28,7 @@ namespace ServiceHost
             DiscountManagementBootstrapper.Configure(services, connectionString);
             InventoryManagementBootstrapper.Configure(services, connectionString);
             BlogManagementBootstarpper.Configure(services, connectionString);
+            CommentManagementBootstrapper.Configure(services, connectionString);
 
             services.AddTransient<IFileUploader, FileUploader>();
 

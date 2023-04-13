@@ -1,5 +1,4 @@
 ﻿using Framework.Domain;
-using ShopManagement.Domain.CommentAggregate;
 using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using System.Collections.Generic;
@@ -21,7 +20,6 @@ namespace ShopManagement.Domain.ProductAggregate
         public long CategoryId { get; private set; }
         public ProductCategory Category { get; private set; }
         public List<ProductPicture> ProductPictures { get; private set; }
-        public List<Comment> Comments { get; private set; }
 
         public Product
         (

@@ -1,11 +1,12 @@
-﻿using DiscountManagement.Infrastructure.EFCore;
+﻿using CommentManagement.Infrastructure.EFCore;
+using DiscountManagement.Infrastructure.EFCore;
 using Framework.Application;
 using InventoryManagement.Infrastructure.EFCore;
 using LampShadeQuery.Contracts;
+using LampShadeQuery.Contracts.CommentAggregate;
 using LampShadeQuery.Contracts.ProductAggregate;
 using LampShadeQuery.Contracts.ProductPictureAggregate;
 using Microsoft.EntityFrameworkCore;
-using ShopManagement.Domain.CommentAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using ShopManagement.Infrastructure.EFCore;
 using System;
@@ -19,24 +20,25 @@ namespace LampShadeQuery.Query
         private readonly ShopDbContext _shopContext;
         private readonly InventoryDbContext _inventoryContext;
         private readonly DiscountDbContext _discountContext;
+        private readonly CommentDbContext _commentContext;
 
-        public ProductQuery(ShopDbContext shopContext, InventoryDbContext inventoryContext, DiscountDbContext discountContext)
+        public ProductQuery(ShopDbContext shopContext, InventoryDbContext inventoryContext, DiscountDbContext discountContext, CommentDbContext commentContext)
         {
             _shopContext = shopContext;
             _inventoryContext = inventoryContext;
             _discountContext = discountContext;
+            _commentContext = commentContext;
         }
 
         public ProductQueryModel GetDetails(string slug)
         {
             var inventory = _inventoryContext.Inventory.Select(i => new { i.ProductId, i.UnitPrice, i.IsInStock }).ToList();
-
             var discounts = _discountContext.CustomerDiscounts
                 .Where(cd => cd.StartDate < DateTime.Now && cd.EndDate > DateTime.Now)
                 .Select(cd => new { cd.DiscountRate, cd.ProductId, cd.EndDate })
                 .ToList();
 
-            var product = _shopContext.Products.Include(p => p.Category).Include(p => p.ProductPictures).Include(p => p.Comments)
+            var product = _shopContext.Products.Include(p => p.Category).Include(p => p.ProductPictures)
                 .Select(p => new ProductQueryModel
                 {
                     Id = p.Id,
@@ -53,7 +55,7 @@ namespace LampShadeQuery.Query
                     MetaDescription = p.MetaDescription,
                     ShortDescription = p.ShortDescription,
                     Pictures = MapProductPictures(p.ProductPictures),
-                    Comments = MapComments(p.Comments)
+                    //Comments = MapComments(p.Comments)
                 }).FirstOrDefault(p => p.Slug == slug);
 
             if (product is null)
@@ -77,15 +79,16 @@ namespace LampShadeQuery.Query
                 }
             }
 
+            product.Comments = _commentContext.Comments.Where(c => c.Type == CommentType.Product && !c.IsCanceled && c.IsConfirmed && c.OwnerRecordId == product.Id).Select(c => new CommentQueryModel
+            {
+                Id = c.Id,
+                Message = c.Message,
+                Name = c.Name,
+                CreationDate = c.CreationDate.ToFarsi()
+            }).OrderByDescending(c => c.Id).ToList();
             return product;
         }
 
-        private static List<CommentQueryModel> MapComments(List<Comment> comments) => comments.Where(c => !c.IsCanceled && c.IsConfirmed).Select(c => new CommentQueryModel
-        {
-            Id = c.Id,
-            Message = c.Message,
-            Name = c.Name
-        }).OrderByDescending(c => c.Id).ToList();
         private static List<ProductPictureQueryModel> MapProductPictures(List<ProductPicture> productPictures) => productPictures.Select(pp => new ProductPictureQueryModel
         {
             IsRemoved = pp.IsRemoved,

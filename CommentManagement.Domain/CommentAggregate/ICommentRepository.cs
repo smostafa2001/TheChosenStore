@@ -1,8 +1,8 @@
-﻿using Framework.Domain;
-using ShopManagement.Application.Contracts.CommentAggregate;
+﻿using CommentManagement.Application.Contracts.CommentAggregate;
+using Framework.Domain;
 using System.Collections.Generic;
 
-namespace ShopManagement.Domain.CommentAggregate
+namespace CommentManagement.Domain.CommentAggregate
 {
     public interface ICommentRepository : IRepository<long, Comment>
     {

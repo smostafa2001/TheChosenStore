@@ -1,9 +1,9 @@
-﻿using Framework.Application;
-using ShopManagement.Application.Contracts.CommentAggregate;
-using ShopManagement.Domain.CommentAggregate;
+﻿using CommentManagement.Application.Contracts.CommentAggregate;
+using CommentManagement.Domain.CommentAggregate;
+using Framework.Application;
 using System.Collections.Generic;
 
-namespace ShopManagement.Application.Implementations
+namespace CommentManagement.Application.Implementations
 {
     public class CommentApplication : ICommentApplication
     {
@@ -18,8 +18,11 @@ namespace ShopManagement.Application.Implementations
             (
                 command.Name,
                 command.Email,
+                command.Website,
                 command.Message,
-                command.ProductId
+                command.OwnerRecordId,
+                command.Type,
+                command.ParentId
             );
 
             _commentRepository.Create(comment);

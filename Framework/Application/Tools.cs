@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 
 namespace Framework.Application
 {
@@ -33,6 +32,18 @@ namespace Framework.Application
                 return "";
             var pc = new PersianCalendar();
             return $"{pc.GetYear(date)}/{pc.GetMonth(date):00}/{pc.GetDayOfMonth(date):00}";
+        }
+
+        public static string GetTimePersian(this string date)
+        {
+            var dateTime = DateTime.Parse(date);
+            var hour = dateTime.Hour == 0 ? 12 : dateTime.Hour;
+            var minute = dateTime.Minute;
+            var hourString = $"{hour:D2}";
+            var minuteString = $"{minute:D2}";
+            bool isAM = hour is >= 0 and < 12;
+            var dayLight = isAM ? "صبح" : "عصر";
+            return $"{dayLight} {hourString.ToPersianNumber()}:{minuteString.ToPersianNumber()}";
         }
 
         public static string ToDiscountFormat(this DateTime date)
@@ -83,6 +94,14 @@ namespace Framework.Application
         public static string ToPersianNumber(this int intNum)
         {
             var chash = intNum.ToString();
+            for (var i = 0; i < 10; i++)
+                chash = chash.Replace(En[i], Pn[i]);
+            return chash;
+        }
+
+        public static string ToPersianNumber(this string strNum)
+        {
+            var chash = strNum;
             for (var i = 0; i < 10; i++)
                 chash = chash.Replace(En[i], Pn[i]);
             return chash;

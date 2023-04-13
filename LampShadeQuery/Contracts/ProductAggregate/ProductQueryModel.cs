@@ -1,4 +1,5 @@
-﻿using LampShadeQuery.Contracts.ProductPictureAggregate;
+﻿using LampShadeQuery.Contracts.CommentAggregate;
+using LampShadeQuery.Contracts.ProductPictureAggregate;
 using System.Collections.Generic;
 
 namespace LampShadeQuery.Contracts.ProductAggregate

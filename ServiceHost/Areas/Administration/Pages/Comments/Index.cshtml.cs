@@ -1,9 +1,9 @@
+using CommentManagement.Application.Contracts.CommentAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShopManagement.Application.Contracts.CommentAggregate;
 using System.Collections.Generic;
 
-namespace ServiceHost.Areas.Administration.Pages.Shop.Comments
+namespace ServiceHost.Areas.Administration.Pages.Comments
 {
     public class IndexModel : PageModel
     {

@@ -299,7 +299,9 @@
                                                                 <span>(5)</span>
                                                                 </div>*@
                                                                 </div>
-                                                                <p>@comment.Message</p>
+                                                                <p>
+                                                                    <small style="margin-right: 30px;">@comment.Message</small>
+                                                                </p>
                                                             </div>
                                                             <hr />
                                                         </div>
@@ -321,7 +323,7 @@
                                                                     <label for="message">نظر شما</label>
                                                                     <textarea name="message" id="message" placeholder="نظر خود را بنویسید..."></textarea>
                                                                 </div>
-                                                                <input type="hidden" name="productId" value="@Model.Product.Id" />
+                                                                <input type="hidden" name="ownerRecordId" value="@Model.Product.Id" />
                                                                 <input type="hidden" name="productSlug" value="@Model.Product.Slug" />
                                                                 <div class="col-12">
                                                                     <input value="ارسال" type="submit">
@@ -344,8 +346,6 @@
 </div>
 
 @section Scripts {
-    <script src="~/adminTheme/assets/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/adminTheme/assets/datatables/dataTables.bootstrap.js"></script>
     <script type="text/javascript">
         setTimeout(function () {
             var element = document.getElementById('operation-message');

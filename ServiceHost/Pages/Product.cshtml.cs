@@ -1,7 +1,8 @@
+using CommentManagement.Application.Contracts.CommentAggregate;
+using CommentManagement.Infrastructure.EFCore;
 using LampShadeQuery.Contracts.ProductAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShopManagement.Application.Contracts.CommentAggregate;
 
 namespace ServiceHost.Pages
 {
@@ -19,13 +20,11 @@ namespace ServiceHost.Pages
             _commentApplication = commentApplication;
         }
 
-        public void OnGet(string id)
-        {
-            Product = _productQuery.GetDetails(id);
-        }
+        public void OnGet(string id) => Product = _productQuery.GetDetails(id);
 
         public IActionResult OnPost(AddComment command, string productSlug)
         {
+            command.Type = CommentType.Product;
             var result = _commentApplication.Add(command);
             Message = result.Message;
             return RedirectToPage("/Product", new { Id = productSlug });
