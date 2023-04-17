@@ -1,3 +1,4 @@
+using AccountManagement.Infrastructure.Configuration;
 using BlogManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
 using DiscountManagement.Infrastructure.Configuration;
@@ -29,9 +30,10 @@ namespace ServiceHost
             InventoryManagementBootstrapper.Configure(services, connectionString);
             BlogManagementBootstarpper.Configure(services, connectionString);
             CommentManagementBootstrapper.Configure(services, connectionString);
+            AccountManagementBootstrapper.Configure(services, connectionString);
 
             services.AddTransient<IFileUploader, FileUploader>();
-
+            services.AddSingleton<IPasswordHasher, PasswordHasher>();
             services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 
             services.AddRazorPages();

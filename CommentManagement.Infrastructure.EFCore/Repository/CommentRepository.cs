@@ -1,8 +1,10 @@
-﻿using CommentManagement.Application.Contracts.CommentAggregate;
+﻿using BlogManagement.Infrastructure.EFCore;
+using CommentManagement.Application.Contracts.CommentAggregate;
 using CommentManagement.Domain.CommentAggregate;
 using Framework.Application;
 using Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Infrastructure.EFCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +14,15 @@ namespace CommentManagement.Infrastructure.EFCore.Repository
     public class CommentRepository : BaseRepository<long, Comment>, ICommentRepository
     {
         private readonly CommentDbContext _context;
+        private readonly BlogDbContext _blogContext;
+        private readonly ShopDbContext _shopContext;
 
-        public CommentRepository(CommentDbContext context) : base(context) => _context = context;
+        public CommentRepository(CommentDbContext context, ShopDbContext shopContext, BlogDbContext blogContext) : base(context)
+        {
+            _context = context;
+            _shopContext = shopContext;
+            _blogContext = blogContext;
+        }
 
         public List<CommentViewModel> Search(CommentSearchModel searchModel)
         {
@@ -37,7 +46,20 @@ namespace CommentManagement.Infrastructure.EFCore.Repository
             if (!string.IsNullOrWhiteSpace(searchModel.Email))
                 query = query.Where(c => c.Email.Contains(searchModel.Email));
 
-            return query.OrderByDescending(c => c.Id).ToList();
+            var result = query.OrderByDescending(c => c.Id).ToList();
+            foreach (var resultItem in result)
+            {
+                if(resultItem.Type == CommentType.Article)
+                {
+                    resultItem.OwnerName = _blogContext.Articles.FirstOrDefault(a => a.Id == resultItem.OwnerRecordId).Title;
+                }
+                else if(resultItem.Type == CommentType.Product)
+                {
+                    resultItem.OwnerName = _shopContext.Products.FirstOrDefault(p => p.Id == resultItem.OwnerRecordId).Name;
+                }
+            }
+
+            return result;
         }
     }
 }

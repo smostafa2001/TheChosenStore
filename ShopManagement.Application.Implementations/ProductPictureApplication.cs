@@ -47,9 +47,7 @@ namespace ShopManagement.Application.Implementations
             var picturePath = _fileUploader.Upload(command.Picture, path);
 
             if (productPicture is null)
-            {
                 return operation.Failed(ApplicationMessages.RecordNotFound);
-            }
 
             productPicture.Edit
             (
@@ -71,9 +69,7 @@ namespace ShopManagement.Application.Implementations
             var productPicture = _repository.Get(id);
 
             if (productPicture is null)
-            {
                 return operation.Failed(ApplicationMessages.RecordNotFound);
-            }
 
             productPicture.Remove();
             _repository.Save();
@@ -86,9 +82,8 @@ namespace ShopManagement.Application.Implementations
             var productPicture = _repository.Get(id);
 
             if (productPicture is null)
-            {
                 return operation.Failed(ApplicationMessages.RecordNotFound);
-            }
+
 
             productPicture.Restore();
             _repository.Save();

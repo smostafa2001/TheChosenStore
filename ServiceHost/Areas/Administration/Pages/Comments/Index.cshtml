@@ -30,18 +30,18 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">جستجو در محصولات</h3>
+                <h3 class="panel-title">جستجو در نظرات</h3>
             </div>
             <div class="panel-body">
                 <form class="form-inline" role="form" method="get">
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.Name"></label>
-                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام محصول">
+                        <input class="form-control" asp-for="SearchModel.Name" placeholder="نام">
 
                     </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.Email"></label>
-                        <input class="form-control" asp-for="SearchModel.Email" placeholder="کد">
+                        <input class="form-control" asp-for="SearchModel.Email" placeholder="ایمیل">
 
                     </div>
                     <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
@@ -66,6 +66,8 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>سرویس کامنت</th>
+                                    <th>مسئول کامنت</th>
                                     <th>نام</th>
                                     <th>ایمیل</th>
                                     <th>پیام</th>
@@ -79,13 +81,22 @@
                                 {
                                     <tr>
                                         <td>@item.Id</td>
+                                        @if (item.Type == CommentType.Article)
+                                        {
+                                            <td>مقاله</td>
+                                        }
+                                        @if(item.Type == CommentType.Product)
+                                        {
+                                            <td>محصول</td>
+                                        }
+                                        <td>@item.OwnerName</td>
                                         <td>@item.Name</td>
                                         <td>@item.Email</td>
 
                                         <td>
-                                            @if (item.Message.Length > 50)
+                                            @if (item.Message.Length >= 5)
                                             {
-                                                @item.Message.Substring(0, 50)
+                                                @item.Message.Substring(0, 5)
                                                 <a class="text-primary" href="#showmodal=@Url.Page("./Index", "More", new { id = item.Id})">...</a>
                                             }
                                             else
