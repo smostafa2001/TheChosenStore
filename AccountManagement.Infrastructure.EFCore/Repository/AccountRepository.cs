@@ -2,6 +2,7 @@
 using AccountManagement.Domain.AccountAggregate;
 using Framework.Application;
 using Framework.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,6 +14,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
 
         public AccountRepository(AccountDbContext context) : base(context) => _context = context;
 
+        public Account Get(string username) => _context.Accounts.FirstOrDefault(a=>a.Username == username);
         public EditAccount GetDetails(long id) => _context.Accounts.Select(a => new EditAccount
         {
             Id = a.Id,
@@ -24,14 +26,14 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
 
         public List<AccountViewModel> Search(AccountSearchModel searchModel)
         {
-            var query = _context.Accounts.Select(a => new AccountViewModel
+            var query = _context.Accounts.Include(a=>a.Role).Select(a => new AccountViewModel
             {
                 Id = a.Id,
                 Fullname = a.Fullname,
                 Username = a.Username,
                 Mobile = a.Mobile,
-                RoleId = 2,
-                Role = "مدیر سیستم",
+                RoleId = a.RoleId,
+                Role = a.Role.Name, 
                 ProfilePhoto = a.ProfilePhoto,
                 CreationDate = a.CreationDate.ToFarsi()
             });

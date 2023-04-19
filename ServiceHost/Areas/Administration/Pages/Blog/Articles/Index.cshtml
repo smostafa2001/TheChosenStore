@@ -2,7 +2,7 @@
 @model IndexModel
 @{
     Layout = "Shared/_AdminLayout";
-    ViewData["title"] = "مدیریت مقالات";
+    ViewData["Title"] = "مدیریت مقالات";
 }
 
 @if (Model.Message != null)
@@ -20,7 +20,7 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <h4 class="page-title pull-right">@ViewData["title"]</h4>
+        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
             <a class="btn btn-success btn-lg" asp-page="./Create">ایجاد مقاله جدید</a>
         </p>

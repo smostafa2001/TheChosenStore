@@ -1,4 +1,5 @@
 ﻿@model MenuModel
+@inject IAuthHelper AuthHelper
 @{
 }
 
@@ -46,6 +47,18 @@
                                 <li>
                                     <a href="contact.html">تماس با ما</a>
                                 </li>
+                                @if (AuthHelper.IsAuthenticated())
+                                {
+                                    <li>
+                                        <a asp-page="/Account" asp-page-handler="Logout">خروج</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a asp-page="/Account">ورود و ثبت نام</a>
+                                    </li>
+                                }
                             </ul>
                         </nav>
                     </div>

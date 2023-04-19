@@ -1,4 +1,5 @@
-﻿using Framework.Domain;
+﻿using AccountManagement.Domain.RoleAggregate;
+using Framework.Domain;
 
 namespace AccountManagement.Domain.AccountAggregate
 {
@@ -9,6 +10,7 @@ namespace AccountManagement.Domain.AccountAggregate
         public string Password { get; private set; }
         public string Mobile { get; private set; }
         public long RoleId { get; private set; }
+        public Role Role { get; private set; }
         public string ProfilePhoto { get; private set; }
 
         public Account(string fullname, string username, string password, string mobile, long roleId, string profilePhoto)

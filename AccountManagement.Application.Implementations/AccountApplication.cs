@@ -10,12 +10,14 @@ namespace AccountManagement.Application.Implementations
         private readonly IAccountRepository _repository;
         private readonly IPasswordHasher _hasher;
         private readonly IFileUploader _fileUploader;
+        private readonly IAuthHelper _authHelper;
 
-        public AccountApplication(IAccountRepository repository, IPasswordHasher hasher, IFileUploader fileUploader)
+        public AccountApplication(IAccountRepository repository, IPasswordHasher hasher, IFileUploader fileUploader, IAuthHelper authHelper)
         {
             _repository = repository;
             _hasher = hasher;
             _fileUploader = fileUploader;
+            _authHelper = authHelper;
         }
 
         public OperationResult ChangePassword(ChangePassword command)
@@ -25,9 +27,7 @@ namespace AccountManagement.Application.Implementations
             if (account is null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 
-
-            if(_hasher.Check(account.Password, command.Password).verified)
-            //if (account.Password == command.Password)
+            if (_hasher.Check(account.Password, command.Password).verified)
                 return operation.Failed(ApplicationMessages.DuplicatedPassword);
 
             if (command.Password != command.RePassword)
@@ -66,7 +66,7 @@ namespace AccountManagement.Application.Implementations
 
             if (_repository.DoesExist(a => (a.Username == command.Username || a.Mobile == command.Mobile) && a.Id != command.Id))
                 return operation.Failed(ApplicationMessages.DuplicatedRecord);
-                var path = $"ProfilePhotos";
+            var path = $"ProfilePhotos";
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
             account.Edit(command.Fullname, command.Username, command.Mobile, command.RoleId, picturePath);
             _repository.Save();
@@ -74,6 +74,29 @@ namespace AccountManagement.Application.Implementations
         }
 
         public EditAccount GetDetails(long id) => _repository.GetDetails(id);
+        public OperationResult Login(Login command)
+        {
+            OperationResult operation = new OperationResult();
+            Account account = _repository.Get(command.Username);
+            if (account is null)
+                return operation.Failed(ApplicationMessages.WrongUserPass);
+
+            (bool verified, bool needsUpgrade) result = _hasher.Check(account.Password, command.Password);
+            if (!result.verified)
+                return operation.Failed(ApplicationMessages.WrongUserPass);
+
+            var authModel = new AuthViewModel
+            {
+                Id = account.Id,
+                Fullname = account.Fullname,
+                RoleId = account.RoleId,
+                Username = account.Username
+            };
+            _authHelper.SignIn(authModel);
+            return operation.Succeeded();
+        }
+
+        public void Logout() => _authHelper.SignOut();
         public List<AccountViewModel> Search(AccountSearchModel searchModel) => _repository.Search(searchModel);
     }
 }
