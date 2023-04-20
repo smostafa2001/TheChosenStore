@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManagement.Application.Contracts.ProductCategoryAggregate;
@@ -8,7 +9,6 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.ProductCategories
     public class IndexModel : PageModel
     {
         private readonly IProductCategoryApplication _application;
-
         [TempData]
         public string Message { get; set; }
 

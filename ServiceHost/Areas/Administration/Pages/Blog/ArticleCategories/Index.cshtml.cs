@@ -8,7 +8,6 @@ namespace ServiceHost.Areas.Administration.Pages.Blog.ArticleCategories
     public class IndexModel : PageModel
     {
         private readonly IArticleCategoryApplication _application;
-
         [TempData]
         public string Message { get; set; }
 

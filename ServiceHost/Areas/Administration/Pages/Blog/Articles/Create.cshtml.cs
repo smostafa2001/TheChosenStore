@@ -24,6 +24,7 @@ namespace ServiceHost.Areas.Administration.Pages.Blog.Articles
         public IActionResult OnPost(CreateArticle command)
         {
             var result = _articleApplication.Create(command);
+            TempData["OperationMessage"] = result.Message;
             return RedirectToPage("./Index");
         }
     }

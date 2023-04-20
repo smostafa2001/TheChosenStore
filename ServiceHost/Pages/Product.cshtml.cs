@@ -10,8 +10,8 @@ namespace ServiceHost.Pages
     {
         private readonly IProductQuery _productQuery;
         private readonly ICommentApplication _commentApplication;
-
-        [TempData] public string Message { get; set; }
+        [TempData]
+        public string Message { get; set; }
         public ProductQueryModel Product { get; set; }
 
         public ProductModel(IProductQuery productQuery, ICommentApplication commentApplication)

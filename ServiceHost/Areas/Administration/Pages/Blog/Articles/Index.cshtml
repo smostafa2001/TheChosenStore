@@ -5,19 +5,17 @@
     ViewData["Title"] = "مدیریت مقالات";
 }
 
-@if (Model.Message != null)
+@if (TempData["OperationMessage"] != null)
 {
-    @if (Model.Message == OperationMessages.IsSucceeded)
+    @if (TempData["OperationMessage"].ToString() == OperationMessages.IsSucceeded)
     {
-        <div id="message" class="alert alert-success">@Model.Message</div>
+        <div id="message" class="alert alert-success">@TempData["OperationMessage"].ToString()</div>
     }
     else
     {
-        <div id="message" class="alert alert-danger">@Model.Message</div>
+        <div id="message" class="alert alert-danger">@TempData["OperationMessage"].ToString()</div>
     }
 }
-
-
 <div class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["Title"]</h4>
@@ -119,6 +117,7 @@
         setTimeout(function () {
             var element = document.getElementById('message');
             element.parentNode.removeChild(element);
+            window.location.reload();
         }, 3000);
     </script>
     <script type="text/javascript">

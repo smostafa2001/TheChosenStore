@@ -11,7 +11,6 @@ namespace ServiceHost.Areas.Administration.Pages.Accounts.Account
     {
         private readonly IAccountApplication _accountApplication;
         private readonly IRoleApplication _roleApplication;
-
         [TempData]
         public string Message { get; set; }
 
@@ -33,16 +32,16 @@ namespace ServiceHost.Areas.Administration.Pages.Accounts.Account
 
         public IActionResult OnGetCreate()
         {
-            var command = new CreateAccount
+            var command = new RegisterAccount
             {
                 Roles = _roleApplication.GetRoles()
             };
             return Partial("./Create", command);
         }
 
-        public JsonResult OnPostCreate(CreateAccount command)
+        public JsonResult OnPostCreate(RegisterAccount command)
         {
-            var result = _accountApplication.Create(command);
+            var result = _accountApplication.Register(command);
             Message = result.Message;
             return new JsonResult(result);
         }

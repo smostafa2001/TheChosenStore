@@ -8,7 +8,6 @@ namespace ServiceHost.Areas.Administration.Pages.Accounts.Role
     public class IndexModel : PageModel
     {
         private readonly IRoleApplication _roleApplication;
-
         [TempData]
         public string Message { get; set; }
 

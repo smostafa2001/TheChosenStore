@@ -1,4 +1,4 @@
-using AccountManagement.Infrastructure.Configuration;
+﻿using AccountManagement.Infrastructure.Configuration;
 using BlogManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
 using DiscountManagement.Infrastructure.Configuration;
@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShopManagement.Infrastructure.Configuration;
+using System.Collections.Generic;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 
@@ -46,14 +48,29 @@ namespace ServiceHost
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.Strict;
             });
+            services.Configure<CookieTempDataProviderOptions>(options => options.Cookie.IsEssential = true);
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
             {
                 o.LoginPath = new PathString("/Account");
                 o.LogoutPath = new PathString("/Account");
                 o.AccessDeniedPath = new PathString("/AccessDenied");
             });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminArea", builder => builder.RequireRole(new List<string> { "1", "3" }));
+                options.AddPolicy("Shop", builder => builder.RequireRole(new List<string> { "1" }));
+                options.AddPolicy("Discount", builder => builder.RequireRole(new List<string> { "1" }));
+                options.AddPolicy("Account", builder => builder.RequireRole(new List<string> { "1" }));
+            });
 
-            services.AddRazorPages();
+            services.AddRazorPages().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
+                options.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "Shop");
+                options.Conventions.AuthorizeAreaFolder("Administration", "/Discounts", "Discount");
+                options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
+            });
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

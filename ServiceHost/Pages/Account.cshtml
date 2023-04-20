@@ -4,6 +4,25 @@
     ViewData["Title"] = "ورود و ثبت نام";
 }
 
+@if (Model.Message != null)
+{
+    @if (Model.Message == OperationMessages.IsSucceeded)
+    {
+        <div id="message" class="alert alert-success">@Model.Message</div>
+    }
+    @if (Model.Message == ApplicationMessages.SuccessfulRegister)
+    {
+        <div id="message" class="alert alert-success">@Model.Message</div>
+    }
+    @if (Model.Message == ApplicationMessages.PasswordsNotMatch)
+    {
+        <div id="message" class="alert alert-warning">@Model.Message</div>
+    }
+    @if (Model.Message == ApplicationMessages.WrongUserPass)
+    {
+        <div id="message" class="alert alert-danger">@Model.Message</div>
+    }
+}
 
 <div class="breadcrumb-area section-space--half">
     <div class="container wide">
@@ -31,10 +50,6 @@
                     <div class="page-content-wrapper">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
-                                @if (Model.Message is not null)
-                                {
-                                    <div class="alert alert-danger"></div>
-                                }
                                 <form method="post" asp-page-handler="Login">
                                     <div class="login-form">
                                         <h4 class="login-title">ورود به سیستم</h4>
@@ -61,8 +76,7 @@
                                 </form>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-                                <form action="#">
-
+                                <form method="post" asp-page-handler="Register">
                                     <div class="login-form">
                                         <h4 class="login-title">ثبت نام در سیستم</h4>
 
@@ -102,5 +116,13 @@
     </div>
 </div>
 
+@section Scripts{
+    <script type="text/javascript">
+        setTimeout(function () {
+            var element = document.getElementById('message');
+            element.parentNode.removeChild(element);
+        }, 3000);
+    </script>
+}
 
 

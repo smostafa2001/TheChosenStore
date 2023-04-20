@@ -8,7 +8,6 @@ namespace ServiceHost.Areas.Administration.Pages.Comments
     public class IndexModel : PageModel
     {
         private readonly ICommentApplication _commentApplication;
-
         [TempData]
         public string Message { get; set; }
 

@@ -39,7 +39,7 @@ namespace AccountManagement.Application.Implementations
             return operation.Succeeded();
         }
 
-        public OperationResult Create(CreateAccount command)
+        public OperationResult Register(RegisterAccount command)
         {
             OperationResult operation = new OperationResult();
             if (_repository.DoesExist(a => a.Username == command.Username || a.Mobile == command.Mobile))
@@ -54,7 +54,7 @@ namespace AccountManagement.Application.Implementations
             var account = new Account(command.Fullname, command.Username, password, command.Mobile, command.RoleId, picturePath);
             _repository.Create(account);
             _repository.Save();
-            return operation.Succeeded();
+            return operation.Succeeded(ApplicationMessages.SuccessfulRegister);
         }
 
         public OperationResult Edit(EditAccount command)
@@ -77,7 +77,7 @@ namespace AccountManagement.Application.Implementations
         public OperationResult Login(Login command)
         {
             OperationResult operation = new OperationResult();
-            Account account = _repository.Get(command.Username);
+            Account account = _repository.GetWithRole(command.Username);
             if (account is null)
                 return operation.Failed(ApplicationMessages.WrongUserPass);
 
@@ -90,7 +90,9 @@ namespace AccountManagement.Application.Implementations
                 Id = account.Id,
                 Fullname = account.Fullname,
                 RoleId = account.RoleId,
-                Username = account.Username
+                Role = account.Role.Name,
+                Username = account.Username,
+                ProfilePhoto = account.ProfilePhoto
             };
             _authHelper.SignIn(authModel);
             return operation.Succeeded();

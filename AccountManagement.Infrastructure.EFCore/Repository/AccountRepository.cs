@@ -23,6 +23,7 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             Mobile = a.Mobile,
             RoleId = a.RoleId
         }).FirstOrDefault(a => a.Id == id);
+        public Account GetWithRole(string username) => _context.Accounts.Include(a=>a.Role).FirstOrDefault(a => a.Username == username);
 
         public List<AccountViewModel> Search(AccountSearchModel searchModel)
         {

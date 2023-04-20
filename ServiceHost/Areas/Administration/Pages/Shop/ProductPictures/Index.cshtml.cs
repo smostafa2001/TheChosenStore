@@ -11,7 +11,6 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.ProductPictures
     {
         private readonly IProductPictureApplication _pictureApplication;
         private readonly IProductApplication _productApplication;
-
         [TempData]
         public string Message { get; set; }
 

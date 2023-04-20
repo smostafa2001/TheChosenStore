@@ -11,7 +11,6 @@ namespace ServiceHost.Areas.Administration.Pages.Inventory
     {
         private readonly IProductApplication _productApplication;
         private readonly IInventoryApplication _inventoryApplication;
-
         [TempData]
         public string Message { get; set; }
 

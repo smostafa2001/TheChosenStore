@@ -13,7 +13,7 @@ namespace ServiceHost.Pages
         private readonly IArticleQuery _articleQuery;
         private readonly IArticleCategoryQuery _categoryQuery;
         private readonly ICommentApplication _commentApplication;
-        [TempData ]public string Message { get; set; }
+        [TempData]public string Message { get; set; }
         public ArticleQueryModel Article { get; set; }
         public List<ArticleQueryModel> LatestArticles { get; set; }
         public List<ArticleCategoryQueryModel> ArticleCategories { get; set; }

@@ -11,9 +11,7 @@ namespace ServiceHost.Areas.Administration.Pages.Blog.Articles
     {
         private readonly IArticleApplication _application;
         private readonly IArticleCategoryApplication _categoryApplication;
-
-        [TempData]
-        public string Message { get; set; }
+    
 
         public ArticleSearchModel SearchModel { get; set; }
         public List<ArticleViewModel> Articles { get; set; }

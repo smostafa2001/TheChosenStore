@@ -13,7 +13,6 @@ namespace ServiceHost.Areas.Administration.Pages.Discounts.ColleagueDiscounts
     {
         private readonly IProductApplication _productApplication;
         private readonly IColleagueDiscountApplication _discountApplication;
-
         [TempData]
         public string Message { get; set; }
 

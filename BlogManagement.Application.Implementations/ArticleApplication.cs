@@ -47,7 +47,7 @@ namespace BlogManagement.Application.Implementations
         public OperationResult Edit(EditArticle command)
         {
             OperationResult operation = new OperationResult();
-            Article article = _repository.Get(command.Id);
+            Article article = _repository.GetWithCategory(command.Id);
             if (article is null)
                 return operation.Failed(ApplicationMessages.RecordNotFound);
 

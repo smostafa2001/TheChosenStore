@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AccountManagement.Application.Contracts.AccountAggregate
 {
-    public class CreateAccount
+    public class RegisterAccount
     {
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public string Fullname { get; set; }
@@ -18,7 +18,6 @@ namespace AccountManagement.Application.Contracts.AccountAggregate
         public string RePassword { get; set; }
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public string Mobile { get; set; }
-        [Range(1, int.MaxValue, ErrorMessage = ValidationMessages.IsRequired)]
         public long RoleId { get; set; }
         public IFormFile ProfilePhoto { get; set; }
         public List<RoleViewModel> Roles { get; set; }

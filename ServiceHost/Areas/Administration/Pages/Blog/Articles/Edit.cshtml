@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id}"
 @model EditModel
 @{
     Layout = "Shared/_AdminLayout";
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" asp-for="Command.Id" value="Command.Id" />
+                    <input type="hidden" asp-for="Command.Id" value="@Model.Command.Id" />
                     <button type="submit" class="btn btn-success waves-effect waves-light m-b-5">ویرایش</button>
                     <a asp-page="./Index" class="btn btn-dark waves-effect waves-light mb-b-5">بازگشت</a>
                 </form>

@@ -26,6 +26,7 @@ public class EditModel : PageModel
     public IActionResult OnPost(EditArticle command)
     {
         var result = _articleApplication.Edit(command);
+        TempData["OperationMessage"] = result.Message;
         return RedirectToPage("./Index");
     }
 }

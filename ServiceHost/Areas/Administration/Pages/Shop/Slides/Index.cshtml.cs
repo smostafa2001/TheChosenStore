@@ -8,7 +8,6 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Slides
     public class IndexModel : PageModel
     {
         private readonly ISlideApplication _slideApplication;
-
         [TempData]
         public string Message { get; set; }
 
