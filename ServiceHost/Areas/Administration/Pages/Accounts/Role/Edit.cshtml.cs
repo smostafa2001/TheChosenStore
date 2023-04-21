@@ -11,10 +11,10 @@ namespace ServiceHost.Areas.Administration.Pages.Accounts.Role
     public class EditModel : PageModel
     {
         private readonly IRoleApplication _application;
-        private readonly List<IPermissionExposer> _exposers = new List<IPermissionExposer>();
+        private readonly IEnumerable<IPermissionExposer> _exposers;
         public EditRole Command { get; set; }
-        public List<SelectListItem> Permissions { get; set; }
-        public EditModel(IRoleApplication application, List<IPermissionExposer> exposers)
+        public List<SelectListItem> Permissions { get; set; } = new List<SelectListItem>();
+        public EditModel(IRoleApplication application, IEnumerable<IPermissionExposer> exposers)
         {
             _application = application;
             _exposers = exposers;

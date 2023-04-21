@@ -1,4 +1,5 @@
-﻿using LampShadeQuery.Contracts.ProductAggregate;
+﻿using Framework.Infrastructure;
+using LampShadeQuery.Contracts.ProductAggregate;
 using LampShadeQuery.Contracts.ProductCategoryAggregate;
 using LampShadeQuery.Contracts.SlideAggregate;
 using LampShadeQuery.Query;
@@ -13,6 +14,7 @@ using ShopManagement.Domain.ProductAggregate;
 using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using ShopManagement.Domain.SlideAggregate;
+using ShopManagement.Infrastructure.Configuration.Permissions;
 using ShopManagement.Infrastructure.EFCore;
 using ShopManagement.Infrastructure.EFCore.Repository;
 
@@ -36,6 +38,8 @@ namespace ShopManagement.Infrastructure.Configuration
             services.AddTransient<ISlideApplication, SlideApplication>();
             services.AddTransient<ISlideRepository, SlideRepository>();
             services.AddTransient<ISlideQuery, SlideQuery>();
+
+            services.AddTransient<IPermissionExposer, ShopPermissionExposer>();
 
             services.AddDbContext<ShopDbContext>(x => x.UseSqlServer(connectionString));
         }

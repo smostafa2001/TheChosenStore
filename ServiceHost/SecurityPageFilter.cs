@@ -18,7 +18,7 @@ namespace ServiceHost
             if (context.HandlerMethod.MethodInfo.GetCustomAttribute(typeof(NeedsPermissionAttribute)) is not NeedsPermissionAttribute handlerPermission)
                 return;
 
-            if (!_authHelper.GetPermissions().All(p => p == handlerPermission.Permission))
+            if (_authHelper.GetPermissions().All(p => p != handlerPermission.Permission))
                 context.HttpContext.Response.Redirect("/Account");
         }
         public void OnPageHandlerSelected(PageHandlerSelectedContext context) { }
