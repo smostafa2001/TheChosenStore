@@ -1,8 +1,10 @@
+using Framework.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contracts.ProductAggregate;
 using ShopManagement.Application.Contracts.ProductCategoryAggregate;
+using ShopManagement.Infrastructure.Configuration.Permissions;
 using System.Collections.Generic;
 
 namespace ServiceHost.Areas.Administration.Pages.Shop.Products
@@ -23,7 +25,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
             _productApplication = productApplication;
             _categoryApplication = categoryApplication;
         }
-
+        [NeedsPermission(ShopPermissions.ListProducts)]
         public void OnGet(ProductSearchModel searchModel)
         {
             ProductCategories = new SelectList(_categoryApplication.GetProductCategories(), "Id", "Name");
@@ -38,7 +40,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
             };
             return Partial("./Create", command);
         }
-
+        [NeedsPermission(ShopPermissions.CreateProduct)]
         public JsonResult OnPostCreate(CreateProduct command)
         {
             var result = _productApplication.Create(command);
@@ -52,7 +54,7 @@ namespace ServiceHost.Areas.Administration.Pages.Shop.Products
             product.Categories = _categoryApplication.GetProductCategories();
             return Partial("./Edit", product);
         }
-
+        [NeedsPermission(ShopPermissions.EditProduct)]
         public JsonResult OnPostEdit(EditProduct command)
         {
             var result = _productApplication.Edit(command);

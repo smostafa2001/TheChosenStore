@@ -1,4 +1,6 @@
-﻿namespace Framework.Application
+﻿using System.Collections.Generic;
+
+namespace Framework.Application
 {
     public class AuthViewModel
     {
@@ -8,5 +10,6 @@
         public string Fullname { get; set; }
         public string Username { get; set; }
         public string ProfilePhoto { get; set; }
+        public List<int> Permissions { get; set; }
     }
 }

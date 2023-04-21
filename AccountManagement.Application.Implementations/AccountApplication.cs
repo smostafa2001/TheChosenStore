@@ -1,7 +1,9 @@
 ﻿using AccountManagement.Application.Contracts.AccountAggregate;
 using AccountManagement.Domain.AccountAggregate;
+using AccountManagement.Domain.RoleAggregate;
 using Framework.Application;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AccountManagement.Application.Implementations
 {
@@ -11,13 +13,15 @@ namespace AccountManagement.Application.Implementations
         private readonly IPasswordHasher _hasher;
         private readonly IFileUploader _fileUploader;
         private readonly IAuthHelper _authHelper;
+        private readonly IRoleRepository _roleRepository;
 
-        public AccountApplication(IAccountRepository repository, IPasswordHasher hasher, IFileUploader fileUploader, IAuthHelper authHelper)
+        public AccountApplication(IAccountRepository repository, IPasswordHasher hasher, IFileUploader fileUploader, IAuthHelper authHelper, IRoleRepository roleRepository)
         {
             _repository = repository;
             _hasher = hasher;
             _fileUploader = fileUploader;
             _authHelper = authHelper;
+            _roleRepository = roleRepository;
         }
 
         public OperationResult ChangePassword(ChangePassword command)
@@ -81,10 +85,11 @@ namespace AccountManagement.Application.Implementations
             if (account is null)
                 return operation.Failed(ApplicationMessages.WrongUserPass);
 
-            (bool verified, bool needsUpgrade) result = _hasher.Check(account.Password, command.Password);
+            var result = _hasher.Check(account.Password, command.Password);
             if (!result.verified)
                 return operation.Failed(ApplicationMessages.WrongUserPass);
 
+            var permissions = _roleRepository.Get(account.RoleId).Permissions.Select(p=>p.Code).ToList();
             var authModel = new AuthViewModel
             {
                 Id = account.Id,
@@ -92,7 +97,8 @@ namespace AccountManagement.Application.Implementations
                 RoleId = account.RoleId,
                 Role = account.Role.Name,
                 Username = account.Username,
-                ProfilePhoto = account.ProfilePhoto
+                ProfilePhoto = account.ProfilePhoto,
+                Permissions = permissions
             };
             _authHelper.SignIn(authModel);
             return operation.Succeeded();
