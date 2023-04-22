@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ShopManagement.Application.Contracts.OrderAggregate;
+using System.Collections.Generic;
 
 namespace LampShadeQuery.Contracts.ProductAggregate
 {
@@ -7,5 +8,6 @@ namespace LampShadeQuery.Contracts.ProductAggregate
         ProductQueryModel GetDetails(string slug);
         List<ProductQueryModel> GetLatestArrivals();
         List<ProductQueryModel> Search(string value);
+        List<CartItem> CheckInventoryStatus(List<CartItem> cartItems);
     }
 }

@@ -2,11 +2,11 @@
 using DiscountManagement.Infrastructure.EFCore;
 using Framework.Application;
 using InventoryManagement.Infrastructure.EFCore;
-using LampShadeQuery.Contracts;
 using LampShadeQuery.Contracts.CommentAggregate;
 using LampShadeQuery.Contracts.ProductAggregate;
 using LampShadeQuery.Contracts.ProductPictureAggregate;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Application.Contracts.OrderAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using ShopManagement.Infrastructure.EFCore;
 using System;
@@ -38,7 +38,7 @@ namespace LampShadeQuery.Query
                 .Select(cd => new { cd.DiscountRate, cd.ProductId, cd.EndDate })
                 .ToList();
 
-            var product = _shopContext.Products.Include(p => p.Category).Include(p => p.ProductPictures)
+            ProductQueryModel product = _shopContext.Products.Include(p => p.Category).Include(p => p.ProductPictures)
                 .Select(p => new ProductQueryModel
                 {
                     Id = p.Id,
@@ -54,8 +54,7 @@ namespace LampShadeQuery.Query
                     Keywords = p.Keywords,
                     MetaDescription = p.MetaDescription,
                     ShortDescription = p.ShortDescription,
-                    Pictures = MapProductPictures(p.ProductPictures),
-                    //Comments = MapComments(p.Comments)
+                    Pictures = MapProductPictures(p.ProductPictures)
                 }).FirstOrDefault(p => p.Slug == slug);
 
             if (product is null)
@@ -65,7 +64,8 @@ namespace LampShadeQuery.Query
             if (productInventory is not null)
             {
                 product.IsInStock = productInventory.IsInStock;
-                var price = productInventory.UnitPrice;
+                double price = productInventory.UnitPrice;
+                product.DoublePrice = price;
                 product.Price = price.ToMoney();
 
                 var discount = discounts.FirstOrDefault(d => d.ProductId == product.Id);
@@ -74,7 +74,7 @@ namespace LampShadeQuery.Query
                     product.DiscountRate = discount.DiscountRate;
                     product.HasDiscount = product.DiscountRate > 0;
                     product.DiscountExpireDate = discount.EndDate.ToDiscountFormat();
-                    var discountAmount = Math.Round(price * product.DiscountRate / 100);
+                    double discountAmount = Math.Round(price * product.DiscountRate / 100);
                     product.PriceWithDiscount = (price - discountAmount).ToMoney();
                 }
             }
@@ -119,12 +119,12 @@ namespace LampShadeQuery.Query
                     Slug = p.Slug,
                 }).AsNoTracking().OrderByDescending(p => p.Id).Take(6).ToList();
 
-            foreach (var product in products)
+            foreach (ProductQueryModel product in products)
             {
                 var productInventory = inventory.FirstOrDefault(i => i.ProductId == product.Id);
                 if (productInventory is not null)
                 {
-                    var price = productInventory.UnitPrice;
+                    double price = productInventory.UnitPrice;
                     product.Price = price.ToMoney();
 
                     var discount = discounts.FirstOrDefault(d => d.ProductId == product.Id);
@@ -132,7 +132,7 @@ namespace LampShadeQuery.Query
                     {
                         product.DiscountRate = discount.DiscountRate;
                         product.HasDiscount = product.DiscountRate > 0;
-                        var discountAmount = Math.Round(price * product.DiscountRate / 100);
+                        double discountAmount = Math.Round(price * product.DiscountRate / 100);
                         product.PriceWithDiscount = (price - discountAmount).ToMoney();
                     }
                 }
@@ -148,7 +148,7 @@ namespace LampShadeQuery.Query
                 .Where(cd => cd.StartDate < DateTime.Now && cd.EndDate > DateTime.Now)
                 .Select(cd => new { cd.DiscountRate, cd.ProductId, cd.EndDate })
                 .ToList();
-            var query = _shopContext.Products.Include(p => p.Category).Select(p => new ProductQueryModel
+            IQueryable<ProductQueryModel> query = _shopContext.Products.Include(p => p.Category).Select(p => new ProductQueryModel
             {
                 Id = p.Id,
                 Category = p.Category.Name,
@@ -163,12 +163,12 @@ namespace LampShadeQuery.Query
                 query = query.Where(p => p.Name.Contains(value));
 
             var products = query.OrderByDescending(p => p.Id).ToList();
-            foreach (var product in products)
+            foreach (ProductQueryModel product in products)
             {
                 var productInventory = inventory.FirstOrDefault(i => i.ProductId == product.Id);
                 if (productInventory is not null)
                 {
-                    var price = productInventory.UnitPrice;
+                    double price = productInventory.UnitPrice;
                     product.Price = price.ToMoney();
 
                     var discount = discounts.FirstOrDefault(d => d.ProductId == product.Id);
@@ -177,13 +177,28 @@ namespace LampShadeQuery.Query
                         product.DiscountRate = discount.DiscountRate;
                         product.DiscountExpireDate = discount.EndDate.ToDiscountFormat();
                         product.HasDiscount = product.DiscountRate > 0;
-                        var discountAmount = Math.Round(price * product.DiscountRate / 100);
+                        double discountAmount = Math.Round(price * product.DiscountRate / 100);
                         product.PriceWithDiscount = (price - discountAmount).ToMoney();
                     }
                 }
             }
 
             return products;
+        }
+
+        public List<CartItem> CheckInventoryStatus(List<CartItem> cartItems)
+        {
+            var inventory = _inventoryContext.Inventory.ToList();
+            if (cartItems is not null)
+            {
+                foreach (CartItem item in cartItems.Where(item => inventory.Any(i => i.ProductId == item.Id && i.IsInStock)))
+                {
+                    var itemInventory = inventory.Find(i => i.ProductId == item.Id);
+                    item.IsInStock = itemInventory.CalculateCurrentStock() >= item.Count;
+                }
+            }
+
+            return cartItems;
         }
     }
 }

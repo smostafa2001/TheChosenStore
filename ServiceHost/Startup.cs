@@ -4,6 +4,8 @@ using CommentManagement.Infrastructure.Configuration;
 using DiscountManagement.Infrastructure.Configuration;
 using Framework.Application;
 using InventoryManagement.Infrastructure.Configuration;
+using LampShadeQuery.Contracts.CartAggregate;
+using LampShadeQuery.Query;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
