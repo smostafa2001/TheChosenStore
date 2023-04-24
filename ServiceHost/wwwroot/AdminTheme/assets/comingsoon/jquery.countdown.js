@@ -11,7 +11,9 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
 @version: 1.0.1
 */
 
+
 (function() {
+
   (function($) {
     $.countdown = function(el, options) {
       var getDateData,
@@ -127,4 +129,5 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
     };
     return void 0;
   })(jQuery);
+
 }).call(this);

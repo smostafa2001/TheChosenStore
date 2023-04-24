@@ -1,9 +1,10 @@
+
 /**
 * Theme: Montran Admin Template
 * Author: Coderthemes
 * Component: Peity Chart
 * Usage: $.PeityChart.createLine(<params>);
-*
+* 
 */
 
 !function($) {
@@ -51,7 +52,7 @@
         this.createPie("span.pie", ['#317eeb', '#d7d7d7', '#ffffff']);
 
         //line
-        this.createLine(".line", '#317eeb', '#169c81');
+        this.createLine(".line", '#317eeb', '#169c81');        
 
         //bar
         this.createBar('.bar', ["#317eeb", "#d7d7d7"]);
@@ -83,7 +84,7 @@
     $.PeityChart = new PeityChart, $.PeityChart.Constructor = PeityChart
 }(window.jQuery),
 
-//initializing
+//initializing 
 function($) {
     "use strict";
     $.PeityChart.init()

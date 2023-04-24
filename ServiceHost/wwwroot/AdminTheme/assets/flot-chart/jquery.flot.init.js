@@ -4,6 +4,7 @@
 * Module/App: Flot-Chart
 */
 
+
 !function($) {
     "use strict";
 
@@ -125,6 +126,7 @@
 
       // Do a random walk
       while (this.$realData.length < totalPoints) {
+
         var prev = this.$realData.length > 0 ? this.$realData[this.$realData.length - 1] : 50,
           y = prev + Math.random() * 10 - 5;
 
@@ -231,6 +233,7 @@
     },
     //creates Combine Chart
     FlotChart.prototype.createCombineGraph = function(selector, ticks, labels, datas) {
+        
         var data = [{
             label: labels[0],
             data: datas[0],
@@ -301,6 +304,7 @@
           var colors = ["#60b1cc", "#6c85bd", "#1ca8dd"];
           this.createPieGraph("#pie-chart #pie-chart-container", pielabels , datas, colors);
 
+
             //real time data representation
             var plot = this.createRealTimeGraph('#flotRealTime', this.randomData() , ['#317eeb']);
             plot.draw();
@@ -308,7 +312,7 @@
             function updatePlot() {
                 plot.setData([$this.randomData()]);
                 // Since the axes don't change, we don't need to call plot.setupGrid()
-                plot.draw();
+                plot.draw(); 
                 setTimeout(updatePlot, $( 'html' ).hasClass( 'mobile-device' ) ? 1000 : 30);
             }
             updatePlot();
@@ -432,6 +436,7 @@
 
     //init flotchart
     $.FlotChart = new FlotChart, $.FlotChart.Constructor = FlotChart
+    
 }(window.jQuery),
 
 //initializing flotchart
@@ -439,3 +444,6 @@ function($) {
     "use strict";
     $.FlotChart.init()
 }(window.jQuery);
+
+
+

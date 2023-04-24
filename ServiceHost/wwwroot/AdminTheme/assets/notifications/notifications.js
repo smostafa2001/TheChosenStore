@@ -1,3 +1,4 @@
+
 /**
 * Theme: Moltran Admin Template
 * Author: Coderthemes
@@ -52,7 +53,7 @@
             icon = "fa fa-question";
         }else{
             icon = "fa fa-adjust";
-        }
+        }   
         $.notify({
             title: title,
             text: text,
@@ -82,7 +83,7 @@
             icon = "fa fa-question";
         }else{
             icon = "fa fa-adjust";
-        }
+        }   
         $.notify({
             title: title,
             text: 'Are you sure you want to do nothing?<div class="clearfix"></div><br><a class="btn btn-sm btn-default yes">Yes</a> <a class="btn btn-sm btn-danger no">No</a>',
@@ -111,12 +112,13 @@
     },
     //init - examples
     Notification.prototype.init = function() {
+
     },
     //init
     $.Notification = new Notification, $.Notification.Constructor = Notification
 }(window.jQuery),
 
-//initializing
+//initializing 
 function($) {
     "use strict";
     $.Notification.init()

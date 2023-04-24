@@ -1,3 +1,4 @@
+
 /**
 * Theme: Moltran Admin Template
 * Author: Coderthemes
@@ -55,6 +56,7 @@
         });
     },
     MorrisCharts.prototype.init = function() {
+
         //create line chart
         var $data  = [
             { y: '2009', a: 100, b: 90 },
@@ -103,7 +105,7 @@
     $.MorrisCharts = new MorrisCharts, $.MorrisCharts.Constructor = MorrisCharts
 }(window.jQuery),
 
-//initializing
+//initializing 
 function($) {
     "use strict";
     $.MorrisCharts.init();

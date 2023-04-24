@@ -1,3 +1,4 @@
+
 /**
 * Theme: Moltran Admin Template
 * Author: Coderthemes
@@ -45,11 +46,11 @@
         $('.autoformat').click(function(){
             $this.autoFormatSelection(editor);
         });
-
+        
         $('.comment').click(function(){
             $this.commentSelection(true, editor);
         });
-
+        
         $('.uncomment').click(function(){
             $this.commentSelection(false, editor);
         });
@@ -58,7 +59,7 @@
     $.CodeEditor = new CodeEditor, $.CodeEditor.Constructor = CodeEditor
 }(window.jQuery),
 
-//initializing
+//initializing 
 function($) {
     "use strict";
     $.CodeEditor.init()

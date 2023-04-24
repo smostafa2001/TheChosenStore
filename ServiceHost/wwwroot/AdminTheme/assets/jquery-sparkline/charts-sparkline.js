@@ -2,9 +2,10 @@
 * Theme: Montran Admin Template
 * Author: Coderthemes
 * Component: Sparkline Chart
-*
+* 
 */
 $( document ).ready(function() {
+    
     var DrawSparkline = function() {
         $('#sparkline1').sparkline([0, 23, 43, 35, 44, 45, 56, 37, 40], {
             type: 'line',
@@ -16,7 +17,7 @@ $( document ).ready(function() {
             highlightLineColor: 'rgba(0,0,0,.1)',
             highlightSpotColor: 'rgba(0,0,0,.2)',
         });
-
+    
         $('#sparkline1').sparkline([25, 23, 26, 24, 25, 32, 30, 24, 19], {
             type: 'line',
             width: $('#sparkline1').width(),
@@ -28,7 +29,7 @@ $( document ).ready(function() {
             highlightLineColor: 'rgba(0,0,0,.1)',
             highlightSpotColor: 'rgba(0,0,0,.2)',
         });
-
+    
         $('#sparkline2').sparkline([3, 6, 7, 8, 6, 4, 7, 10, 12, 7, 4, 9, 12, 13, 11, 12], {
             type: 'bar',
             height: '165',
@@ -36,14 +37,14 @@ $( document ).ready(function() {
             barSpacing: '3',
             barColor: '#8B68C9'
         });
-
+        
         $('#sparkline3').sparkline([20, 40, 30, 10], {
             type: 'pie',
             width: '165',
             height: '165',
             sliceColors: ['#7e57c2', '#29b6f6', '#212121', '#ffd740']
         });
-
+    
         $('#sparkline4').sparkline([0, 23, 43, 35, 44, 45, 56, 37, 40], {
             type: 'line',
             width: $('#sparkline1').width(),
@@ -54,7 +55,7 @@ $( document ).ready(function() {
             highlightLineColor: 'rgba(0,0,0,.1)',
             highlightSpotColor: 'rgba(0,0,0,.2)'
         });
-
+    
         $('#sparkline4').sparkline([25, 23, 26, 24, 25, 32, 30, 24, 19], {
             type: 'line',
             width: $('#sparkline1').width(),
@@ -66,7 +67,7 @@ $( document ).ready(function() {
             highlightLineColor: 'rgba(0,0,0,.1)',
             highlightSpotColor: 'rgba(0,0,0,.2)'
         });
-
+    
         $('#sparkline6').sparkline([3, 6, 7, 8, 6, 4, 7, 10, 12, 7, 4, 9, 12, 13, 11, 12], {
             type: 'bar',
             height: '165',
@@ -74,7 +75,7 @@ $( document ).ready(function() {
             barSpacing: '3',
             barColor: '#33b86c'
         });
-
+    
         $('#sparkline6').sparkline([3, 6, 7, 8, 6, 4, 7, 10, 12, 7, 4, 9, 12, 13, 11, 12], {
             type: 'line',
             width: $('#sparkline1').width(),
@@ -85,10 +86,11 @@ $( document ).ready(function() {
             highlightLineColor: 'rgba(0,0,0,.1)',
             highlightSpotColor: 'rgba(0,0,0,.2)'
         });
+        
     },
         DrawMouseSpeed = function () {
             var mrefreshinterval = 500; // update display every 500ms
-            var lastmousex=-1;
+            var lastmousex=-1; 
             var lastmousey=-1;
             var lastmousetime;
             var mousetravel = 0;
@@ -128,12 +130,12 @@ $( document ).ready(function() {
                 setTimeout(mdraw, mrefreshinterval);
             }
             // We could use setInterval instead, but I prefer to do it this way
-            setTimeout(mdraw, mrefreshinterval);
+            setTimeout(mdraw, mrefreshinterval); 
         };
-
+    
     DrawSparkline();
     DrawMouseSpeed();
-
+    
     var resizeChart;
 
     $(window).resize(function(e) {

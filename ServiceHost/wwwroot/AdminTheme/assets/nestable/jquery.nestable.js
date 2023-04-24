@@ -59,6 +59,7 @@
     }
 
     Plugin.prototype = {
+
         init: function()
         {
             var list = this;
@@ -130,6 +131,7 @@
                 list.w.on(eMove, onMoveEvent);
                 list.w.on(eEnd, onEndEvent);
             }
+
         },
 
         serialize: function()
@@ -455,6 +457,7 @@
                 }
             }
         }
+
     };
 
     $.fn.nestable = function(params)
@@ -478,4 +481,5 @@
 
         return retval || lists;
     };
+
 })(window.jQuery || window.Zepto, window, document);

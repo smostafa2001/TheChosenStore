@@ -49,6 +49,7 @@ $(document).ready(function () {
             const method = form.attr("method").toLocaleLowerCase();
             const url = form.attr("action");
             var action = form.attr("data-action");
+
             if (method === "get") {
                 const data = form.serializeArray();
                 $.get(url,
@@ -84,7 +85,7 @@ function CallBackHandler(data, action, form) {
             alert(data.Message);
             break;
         case "Refresh":
-            if (data.isSucceeded) {
+            if (data.isSuccedded) {
                 window.location.reload();
             } else {
                 alert(data.message);
@@ -176,6 +177,7 @@ function handleAjaxCall(method, url, data) {
             "application/json; charset=utf-8",
             "json",
             function (data) {
+
             }).fail(function (error) {
                 alert("خطایی رخ داده است. لطفا با مدیر سیستم تماس بگیرید.");
             });
@@ -194,15 +196,15 @@ jQuery.validator.addMethod("maxFileSize",
     });
 jQuery.validator.unobtrusive.adapters.addBool("maxFileSize");
 
-jQuery.validator.addMethod("fileExtentionLimit",
-    function (value, element, params) {
-        var extensions = ["jpeg", "jpg", "png"]
-        var fileName = element.files[0].name;
-        var extention = fileName.split('.').pop();
-        if (extensions.indexOf(extention) >= 0)
-            return true;
-        else {
-            return false;
-        }
-    });
-jQuery.validator.unobtrusive.adapters.addBool("fileExtentionLimit");
+//jQuery.validator.addMethod("maxFileSize",
+//    function (value, element, params) {
+//        var size = element.files[0].size;
+//        var maxSize = 3 * 1024 * 1024;
+//        debugger;
+//        if (size > maxSize)
+//            return false;
+//        else {
+//            return true;
+//        }
+//    });
+//jQuery.validator.unobtrusive.adapters.addBool("maxFileSize");

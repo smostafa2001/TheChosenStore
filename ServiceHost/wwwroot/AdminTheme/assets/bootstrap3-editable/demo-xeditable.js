@@ -1,30 +1,33 @@
+
 /**
 * Theme: Montran Admin Template
 * Author: Coderthemes
 * Demo: Editable (Inline editing)
-*
+* 
 */
 
-$(function(){
-    //modify buttons style
-    $.fn.editableform.buttons =
-    '<button type="submit" class="btn btn-primary editable-submit btn-sm"><i class="md md-done"></i></button>' +
-    '<button type="button" class="btn editable-cancel btn-sm"><i class="md md-clear"></i></button>';
 
-    //editables
+$(function(){
+
+    //modify buttons style
+    $.fn.editableform.buttons = 
+    '<button type="submit" class="btn btn-primary editable-submit btn-sm"><i class="md md-done"></i></button>' +
+    '<button type="button" class="btn editable-cancel btn-sm"><i class="md md-clear"></i></button>';         
+    
+    //editables 
     $('#username').editable({
      type: 'text',
      pk: 1,
      name: 'username',
      title: 'Enter username'
    });
-
+    
     $('#firstname').editable({
       validate: function(value) {
        if($.trim(value) == '') return 'This field is required';
      }
    });
-
+    
     $('#sex').editable({
       prepend: "not selected",
       source: [
@@ -42,9 +45,9 @@ $(function(){
        }
      }
    });
-
+    
     $('#status').editable();
-
+    
     $('#group').editable({
       showbuttons: false
     });
@@ -55,7 +58,10 @@ $(function(){
       showbuttons: 'bottom'
     });
 
+
+
     //inline
+
 
   $('#inline-username').editable({
      type: 'text',
@@ -64,14 +70,14 @@ $(function(){
      title: 'Enter username',
      mode: 'inline'
    });
-
+    
     $('#inline-firstname').editable({
       validate: function(value) {
        if($.trim(value) == '') return 'This field is required';
      },
      mode: 'inline'
    });
-
+    
     $('#inline-sex').editable({
       prepend: "not selected",
       mode: 'inline',
@@ -90,9 +96,9 @@ $(function(){
        }
      }
    });
-
+    
     $('#inline-status').editable({mode: 'inline'});
-
+    
     $('#inline-group').editable({
       showbuttons: false,
       mode: 'inline'
@@ -104,4 +110,7 @@ $(function(){
       showbuttons: 'bottom',
       mode: 'inline'
     });
+
+
+
   });

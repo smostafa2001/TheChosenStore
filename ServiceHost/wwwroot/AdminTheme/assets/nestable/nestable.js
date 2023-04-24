@@ -1,3 +1,4 @@
+
 /**
 * Theme: Moltran Admin Template
 * Author: Coderthemes
@@ -51,7 +52,7 @@
     $.Nestable = new Nestable, $.Nestable.Constructor = Nestable
 }(window.jQuery),
 
-//initializing
+//initializing 
 function($) {
     "use strict";
     $.Nestable.init()

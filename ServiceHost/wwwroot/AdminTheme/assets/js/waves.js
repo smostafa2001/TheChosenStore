@@ -52,10 +52,12 @@
     }
 
     var Effect = {
+
         // Effect delay
         duration: 750,
 
         show: function(e, element) {
+
             // Disable right click
             if (e.button === 2) {
                 return false;
@@ -211,6 +213,7 @@
         }
     };
 
+
     /**
      * Disable mousedown event for 500ms during and after touch
      */
@@ -241,6 +244,7 @@
             TouchHandler.allowEvent(e);
         }
     };
+
 
     /**
      * Delegated click handler for .waves-effect element.
@@ -330,6 +334,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         Waves.displayEffect();
     }, false);
+
 })(window);
 
 /*
@@ -375,6 +380,7 @@ Tabs
   var methods = {
     init : function() {
       return this.each(function() {
+
       // For each set of tabs, we want to keep track of
       // which tab is active and its associated content
       var $this = $(this),
@@ -434,6 +440,7 @@ Tabs
         $(this.hash).hide();
       });
 
+
       // Bind the click event handler
       $this.on('click', 'a', function(e){
         $tabs_width = $this.width();
@@ -464,6 +471,7 @@ Tabs
         if (($index - $prev_index) >= 0) {
           $indicator.velocity({"right": $tabs_width - (($index + 1) * $tab_width)}, { duration: 300, queue: false, easing: 'easeOutQuad'});
           $indicator.velocity({"left": $index * $tab_width}, {duration: 300, queue: false, easing: 'easeOutQuad', delay: 90});
+
         }
         else {
           $indicator.velocity({"left": $index * $tab_width}, { duration: 300, queue: false, easing: 'easeOutQuad'});
@@ -474,6 +482,7 @@ Tabs
         e.preventDefault();
       });
     });
+
     },
     select_tab : function( id ) {
       this.find('a[href="#' + id + '"]').trigger('click');

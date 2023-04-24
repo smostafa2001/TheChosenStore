@@ -33,6 +33,7 @@ Licensed under the MIT license.
 
 // the actual Flot code
 (function($) {
+
 	// Cache the prototype hasOwnProperty for faster access
 
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -48,9 +49,11 @@ Licensed under the MIT license.
 	// operations don't work unless the canvas is attached to the DOM.
 
 	function Canvas(cls, container) {
+
 		var element = container.children("." + cls)[0];
 
 		if (element == null) {
+
 			element = document.createElement("canvas");
 			element.className = cls;
 
@@ -111,6 +114,7 @@ Licensed under the MIT license.
 	// @param {number} width New height of the canvas, in pixels.
 
 	Canvas.prototype.resize = function(width, height) {
+
 		if (width <= 0 || height <= 0) {
 			throw new Error("Invalid dimensions for plot, width = " + width + ", height = " + height);
 		}
@@ -161,6 +165,7 @@ Licensed under the MIT license.
 	// Finishes rendering the canvas, including managing the text overlay.
 
 	Canvas.prototype.render = function() {
+
 		var cache = this._textCache;
 
 		// For each text layer, add elements marked as active that haven't
@@ -168,6 +173,7 @@ Licensed under the MIT license.
 
 		for (var layerKey in cache) {
 			if (hasOwnProperty.call(cache, layerKey)) {
+
 				var layer = this.getTextLayer(layerKey),
 					layerCache = cache[layerKey];
 
@@ -178,6 +184,7 @@ Licensed under the MIT license.
 						var styleCache = layerCache[styleKey];
 						for (var key in styleCache) {
 							if (hasOwnProperty.call(styleCache, key)) {
+
 								var positions = styleCache[key].positions;
 
 								for (var i = 0, position; position = positions[i]; i++) {
@@ -214,11 +221,13 @@ Licensed under the MIT license.
 	// @return {object} The jQuery-wrapped text-layer div.
 
 	Canvas.prototype.getTextLayer = function(classes) {
+
 		var layer = this.text[classes];
 
 		// Create the text layer if it doesn't exist
 
 		if (layer == null) {
+
 			// Create the text layer container, if it doesn't exist
 
 			if (this.textContainer == null) {
@@ -291,6 +300,7 @@ Licensed under the MIT license.
 	// @return {object} a text info object.
 
 	Canvas.prototype.getTextInfo = function(layer, text, font, angle, width) {
+
 		var textStyle, layerCache, styleCache, info;
 
 		// Cast the value to a string, in case we were given a number or such
@@ -324,6 +334,7 @@ Licensed under the MIT license.
 		// If we can't find a matching element in our cache, create a new one
 
 		if (info == null) {
+
 			var element = $("<div></div>").html(text)
 				.css({
 					position: "absolute",
@@ -375,6 +386,7 @@ Licensed under the MIT license.
 	//     "middle" or "bottom".
 
 	Canvas.prototype.addText = function(layer, x, y, text, font, angle, width, halign, valign) {
+
 		var info = this.getTextInfo(layer, text, font, angle, width),
 			positions = info.positions;
 
@@ -665,6 +677,7 @@ Licensed under the MIT license.
         draw();
         bindEvents();
 
+
         function executeHooks(hook, args) {
             args = [plot].concat(args);
             for (var i = 0; i < hook.length; ++i)
@@ -672,6 +685,7 @@ Licensed under the MIT license.
         }
 
         function initPlugins() {
+
             // References to key classes, allowing plugins to modify them
 
             var classes = {
@@ -687,6 +701,7 @@ Licensed under the MIT license.
         }
 
         function parseOptions(opts) {
+
             $.extend(true, options, opts);
 
             // $.extend merges arrays, rather than replacing them.  When less
@@ -732,6 +747,7 @@ Licensed under the MIT license.
 
             axisCount = options.xaxes.length || 1;
             for (i = 0; i < axisCount; ++i) {
+
                 axisOptions = options.xaxes[i];
                 if (axisOptions && !axisOptions.tickColor) {
                     axisOptions.tickColor = axisOptions.color;
@@ -750,6 +766,7 @@ Licensed under the MIT license.
 
             axisCount = options.yaxes.length || 1;
             for (i = 0; i < axisCount; ++i) {
+
                 axisOptions = options.yaxes[i];
                 if (axisOptions && !axisOptions.tickColor) {
                     axisOptions.tickColor = axisOptions.color;
@@ -919,6 +936,7 @@ Licensed under the MIT license.
         }
 
         function fillInSeriesOptions() {
+
             var neededColors = series.length, maxIndex = -1, i;
 
             // Subtract the number of series that already have fixed colors or
@@ -948,6 +966,7 @@ Licensed under the MIT license.
                 colorPoolSize = colorPool.length, variation = 0;
 
             for (i = 0; i < neededColors; i++) {
+
                 c = $.color.parse(colorPool[i % colorPoolSize] || "#666");
 
                 // Each time we exhaust the colors in the pool we adjust
@@ -1229,6 +1248,7 @@ Licensed under the MIT license.
         }
 
         function setupCanvases() {
+
             // Make sure the placeholder is clear of everything except canvases
             // from a previous plot in this container that we'll try to re-use.
 
@@ -1325,6 +1345,7 @@ Licensed under the MIT license.
         }
 
         function measureTickLabels(axis) {
+
             var opts = axis.options,
                 ticks = axis.ticks || [],
                 labelWidth = opts.labelWidth || 0,
@@ -1335,6 +1356,7 @@ Licensed under the MIT license.
                 font = opts.font || "flot-tick-label tickLabel";
 
             for (var i = 0; i < ticks.length; ++i) {
+
                 var t = ticks[i];
 
                 if (!t.label)
@@ -1503,6 +1525,7 @@ Licensed under the MIT license.
             });
 
             if (showGrid) {
+
                 var allocatedAxes = $.grep(axes, function (axis) { return axis.reserveSpace; });
 
                 $.each(allocatedAxes, function (_, axis) {
@@ -1643,7 +1666,9 @@ Licensed under the MIT license.
             // like flot.time.js.
 
             if (!axis.tickGenerator) {
+
                 axis.tickGenerator = function (axis) {
+
                     var ticks = [],
                         start = floorInBase(axis.min, axis.tickSize),
                         i = 0,
@@ -1660,6 +1685,7 @@ Licensed under the MIT license.
                 };
 
 				axis.tickFormatter = function (value, axis) {
+
 					var factor = axis.tickDecimals ? Math.pow(10, axis.tickDecimals) : 1;
 					var formatted = "" + Math.round(value * factor) / factor;
 
@@ -1763,6 +1789,7 @@ Licensed under the MIT license.
         }
 
         function draw() {
+
             surface.clear();
 
             executeHooks(hooks.drawBackground, [ctx]);
@@ -2010,6 +2037,7 @@ Licensed under the MIT license.
                 ctx.stroke();
             }
 
+
             // draw border
             if (bw) {
                 // If either borderWidth or borderColor is an object, then draw the border
@@ -2070,6 +2098,7 @@ Licensed under the MIT license.
         }
 
         function drawAxisLabels() {
+
             $.each(allAxes(), function (_, axis) {
                 if (!axis.show || axis.ticks.length == 0)
                     return;
@@ -2083,6 +2112,7 @@ Licensed under the MIT license.
                 surface.removeText(layer);
 
                 for (var i = 0; i < axis.ticks.length; ++i) {
+
                     tick = axis.ticks[i];
                     if (!tick.label || tick.v < axis.min || tick.v > axis.max)
                         continue;
@@ -2409,9 +2439,9 @@ Licensed under the MIT license.
                 radius = series.points.radius,
                 symbol = series.points.symbol;
 
-            // If the user sets the line width to 0, we change it to a very
+            // If the user sets the line width to 0, we change it to a very 
             // small value. A line width of 0 seems to force the default of 1.
-            // Doing the conditional here allows the shadow setting to still be
+            // Doing the conditional here allows the shadow setting to still be 
             // optional even with a lineWidth of 0.
 
             if( lw == 0 )
@@ -2602,6 +2632,7 @@ Licensed under the MIT license.
         }
 
         function insertLegend() {
+
             placeholder.find(".legend").remove();
 
             if (!options.legend.show)
@@ -2645,6 +2676,7 @@ Licensed under the MIT license.
             // Generate markup for the list of entries, in their final order
 
             for (var i = 0; i < entries.length; ++i) {
+
                 var entry = entries[i];
 
                 if (i % options.legend.noColumns == 0) {
@@ -2703,6 +2735,7 @@ Licensed under the MIT license.
                 }
             }
         }
+
 
         // interactive features
 
@@ -3024,4 +3057,5 @@ Licensed under the MIT license.
     function floorInBase(n, base) {
         return base * Math.floor(n / base);
     }
+
 })(jQuery);

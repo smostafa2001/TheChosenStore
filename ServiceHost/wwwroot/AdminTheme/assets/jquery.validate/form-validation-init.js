@@ -1,3 +1,4 @@
+
 /**
 * Theme: Moltran Admin Template
 * Author: Coderthemes
@@ -91,12 +92,14 @@
             topics[this.checked ? "removeClass" : "addClass"]("gray");
             topicInputs.attr("disabled", !this.checked);
         });
+
     },
     //init
     $.FormValidator = new FormValidator, $.FormValidator.Constructor = FormValidator
 }(window.jQuery),
 
-//initializing
+
+//initializing 
 function($) {
     "use strict";
     $.FormValidator.init()
