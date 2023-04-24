@@ -3,9 +3,9 @@ using BlogManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
 using DiscountManagement.Infrastructure.Configuration;
 using Framework.Application;
+using Framework.Application.ZarinPal;
 using InventoryManagement.Infrastructure.Configuration;
-using LampShadeQuery.Contracts.CartAggregate;
-using LampShadeQuery.Query;
+using InventoryManagement.Presentation.API;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ShopManagement.Infrastructure.Configuration;
+using ShopManagement.Infrastructure.Presentation;
 using System.Collections.Generic;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -34,21 +35,23 @@ namespace ServiceHost
             services.AddHttpContextAccessor();
 
             ShopManagementBootstrapper.Configure(services, connectionString);
-            DiscountManagementBootstrapper.Configure(services, connectionString);
-            InventoryManagementBootstrapper.Configure(services, connectionString);
             BlogManagementBootstarpper.Configure(services, connectionString);
             CommentManagementBootstrapper.Configure(services, connectionString);
             AccountManagementBootstrapper.Configure(services, connectionString);
+            DiscountManagementBootstrapper.Configure(services, connectionString);
+            InventoryManagementBootstrapper.Configure(services, connectionString);
 
-            services.AddTransient<IFileUploader, FileUploader>();
             services.AddTransient<IAuthHelper, AuthHelper>();
+            services.AddTransient<IFileUploader, FileUploader>();
+            services.AddTransient<IZarinPalFactory, ZarinPalFactory>();
+
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
             services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+                options.MinimumSameSitePolicy = SameSiteMode.Lax;
             });
             services.Configure<CookieTempDataProviderOptions>(options => options.Cookie.IsEssential = true);
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
@@ -71,7 +74,7 @@ namespace ServiceHost
                 options.Conventions.AuthorizeAreaFolder("Administration", "/Shop", "Shop");
                 options.Conventions.AuthorizeAreaFolder("Administration", "/Discounts", "Discount");
                 options.Conventions.AuthorizeAreaFolder("Administration", "/Accounts", "Account");
-            });
+            }).AddApplicationPart(typeof(ProductController).Assembly).AddApplicationPart(typeof(InventoryController).Assembly).AddNewtonsoftJson();
             services.AddSession();
         }
 
@@ -101,6 +104,7 @@ namespace ServiceHost
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

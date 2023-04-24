@@ -5,6 +5,8 @@ using InventoryManagement.Domain.InventoryAggregate;
 using InventoryManagement.Infrastructure.Configuration.Permissions;
 using InventoryManagement.Infrastructure.EFCore;
 using InventoryManagement.Infrastructure.EFCore.Repository;
+using LampShadeQuery.Contracts.InventoryAggregate;
+using LampShadeQuery.Query;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +20,8 @@ namespace InventoryManagement.Infrastructure.Configuration
             services.AddTransient<IInventoryRepository, InventoryRepository>();
 
             services.AddTransient<IPermissionExposer, InventoryPermissionExposer>();
+
+            services.AddTransient<IInventoryQuery, InventoryQuery>();
 
             services.AddDbContext<InventoryDbContext>(ob => ob.UseSqlServer(connectionString));
         }

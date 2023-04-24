@@ -4,6 +4,8 @@
     /*=============================================
     =            menu sticky and scroll to top            =
     =============================================*/
+    
+    	
 
 	/*----------  Menu sticky ----------*/
 
@@ -13,6 +15,7 @@
 	var stickyAbsolute = $('.header-sticky--absolute');
 	var $html = $('html');
 	var $body = $('body');
+
 
 	windows.on('scroll', function () {
 		var scroll = windows.scrollTop();
@@ -25,13 +28,15 @@
 			} else {
 				sticky.addClass('is-sticky');
             }
-
+            
 			if (scroll < headerHeightAbsolute) {
 				stickyAbsolute.removeClass('is-sticky--absolute');
 			} else {
 				stickyAbsolute.addClass('is-sticky--absolute');
 			}
 		}
+
+
 
 		//code for scroll top
 
@@ -40,7 +45,11 @@
 		} else {
 			$('#scroll-top').fadeOut();
 		}
+
 	});
+
+
+
 
 	/*----------  Scroll to top  ----------*/
 
@@ -50,12 +59,14 @@
 		}, 2000);
 	});
 
+    
     /*=====  End of menu sticky and scroll to top  ======*/
 
+    
     /*=============================================
     =            minicart and settings active            =
     =============================================*/
-
+    
     $('#minicart-trigger').on('click', function(e){
         e.preventDefault();
         $(this).siblings('.mini-cart').toggleClass('active');
@@ -91,48 +102,51 @@
            $('body').removeClass('active-overlay');
         }
     });
-
+     
     /*=====  End of minicart and settings active  ======*/
-
+    
+    
     /*=============================================
     =            perfect scrollbar active            =
     =============================================*/
-
+    
     $('.ps-scroll').each(function() {
 		if($('.ps-scroll').length) {
 			const ps = new PerfectScrollbar($(this)[0]);
 		}
 	});
-
+    
     /*=====  End of perfect scrollbar active  ======*/
 
     /*=============================================
     =            search overlay active            =
     =============================================*/
-
+    
     $('#search-overlay-trigger').on('click', function(){
         $('#search-overlay').show();
     });
-
+    
+    
     $('#close-search-overlay').on('click', function(){
         $('#search-overlay').hide();
     });
-
+    
     /*=====  End of search overlay active  ======*/
+    
 
     /*=============================================
     =            offcanvas menu            =
     =============================================*/
-
+    
     var $offCanvasNav = $('.offcanvas-navigation'),
         $offCanvasNavSubMenu = $offCanvasNav.find('.sub-menu');
-
+    
     /*Add Toggle Button With Off Canvas Sub Menu*/
     $offCanvasNavSubMenu.parent().prepend('<span class="menu-expand"><i></i></span>');
-
+    
     /*Close Off Canvas Sub Menu*/
     $offCanvasNavSubMenu.slideUp();
-
+    
     /*Category Sub Menu Toggle*/
     $offCanvasNav.on('click', 'li a, li .menu-expand', function(e) {
         var $this = $(this);
@@ -149,35 +163,39 @@
             }
         }
     });
-
+    
     /*=====  End of offcanvas menu  ======*/
 
+        
     /*=============================================
     =            mobile menu activation            =
     =============================================*/
-
+    
     $('#mobile-menu-trigger').on('click', function(){
         $('#offcanvas-mobile-menu').removeClass('inactive').addClass('active');
     });
-
+    
+    
     $('#offcanvas-menu-close-trigger').on('click', function(){
         $('#offcanvas-mobile-menu').removeClass('active').addClass('inactive');
     });
-
+    
     /*=====  End of mobile menu activation  ======*/
 
+    
     /*=============================================
     =            slick slider active            =
     =============================================*/
-
+    
     var $htSlickSlider = $('.ht-slick-slider');
-
+    
     /*For RTL*/
     if( $html.attr("dir") == "rtl" || $body.attr("dir") == "rtl" ){
         $htSlickSlider.attr("dir", "rtl");
     }
-
+    
     $htSlickSlider.each(function(){
+        
         /*Setting Variables*/
         var $this = $(this),
             $setting = $this.data('slick-setting'),
@@ -206,13 +224,14 @@
             $vertical = $setting.vertical ? $setting.vertical : false,
             $verticalSwiping = $setting.verticalSwiping ? $setting.verticalSwiping : false,
             $rtl = $setting.rtl || $html.attr('dir="rtl"') || $body.attr('dir="rtl"') ? true : false;
-
+        
         /*Responsive Variable, Array & Loops*/
         var $responsiveSetting = typeof $this.data('slick-responsive') !== 'undefined' ? $this.data('slick-responsive') : '',
             $responsiveSettingLength = $responsiveSetting.length,
             $responsiveArray = [];
             for (var i = 0; i < $responsiveSettingLength; i++) {
 				$responsiveArray[i] = $responsiveSetting[i];
+				
 			}
 
         /*Slider Start*/
@@ -244,73 +263,90 @@
             nextArrow: $nextArrow,
 			responsive: $responsiveArray
         });
+        
 	});
-
+	
+    
     /*=====  End of slick slider active  ======*/
 
+
+    
     /*=============================================
     =            masonry activation            =
     =============================================*/
-
+    
     windows.on("load", function(){
         $('.masonry-category-layout').masonry();
         $('.masonry-category-layout--style2').masonry();
     });
-
+    
+    
     /*=====  End of masonry activation  ======*/
+    
 
+
+        
+    
     /*=============================================
     =            mailchimp active            =
     =============================================*/
-
+    
     $('#mc-form').ajaxChimp({
 		language: 'en',
 		callback: mailChimpResponse,
 		// ADD YOUR MAILCHIMP URL BELOW HERE!
 		url: 'http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef'
-	});
 
+	});
+    
     $('#mc-form2').ajaxChimp({
 		language: 'en',
 		callback: mailChimpResponse2,
 		// ADD YOUR MAILCHIMP URL BELOW HERE!
 		url: 'http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef'
+
 	});
 
 	function mailChimpResponse(resp) {
+
 		if (resp.result === 'success') {
 			$('.mailchimp-success').html('' + resp.msg).fadeIn(900);
 			$('.mailchimp-error').fadeOut(400);
+
 		} else if (resp.result === 'error') {
 			$('.mailchimp-error').html('' + resp.msg).fadeIn(900);
 		}
 	}
 
 	function mailChimpResponse2(resp) {
+
 		if (resp.result === 'success') {
 			$('.mailchimp-success2').html('' + resp.msg).fadeIn(900);
 			$('.mailchimp-error2').fadeOut(400);
+
 		} else if (resp.result === 'error') {
 			$('.mailchimp-error2').html('' + resp.msg).fadeIn(900);
 		}
 	}
-
+    
     /*=====  End of mailchimp active  ======*/
+    
 
      /*=============================================
     =            newsletter popup area            =
     =============================================*/
-
+    
     $("#close-newsletter-popup").on("click", function(){
         $("#newsletter-popup-area").addClass("d-none");
     });
-
+    
     /*=====  End of newsletter popup area  ======*/
 
     /*=============================================
     =            price range            =
     =============================================*/
-
+    
+    
 	$('#price-range').slider({
 		range: true,
 		min: 0,
@@ -321,8 +357,8 @@
 		}
 	});
 	$('#price-amount').val('$' + $('#price-range').slider( 'values', 0 ) +
-		' - $' + $('#price-range').slider('values', 1 ) );
-
+		' - $' + $('#price-range').slider('values', 1 ) ); 
+    
     /*=====  End of price range  ======*/
 
     /*=============================================
@@ -338,7 +374,7 @@
 		$('.grid-icons button').removeClass('active');
 		$(this).addClass('active');
         shopProductWrap.removeClass('grid three-column four-column five-column list').addClass(viewMode);
-
+        
         if(viewMode == 'grid three-column'){
 			shopProductWrap.children().addClass('col-lg-4').removeClass('col-lg-3 col-lg-is-5');
 		}
@@ -353,10 +389,11 @@
 	});
     /*=====  End of product view mode  ======*/
 
+    
     /*=============================================
     =            countdown active            =
     =============================================*/
-
+    
     $('[data-countdown]').each(function () {
 		var $this = $(this),
 		finalDate = $(this).data('countdown');
@@ -364,48 +401,57 @@
 			$this.html(event.strftime('<div class="single-countdown"><span class="single-countdown-time">%D</span><span class="single-countdown-text">Days</span></div><div class="single-countdown"><span class="single-countdown-time">%H</span><span class="single-countdown-text">Hours</span></div><div class="single-countdown"><span class="single-countdown-time">%M</span><span class="single-countdown-text">Mins</span></div><div class="single-countdown"><span class="single-countdown-time">%S</span><span class="single-countdown-text">Secs</span></div>'));
 		});
 	});
-
+    
     /*=====  End of countdown active  ======*/
+    
 
+    
     /*=============================================
     =            zoom and light gallery active            =
     =============================================*/
-
+    
     $('.product-details-big-image-slider-wrapper .single-image').zoom();
 
     $('.big-image-slider-wrapper .big-image-slider-single-item').zoom();
 
+    
     /*=====  End of zoom active  ======*/
 
     /*=============================================
     =            sticky sidebar active          =
     =============================================*/
-
+    
     $('.single-product-details-sticky').stickySidebar({
 		topSpacing: 90,
 		bottomSpacing: -80,
 		minWidth: 768
 	});
-
+    
     /*=====  End of sticky sidebar active  ======*/
 
+        
     /*=============================================
     =            payment  method select            =
     =============================================*/
+    
+    
+    $('[name="paymentMethod"]').on('click', function () {
 
-    $('[name="payment-method"]').on('click', function () {
         var $value = $(this).attr('value');
 
         $('.single-method p').slideUp();
         $('[data-method="' + $value + '"]').slideDown();
+
     });
-
+    
+    
     /*=====  End of payment  method select  ======*/
-
+    
+    
     /*=============================================
     =            shipping form toggle            =
     =============================================*/
-
+    
 	$('[data-shipping]').on('click', function () {
 		if ($('[data-shipping]:checked').length > 0) {
 			$('#shipping-form').slideDown();
@@ -414,11 +460,13 @@
 		}
 	});
     /*=====  End of shipping form toggle  ======*/
-
+    
+        
+    
     /*=============================================
     =            blog post gallery active           =
     =============================================*/
-
+    
     var blogPostSlider = $('.blog-image-gallery');
     blogPostSlider.slick({
         prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
@@ -433,4 +481,5 @@
         slidesToShow: 1
     });
     /*=====  End of blog post gallery  ======*/
+
 })(jQuery);

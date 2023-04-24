@@ -7,6 +7,17 @@
     ViewData["Title"] = "مدیریت اسلایدها";
 }
 
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
+        <p class="pull-left">
+            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد اسلاید جدید</a>
+        </p>
+    </div>
+</div>
+
 @if (Model.Message != null)
 {
     @if (Model.Message == OperationMessages.IsSucceeded)
@@ -18,16 +29,6 @@
         <div id="message" class="alert alert-danger">@Model.Message</div>
     }
 }
-
-
-<div class="row">
-    <div class="col-sm-12">
-        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
-        <p class="pull-left">
-            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Page("./Index", "Create")">ایجاد اسلاید جدید</a>
-        </p>
-    </div>
-</div>
 
 <div class="row">
     <div class="col-md-12">

@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AccountManagement.Infrastructure.EFCore\AccountManagement.Infrastructure.EFCore.csproj" />
     <ProjectReference Include="..\Framework\Framework.csproj" />
+    <ProjectReference Include="..\ShopManagement.Application.Implementations\ShopManagement.Application.Implementations.csproj" />
     <ProjectReference Include="..\ShopManagement.Domain\ShopManagement.Domain.csproj" />
   </ItemGroup>
 

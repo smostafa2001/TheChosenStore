@@ -33,6 +33,8 @@ namespace Framework.Application
             }
         }
 
+        public long CurrentAccountId => CurrentAccount.Id;
+
         public string CurrentAccountRole()
         {
             if (IsAuthenticated())

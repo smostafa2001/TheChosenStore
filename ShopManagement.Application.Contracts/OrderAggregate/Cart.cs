@@ -7,6 +7,7 @@ namespace ShopManagement.Application.Contracts.OrderAggregate
         public double TotalAmount { get; set; }
         public double DiscountAmount { get; set; }
         public double PayableAmount { get; set; }
+        public int PaymentMethod { get; set; }
         public List<CartItem> Items { get; set; } = new List<CartItem>();
         public void Add(CartItem cartItem)
         {

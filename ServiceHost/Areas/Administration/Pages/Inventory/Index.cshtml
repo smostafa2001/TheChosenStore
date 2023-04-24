@@ -7,17 +7,6 @@
     ViewData["Title"] = "مدیریت انبار";
 }
 
-@if (Model.Message != null)
-{
-    @if (Model.Message == OperationMessages.IsSucceeded)
-    {
-        <div id="message" class="alert alert-success">@Model.Message</div>
-    }
-    else
-    {
-        <div id="message" class="alert alert-danger">@Model.Message</div>
-    }
-}
 
 <div class="row">
     <div class="col-sm-12">
@@ -57,6 +46,18 @@
         </div>
     </div>
 </div>
+
+@if (Model.Message != null)
+{
+    @if (Model.Message == OperationMessages.IsSucceeded)
+    {
+        <div id="message" class="alert alert-success">@Model.Message</div>
+    }
+    else
+    {
+        <div id="message" class="alert alert-danger">@Model.Message</div>
+    }
+}
 
 <div class="row" permission="@InventoryPermissions.ListInventory">
     <div class="col-md-12">

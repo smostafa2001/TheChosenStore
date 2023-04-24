@@ -7,6 +7,16 @@
     ViewData["Title"] = "مدیریت نقش‌ها";
 }
 
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
+        <p class="pull-left">
+            <a class="btn btn-success btn-lg" asp-page="./Create">ایجاد نقش جدید</a>
+        </p>
+    </div>
+</div>
+
+
 @if (TempData["OperationMessage"] != null)
 {
     @if (TempData["OperationMessage"].ToString() == OperationMessages.IsSucceeded)
@@ -18,16 +28,6 @@
         <div id="message" class="alert alert-danger">@TempData["OperationMessage"].ToString()</div>
     }
 }
-<div class="row">
-    <div class="col-sm-12">
-        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
-        <p class="pull-left">
-            <a class="btn btn-success btn-lg" asp-page="./Create">ایجاد نقش جدید</a>
-        </p>
-    </div>
-</div>
-
-
 
 <div class="row">
     <div class="col-md-12">

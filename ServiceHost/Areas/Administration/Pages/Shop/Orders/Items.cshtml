@@ -1,0 +1,35 @@
+﻿@model List<OrderItemViewModel>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">آیتم های سفارش شماره @Model.First().OrderId</h4>
+</div>
+
+<div class="modal-body">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>محصول</th>
+                <th>تعداد</th>
+                <th>قیمت واحد</th>
+                <th>درصد تخفیف</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var viewModel in Model)
+            {
+                <tr>
+                    <td>@viewModel.Id</td>
+                    <td>@viewModel.Product</td>
+                    <td>@viewModel.Count</td>
+                    <td>@viewModel.UnitPrice.ToMoney()</td>
+                    <td>@viewModel.DiscountRate%</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" onclick="setTimeout(()=>$('.modal-dialog').css('width', ''), 500)">بستن</button>
+</div>

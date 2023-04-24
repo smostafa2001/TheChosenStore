@@ -14,7 +14,13 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
 
         public AccountRepository(AccountDbContext context) : base(context) => _context = context;
 
-        public Account Get(string username) => _context.Accounts.FirstOrDefault(a=>a.Username == username);
+        public List<AccountViewModel> Accounts => _context.Accounts.Select(a => new AccountViewModel
+        {
+            Id = a.Id,
+            Fullname = a.Fullname,
+        }).ToList();
+
+        public Account Get(string username) => _context.Accounts.FirstOrDefault(a => a.Username == username);
         public EditAccount GetDetails(long id) => _context.Accounts.Select(a => new EditAccount
         {
             Id = a.Id,
@@ -23,18 +29,18 @@ namespace AccountManagement.Infrastructure.EFCore.Repository
             Mobile = a.Mobile,
             RoleId = a.RoleId
         }).FirstOrDefault(a => a.Id == id);
-        public Account GetWithRole(string username) => _context.Accounts.Include(a=>a.Role).FirstOrDefault(a => a.Username == username);
+        public Account GetWithRole(string username) => _context.Accounts.Include(a => a.Role).FirstOrDefault(a => a.Username == username);
 
         public List<AccountViewModel> Search(AccountSearchModel searchModel)
         {
-            var query = _context.Accounts.Include(a=>a.Role).Select(a => new AccountViewModel
+            var query = _context.Accounts.Include(a => a.Role).Select(a => new AccountViewModel
             {
                 Id = a.Id,
                 Fullname = a.Fullname,
                 Username = a.Username,
                 Mobile = a.Mobile,
                 RoleId = a.RoleId,
-                Role = a.Role.Name, 
+                Role = a.Role.Name,
                 ProfilePhoto = a.ProfilePhoto,
                 CreationDate = a.CreationDate.ToFarsi()
             });

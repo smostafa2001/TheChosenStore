@@ -9,6 +9,9 @@ namespace Framework.Application
         void SignOut();
         string CurrentAccountRole();
         AuthViewModel CurrentAccount { get; }
+        long CurrentAccountId { get;}
+
         List<int> GetPermissions();
+
     }
 }

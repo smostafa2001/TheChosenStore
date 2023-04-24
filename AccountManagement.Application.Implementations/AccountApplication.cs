@@ -15,6 +15,8 @@ namespace AccountManagement.Application.Implementations
         private readonly IAuthHelper _authHelper;
         private readonly IRoleRepository _roleRepository;
 
+        public List<AccountViewModel> Accounts => _repository.Accounts;
+
         public AccountApplication(IAccountRepository repository, IPasswordHasher hasher, IFileUploader fileUploader, IAuthHelper authHelper, IRoleRepository roleRepository)
         {
             _repository = repository;
