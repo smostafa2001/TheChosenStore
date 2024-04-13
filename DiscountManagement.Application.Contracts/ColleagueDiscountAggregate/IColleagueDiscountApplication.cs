@@ -1,15 +1,14 @@
-﻿using Framework.Application;
+﻿using Common.Application;
 using System.Collections.Generic;
 
-namespace DiscountManagement.Application.Contracts.ColleagueDiscountAggregate
+namespace DiscountManagement.Application.Contracts.ColleagueDiscountAggregate;
+
+public interface IColleagueDiscountApplication
 {
-    public interface IColleagueDiscountApplication
-    {
-        OperationResult Define(DefineColleagueDiscount command);
-        OperationResult Edit(EditColleagueDiscount command);
-        OperationResult Remove(long id);
-        OperationResult Restore(long id);
-        EditColleagueDiscount GetDetails(long id);
-        List<ColleagueDiscountViewModel> Search(ColleagueDiscountSearchModel searchModel);
-    }
+    OperationResult Define(DefineColleagueDiscount command);
+    OperationResult Edit(EditColleagueDiscount command);
+    OperationResult Remove(long id);
+    OperationResult Restore(long id);
+    EditColleagueDiscount GetDetails(long id);
+    List<ColleagueDiscountViewModel> Search(ColleagueDiscountSearchModel searchModel);
 }

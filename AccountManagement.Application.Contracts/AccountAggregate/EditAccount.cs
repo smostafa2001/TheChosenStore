@@ -1,7 +1,6 @@
-﻿namespace AccountManagement.Application.Contracts.AccountAggregate
+﻿namespace AccountManagement.Application.Contracts.AccountAggregate;
+
+public class EditAccount : RegisterAccount
 {
-    public class EditAccount : RegisterAccount
-    {
-        public long Id { get; set; }
-    }
+    public long Id { get; set; }
 }

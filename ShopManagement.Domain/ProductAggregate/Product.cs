@@ -1,67 +1,48 @@
-﻿using Framework.Domain;
+﻿using Common.Domain;
 using ShopManagement.Domain.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductPictureAggregate;
 using System.Collections.Generic;
 
-namespace ShopManagement.Domain.ProductAggregate
+namespace ShopManagement.Domain.ProductAggregate;
+
+public class Product(
+    string name, string code, string shortDescription,
+    string description, string picture, string pictureAlt,
+    string pictureTitle, long categoryId, string slug,
+    string keywords, string metaDescription
+    ) : EntityBase
 {
-    public class Product : EntityBase
+    public string Name { get; private set; } = name;
+    public string Code { get; private set; } = code;
+    public string ShortDescription { get; private set; } = shortDescription;
+    public string Description { get; private set; } = description;
+    public string Picture { get; private set; } = picture;
+    public string PictureAlt { get; private set; } = pictureAlt;
+    public string PictureTitle { get; private set; } = pictureTitle;
+    public string Slug { get; private set; } = slug;
+    public string Keywords { get; private set; } = keywords;
+    public string MetaDescription { get; private set; } = metaDescription;
+    public long CategoryId { get; private set; } = categoryId;
+    public ProductCategory Category { get; private set; }
+    public List<ProductPicture> ProductPictures { get; private set; }
+
+    public void Edit(
+        string name, string code, string shortDescription,
+        string description, string picture, string pictureAlt,
+        string pictureTitle, long categoryId, string slug,
+        string keywords, string metaDescription)
     {
-        public string Name { get; private set; }
-        public string Code { get; private set; }
-        public string ShortDescription { get; private set; }
-        public string Description { get; private set; }
-        public string Picture { get; private set; }
-        public string PictureAlt { get; private set; }
-        public string PictureTitle { get; private set; }
-        public string Slug { get; private set; }
-        public string Keywords { get; private set; }
-        public string MetaDescription { get; private set; }
-        public long CategoryId { get; private set; }
-        public ProductCategory Category { get; private set; }
-        public List<ProductPicture> ProductPictures { get; private set; }
-
-        public Product
-        (
-            string name, string code, string shortDescription,
-            string description, string picture, string pictureAlt,
-            string pictureTitle, long categoryId, string slug,
-            string keywords, string metaDescription
-        )
-        {
-            Name = name;
-            Code = code;
-            ShortDescription = shortDescription;
-            Description = description;
+        Name = name;
+        Code = code;
+        ShortDescription = shortDescription;
+        Description = description;
+        if (!string.IsNullOrWhiteSpace(picture))
             Picture = picture;
-            PictureAlt = pictureAlt;
-            PictureTitle = pictureTitle;
-            CategoryId = categoryId;
-            Slug = slug;
-            Keywords = keywords;
-            MetaDescription = metaDescription;
-        }
-
-        public void Edit
-            (
-                string name, string code,
-                string shortDescription, string description, string picture,
-                string pictureAlt, string pictureTitle, long categoryId,
-                string slug, string keywords, string metaDescription
-            )
-        {
-            Name = name;
-            Code = code;
-            ShortDescription = shortDescription;
-            Description = description;
-            if (!string.IsNullOrWhiteSpace(picture))
-                Picture = picture;
-            PictureAlt = pictureAlt;
-            PictureTitle = pictureTitle;
-            CategoryId = categoryId;
-            Slug = slug;
-            Keywords = keywords;
-            MetaDescription = metaDescription;
-        }
+        PictureAlt = pictureAlt;
+        PictureTitle = pictureTitle;
+        CategoryId = categoryId;
+        Slug = slug;
+        Keywords = keywords;
+        MetaDescription = metaDescription;
     }
 }

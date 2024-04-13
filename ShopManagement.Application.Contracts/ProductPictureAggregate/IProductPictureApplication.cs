@@ -1,20 +1,19 @@
-﻿using Framework.Application;
+﻿using Common.Application;
 using System.Collections.Generic;
 
-namespace ShopManagement.Application.Contracts.ProductPictureAggregate
+namespace ShopManagement.Application.Contracts.ProductPictureAggregate;
+
+public interface IProductPictureApplication
 {
-    public interface IProductPictureApplication
-    {
-        OperationResult Create(CreateProductPicture command);
+    OperationResult Create(CreateProductPicture command);
 
-        OperationResult Edit(EditProductPicture command);
+    OperationResult Edit(EditProductPicture command);
 
-        OperationResult Remove(long id);
+    OperationResult Remove(long id);
 
-        OperationResult Restore(long id);
+    OperationResult Restore(long id);
 
-        EditProductPicture GetDetails(long id);
+    EditProductPicture GetDetails(long id);
 
-        List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel);
-    }
+    List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel);
 }

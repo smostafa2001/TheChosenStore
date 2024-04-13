@@ -1,32 +1,22 @@
-﻿using Framework.Domain;
+﻿using Common.Domain;
 using System;
 
-namespace DiscountManagement.Domain.CustomerDiscountAggregate
+namespace DiscountManagement.Domain.CustomerDiscountAggregate;
+
+public class CustomerDiscount(long productId, int discountRate, DateTime startDate, DateTime endDate, string reason) : EntityBase
 {
-    public class CustomerDiscount : EntityBase
+    public int DiscountRate { get; private set; } = discountRate;
+    public DateTime StartDate { get; private set; } = startDate;
+    public DateTime EndDate { get; private set; } = endDate;
+    public string Reason { get; private set; } = reason;
+    public long ProductId { get; private set; } = productId;
+
+    public void Edit(long productId, int discountRate, DateTime startDate, DateTime endDate, string reason)
     {
-        public int DiscountRate { get; private set; }
-        public DateTime StartDate { get; private set; }
-        public DateTime EndDate { get; private set; }
-        public string Reason { get; private set; }
-        public long ProductId { get; private set; }
-
-        public CustomerDiscount(long productId, int discountRate, DateTime startDate, DateTime endDate, string reason)
-        {
-            ProductId = productId;
-            DiscountRate = discountRate;
-            StartDate = startDate;
-            EndDate = endDate;
-            Reason = reason;
-        }
-
-        public void Edit(long productId, int discountRate, DateTime startDate, DateTime endDate, string reason)
-        {
-            ProductId = productId;
-            DiscountRate = discountRate;
-            StartDate = startDate;
-            EndDate = endDate;
-            Reason = reason;
-        }
+        ProductId = productId;
+        DiscountRate = discountRate;
+        StartDate = startDate;
+        EndDate = endDate;
+        Reason = reason;
     }
 }

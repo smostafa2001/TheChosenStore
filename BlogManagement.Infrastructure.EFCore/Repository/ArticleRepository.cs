@@ -1,58 +1,51 @@
 ﻿using BlogManagement.Application.Contracts.ArticleAggregate;
 using BlogManagement.Domain.ArticleAggregate;
-using Framework.Application;
-using Framework.Infrastructure;
+using Common.Application;
+using Common.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
-namespace BlogManagement.Infrastructure.EFCore.Repository
+namespace BlogManagement.Infrastructure.EFCore.Repository;
+
+public class ArticleRepository(BlogDbContext context) : BaseRepository<long, Article>(context), IArticleRepository
 {
-    public class ArticleRepository : BaseRepository<long, Article>, IArticleRepository
+    public EditArticle GetDetails(long id) => context.Articles.Select(a => new EditArticle
     {
-        private readonly BlogDbContext _context;
+        Id = a.Id,
+        Title = a.Title,
+        ShortDescription = a.ShortDescription,
+        Description = a.Description,
+        PictureAlt = a.PictureAlt,
+        PictureTitle = a.PictureTitle,
+        PublishDate = a.PublishDate.ToString(CultureInfo.InvariantCulture),
+        Slug = a.Slug,
+        Keywords = a.Keywords,
+        MetaDescription = a.MetaDescription,
+        CanonicalAddress = a.CanonicalAddress,
+        CategoryId = a.CategoryId
+    }).FirstOrDefault(a => a.Id == id);
+    public Article GetWithCategory(long id) => context.Articles.Include(a => a.Category).FirstOrDefault(a => a.Id == id);
 
-        public ArticleRepository(BlogDbContext context) : base(context) => _context = context;
-
-        public EditArticle GetDetails(long id) => _context.Articles.Select(a => new EditArticle
+    public List<ArticleViewModel> Search(ArticleSearchModel searchModel)
+    {
+        var query = context.Articles.Select(a => new ArticleViewModel
         {
             Id = a.Id,
             Title = a.Title,
             ShortDescription = a.ShortDescription,
-            Description = a.Description,
-            PictureAlt = a.PictureAlt,
-            PictureTitle = a.PictureTitle,
-            PublishDate = a.PublishDate.ToString(CultureInfo.InvariantCulture),
-            Slug = a.Slug,
-            Keywords = a.Keywords,
-            MetaDescription = a.MetaDescription,
-            CanonicalAddress = a.CanonicalAddress,
-            CategoryId = a.CategoryId
-        }).FirstOrDefault(a => a.Id == id);
-        public Article GetWithCategory(long id) => _context.Articles.Include(a=>a.Category).FirstOrDefault(a=>a.Id == id);
+            Picture = a.Picture,
+            Category = a.Category.Name,
+            PublishDate = a.PublishDate.ToFarsi()
+        });
 
-        public List<ArticleViewModel> Search(ArticleSearchModel searchModel)
-        {
-            var query = _context.Articles.Select(a => new ArticleViewModel
-            {
-                Id = a.Id,
-                Title = a.Title,
-                ShortDescription = a.ShortDescription,
-                Picture = a.Picture,
-                Category = a.Category.Name,
-                PublishDate = a.PublishDate.ToFarsi()
-            });
+        if (!string.IsNullOrWhiteSpace(searchModel.Title))
+            query = query.Where(a => a.Title.Contains(searchModel.Title));
 
-            if (!string.IsNullOrWhiteSpace(searchModel.Title))
-                query = query.Where(a => a.Title.Contains(searchModel.Title));
+        if (searchModel.CategoryId > 0)
+            query = query.Where(a => a.CategoryId == searchModel.CategoryId);
 
-            if (searchModel.CategoryId > 0)
-                query = query.Where(a => a.CategoryId == searchModel.CategoryId);
-
-            return query.OrderByDescending(a => a.Id).ToList();
-        }
+        return [.. query.OrderByDescending(a => a.Id)];
     }
 }

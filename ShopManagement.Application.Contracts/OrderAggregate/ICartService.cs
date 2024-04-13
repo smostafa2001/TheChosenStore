@@ -1,7 +1,6 @@
-﻿namespace ShopManagement.Application.Contracts.OrderAggregate
+﻿namespace ShopManagement.Application.Contracts.OrderAggregate;
+
+public interface ICartService
 {
-    public interface ICartService
-    {
-        Cart Cart { get; set; }
-    }
+    Cart Cart { get; set; }
 }

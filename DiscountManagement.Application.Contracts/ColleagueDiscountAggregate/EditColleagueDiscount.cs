@@ -1,7 +1,6 @@
-﻿namespace DiscountManagement.Application.Contracts.ColleagueDiscountAggregate
+﻿namespace DiscountManagement.Application.Contracts.ColleagueDiscountAggregate;
+
+public class EditColleagueDiscount : DefineColleagueDiscount
 {
-    public class EditColleagueDiscount : DefineColleagueDiscount
-    {
-        public long Id { get; set; }
-    }
+    public long Id { get; set; }
 }

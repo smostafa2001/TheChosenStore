@@ -1,18 +1,17 @@
-﻿using Framework.Application;
+﻿using Common.Application;
 using System.Collections.Generic;
 
-namespace ShopManagement.Application.Contracts.ProductAggregate
+namespace ShopManagement.Application.Contracts.ProductAggregate;
+
+public interface IProductApplication
 {
-    public interface IProductApplication
-    {
-        OperationResult Create(CreateProduct command);
+    OperationResult Create(CreateProduct command);
 
-        OperationResult Edit(EditProduct command);
+    OperationResult Edit(EditProduct command);
 
-        EditProduct GetDetails(long id);
+    EditProduct GetDetails(long id);
 
-        List<ProductViewModel> GetProducts();
+    List<ProductViewModel> GetProducts();
 
-        List<ProductViewModel> Search(ProductSearchModel searchModel);
-    }
+    List<ProductViewModel> Search(ProductSearchModel searchModel);
 }

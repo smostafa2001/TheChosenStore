@@ -1,7 +1,6 @@
-﻿namespace BlogManagement.Application.Contracts.ArticleCategoryAggregate
+﻿namespace BlogManagement.Application.Contracts.ArticleCategoryAggregate;
+
+public class ArticleCategorySearchModel
 {
-    public class ArticleCategorySearchModel
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

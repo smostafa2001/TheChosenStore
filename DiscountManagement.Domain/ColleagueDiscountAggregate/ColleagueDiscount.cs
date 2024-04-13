@@ -1,28 +1,20 @@
-﻿using Framework.Domain;
+﻿using Common.Domain;
 
-namespace DiscountManagement.Domain.ColleagueDiscountAggregate
+namespace DiscountManagement.Domain.ColleagueDiscountAggregate;
+
+public class ColleagueDiscount(long productId, int discountRate) : EntityBase
 {
-    public class ColleagueDiscount : EntityBase
+    public long ProductId { get; private set; } = productId;
+    public int DiscountRate { get; private set; } = discountRate;
+    public bool IsRemoved { get; set; } = false;
+
+    public void Edit(long productId, int discountRate)
     {
-        public long ProductId { get; private set; }
-        public int DiscountRate { get; private set; }
-        public bool IsRemoved { get; set; }
-
-        public ColleagueDiscount(long productId, int discountRate)
-        {
-            ProductId = productId;
-            DiscountRate = discountRate;
-            IsRemoved = false;
-        }
-
-        public void Edit(long productId, int discountRate)
-        {
-            ProductId = productId;
-            DiscountRate = discountRate;
-        }
-
-        public void Remove() => IsRemoved = true;
-
-        public void Restore() => IsRemoved = false;
+        ProductId = productId;
+        DiscountRate = discountRate;
     }
+
+    public void Remove() => IsRemoved = true;
+
+    public void Restore() => IsRemoved = false;
 }

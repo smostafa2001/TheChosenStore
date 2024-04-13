@@ -1,29 +1,28 @@
-﻿using Framework.Infrastructure;
+﻿using Common.Infrastructure;
+using DecorativeStoreQuery.Contracts.InventoryAggregate;
+using DecorativeStoreQuery.Query;
 using InventoryManagement.Application.Contracts.InventoryAggregate;
 using InventoryManagement.Application.Implementations;
 using InventoryManagement.Domain.InventoryAggregate;
 using InventoryManagement.Infrastructure.Configuration.Permissions;
 using InventoryManagement.Infrastructure.EFCore;
 using InventoryManagement.Infrastructure.EFCore.Repository;
-using LampShadeQuery.Contracts.InventoryAggregate;
-using LampShadeQuery.Query;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace InventoryManagement.Infrastructure.Configuration
+namespace InventoryManagement.Infrastructure.Configuration;
+
+public class InventoryManagementBootstrapper
 {
-    public class InventoryManagementBootstrapper
+    public static void Configure(IServiceCollection services, string connectionString)
     {
-        public static void Configure(IServiceCollection services, string connectionString)
-        {
-            services.AddTransient<IInventoryApplication, InventoryApplication>();
-            services.AddTransient<IInventoryRepository, InventoryRepository>();
+        services.AddTransient<IInventoryApplication, InventoryApplication>();
+        services.AddTransient<IInventoryRepository, InventoryRepository>();
 
-            services.AddTransient<IPermissionExposer, InventoryPermissionExposer>();
+        services.AddTransient<IPermissionExposer, InventoryPermissionExposer>();
 
-            services.AddTransient<IInventoryQuery, InventoryQuery>();
+        services.AddTransient<IInventoryQuery, InventoryQuery>();
 
-            services.AddDbContext<InventoryDbContext>(ob => ob.UseSqlServer(connectionString));
-        }
+        services.AddDbContext<InventoryDbContext>(ob => ob.UseSqlServer(connectionString));
     }
 }

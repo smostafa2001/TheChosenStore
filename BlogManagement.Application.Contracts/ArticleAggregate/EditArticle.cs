@@ -1,7 +1,6 @@
-﻿namespace BlogManagement.Application.Contracts.ArticleAggregate
+﻿namespace BlogManagement.Application.Contracts.ArticleAggregate;
+
+public class EditArticle : CreateArticle
 {
-    public class EditArticle : CreateArticle
-    {
-        public long Id { get; set; }
-    }
+    public long Id { get; set; }
 }

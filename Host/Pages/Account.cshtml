@@ -1,0 +1,128 @@
+﻿@page
+@model AccountModel
+@{
+    ViewData["Title"] = "ورود و ثبت نام";
+}
+
+@if (Model.Message != null)
+{
+    @if (Model.Message == OperationMessages.IsSucceeded)
+    {
+        <div id="message" class="alert alert-success">@Model.Message</div>
+    }
+    @if (Model.Message == ApplicationMessages.SuccessfulRegister)
+    {
+        <div id="message" class="alert alert-success">@Model.Message</div>
+    }
+    @if (Model.Message == ApplicationMessages.PasswordsNotMatch)
+    {
+        <div id="message" class="alert alert-warning">@Model.Message</div>
+    }
+    @if (Model.Message == ApplicationMessages.WrongUserPass)
+    {
+        <div id="message" class="alert alert-danger">@Model.Message</div>
+    }
+}
+
+<div class="breadcrumb-area section-space--half">
+    <div class="container wide">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-wrapper breadcrumb-bg">
+                    <div class="breadcrumb-content">
+                        <h1 class="breadcrumb-content__title">ورود و ثبت نام</h1>
+                        <ul class="breadcrumb-content__page-map">
+                            <li><a asp-page="/Index">صفحه اصلی</a></li>
+                            <li class="active">ورود - ثبت نام</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-wrapper">
+                    <div class="page-content-wrapper">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
+                                <form method="post" asp-page-handler="Login">
+                                    <div class="login-form">
+                                        <h4 class="login-title">ورود به سیستم</h4>
+                                        <div class="row">
+                                            <div class="col-md-12 col-12">
+                                                <label>نام کاربری</label>
+                                                <input type="text" name="username" placeholder="نام کاربری">
+                                            </div>
+                                            <div class="col-12">
+                                                <label>کلمه عبور</label>
+                                                <input type="password" name="password" placeholder="کلمه عبور">
+                                            </div>
+                                            <div class="col-sm-6 text-left text-sm-right">
+                                                <a href="#" class="forget-pass-link">رمز خود را فراموش کرده‌اید؟</a>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <button class="register-button">ورود</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+                                <form method="post" asp-page-handler="Register">
+                                    <div class="login-form">
+                                        <h4 class="login-title">ثبت نام در سیستم</h4>
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label>نام کامل</label>
+                                                <input type="text" name="fullname" placeholder="نام کامل">
+                                            </div>
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label>نام کاربری</label>
+                                                <input type="text" name="username" placeholder="نام کاربری">
+                                            </div>
+                                            <div class="col-md-12 mb-20">
+                                                <label>موبایل</label>
+                                                <input type="tel" name="mobile" placeholder="موبایل">
+                                            </div>
+                                            <div class="col-md-6 mb-20">
+                                                <label>کلمه عبور</label>
+                                                <input type="password" name="password" placeholder="کلمه عبور">
+                                            </div>
+                                            <div class="col-md-6 mb-20">
+                                                <label>تایید کلمه عبور</label>
+                                                <input type="password" name="rePassword" placeholder="تایید کلمه عبور">
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="register-button mt-0">ثبت نام</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        setTimeout(function () {
+            var element = document.getElementById('message');
+            element.parentNode.removeChild(element);
+        }, 3000);
+    </script>
+}
+
+

@@ -1,9 +1,8 @@
 ﻿using ShopManagement.Application.Contracts.OrderAggregate;
 
-namespace ShopManagement.Application.Implementations
+namespace ShopManagement.Application.Implementations;
+
+public class CartService : ICartService
 {
-    public class CartService : ICartService
-    {
-        public Cart Cart { get; set; }
-    }
+    public Cart Cart { get; set; }
 }

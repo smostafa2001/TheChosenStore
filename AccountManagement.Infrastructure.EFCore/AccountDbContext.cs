@@ -3,13 +3,12 @@ using AccountManagement.Domain.RoleAggregate;
 using AccountManagement.Infrastructure.EFCore.Mappings;
 using Microsoft.EntityFrameworkCore;
 
-namespace AccountManagement.Infrastructure.EFCore
+namespace AccountManagement.Infrastructure.EFCore;
+
+public class AccountDbContext(DbContextOptions<AccountDbContext> options) : DbContext(options)
 {
-    public class AccountDbContext : DbContext
-    {
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public AccountDbContext(DbContextOptions<AccountDbContext> options) : base(options) { }
-        protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfigurationsFromAssembly(typeof(AccountMapping).Assembly);
-    }
+    public DbSet<Account> Accounts { get; set; }
+    public DbSet<Role> Roles { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfigurationsFromAssembly(typeof(AccountMapping).Assembly);
 }

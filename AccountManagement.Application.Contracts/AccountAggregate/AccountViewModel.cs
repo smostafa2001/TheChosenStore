@@ -1,14 +1,13 @@
-﻿namespace AccountManagement.Application.Contracts.AccountAggregate
+﻿namespace AccountManagement.Application.Contracts.AccountAggregate;
+
+public class AccountViewModel
 {
-    public class AccountViewModel
-    {
-        public long Id { get; set; }
-        public string Fullname { get; set; }
-        public string Username { get; set; }
-        public string Mobile { get; set; }
-        public long RoleId { get; set; }
-        public string Role { get; set; }
-        public string ProfilePhoto { get; set; }
-        public string CreationDate { get; set; }
-    }
+    public long Id { get; set; }
+    public string Fullname { get; set; }
+    public string Username { get; set; }
+    public string Mobile { get; set; }
+    public long RoleId { get; set; }
+    public string Role { get; set; }
+    public string ProfilePhoto { get; set; }
+    public string CreationDate { get; set; }
 }

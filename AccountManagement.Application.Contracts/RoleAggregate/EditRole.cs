@@ -1,11 +1,10 @@
-﻿using Framework.Infrastructure;
+﻿using Common.Infrastructure;
 using System.Collections.Generic;
 
-namespace AccountManagement.Application.Contracts.RoleAggregate
+namespace AccountManagement.Application.Contracts.RoleAggregate;
+
+public class EditRole : CreateRole
 {
-    public class EditRole:CreateRole
-    {
-        public long Id { get; set; }
-        public List<PermissionDto> MappedPermissions { get; set; }
-    }
+    public long Id { get; set; }
+    public List<PermissionDto> MappedPermissions { get; set; }
 }

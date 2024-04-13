@@ -1,18 +1,17 @@
-﻿using Framework.Application;
+﻿using Common.Application;
 using System.Collections.Generic;
 
-namespace ShopManagement.Application.Contracts.ProductCategoryAggregate
+namespace ShopManagement.Application.Contracts.ProductCategoryAggregate;
+
+public interface IProductCategoryApplication
 {
-    public interface IProductCategoryApplication
-    {
-        OperationResult Create(CreateProductCategory command);
+    OperationResult Create(CreateProductCategory command);
 
-        OperationResult Edit(EditProductCategory command);
+    OperationResult Edit(EditProductCategory command);
 
-        List<ProductCategoryViewModel> GetProductCategories();
+    List<ProductCategoryViewModel> GetProductCategories();
 
-        EditProductCategory GetDetails(long id);
+    EditProductCategory GetDetails(long id);
 
-        List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
-    }
+    List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel);
 }

@@ -1,29 +1,23 @@
 ﻿using InventoryManagement.Application.Contracts.InventoryAggregate;
 using ShopManagement.Domain.ACL;
 using ShopManagement.Domain.OrderAggregate;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ShopManagement.Infrastructure.InventoryACL
+namespace ShopManagement.Infrastructure.InventoryACL;
+
+public class ShopInventoryACL(IInventoryApplication inventoryApplication) : IShopInventoryACL
 {
-    public class ShopInventoryACL : IShopInventoryACL
+    public bool DecreaseFromInventory(List<OrderItem> items)
     {
-        private readonly IInventoryApplication _inventoryApplication;
-
-        public ShopInventoryACL(IInventoryApplication inventoryApplication) => _inventoryApplication = inventoryApplication;
-
-        public bool DecreaseFromInventory(List<OrderItem> items)
+        var command = items.Select(orderItem => new DecreaseInventory
         {
-            var command = items.Select(orderItem => new DecreaseInventory
-            {
-                ProductId = orderItem.ProductId,
-                Count = orderItem.Count,
-                Description = "خرید مشتری",
-                OrderId = orderItem.OrderId
-            }).ToList();
+            ProductId = orderItem.ProductId,
+            Count = orderItem.Count,
+            Description = "خرید مشتری",
+            OrderId = orderItem.OrderId
+        }).ToList();
 
-            return _inventoryApplication.Decrease(command).IsSucceeded;
-        }
+        return inventoryApplication.Decrease(command).IsSucceeded;
     }
 }

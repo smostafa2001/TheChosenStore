@@ -8,19 +8,18 @@ using DiscountManagement.Infrastructure.EFCore.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DiscountManagement.Infrastructure.Configuration
+namespace DiscountManagement.Infrastructure.Configuration;
+
+public class DiscountManagementBootstrapper
 {
-    public class DiscountManagementBootstrapper
+    public static void Configure(IServiceCollection services, string connectionString)
     {
-        public static void Configure(IServiceCollection services, string connectionString)
-        {
-            services.AddTransient<ICustomerDiscountApplication, CustomerDiscountApplication>();
-            services.AddTransient<ICustomerDiscountRepository, CustomerDiscountRepository>();
+        services.AddTransient<ICustomerDiscountApplication, CustomerDiscountApplication>();
+        services.AddTransient<ICustomerDiscountRepository, CustomerDiscountRepository>();
 
-            services.AddTransient<IColleagueDiscountApplication, ColleagueDiscountApplication>();
-            services.AddTransient<IColleagueDiscountRepository, ColleagueDiscountRepository>();
+        services.AddTransient<IColleagueDiscountApplication, ColleagueDiscountApplication>();
+        services.AddTransient<IColleagueDiscountRepository, ColleagueDiscountRepository>();
 
-            services.AddDbContext<DiscountDbContext>(x => x.UseSqlServer(connectionString));
-        }
+        services.AddDbContext<DiscountDbContext>(x => x.UseSqlServer(connectionString));
     }
 }

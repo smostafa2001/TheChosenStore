@@ -1,7 +1,6 @@
-﻿namespace ShopManagement.Application.Contracts.ProductCategoryAggregate
+﻿namespace ShopManagement.Application.Contracts.ProductCategoryAggregate;
+
+public class ProductCategorySearchModel
 {
-    public class ProductCategorySearchModel
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

@@ -1,7 +1,6 @@
-﻿namespace ShopManagement.Application.Contracts.ProductAggregate
+﻿namespace ShopManagement.Application.Contracts.ProductAggregate;
+
+public class EditProduct : CreateProduct
 {
-    public class EditProduct : CreateProduct
-    {
-        public long Id { get; set; }
-    }
+    public long Id { get; set; }
 }

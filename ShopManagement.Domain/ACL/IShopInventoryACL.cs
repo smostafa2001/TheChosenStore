@@ -1,10 +1,9 @@
 ﻿using ShopManagement.Domain.OrderAggregate;
 using System.Collections.Generic;
 
-namespace ShopManagement.Domain.ACL
+namespace ShopManagement.Domain.ACL;
+
+public interface IShopInventoryACL
 {
-    public interface IShopInventoryACL
-    {
-        bool DecreaseFromInventory(List<OrderItem> items);
-    }
+    bool DecreaseFromInventory(List<OrderItem> items);
 }

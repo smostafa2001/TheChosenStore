@@ -1,8 +1,7 @@
-﻿namespace InventoryManagement.Application.Contracts.InventoryAggregate
+﻿namespace InventoryManagement.Application.Contracts.InventoryAggregate;
+
+public class InventorySearchModel
 {
-    public class InventorySearchModel
-    {
-        public long ProductId { get; set; }
-        public bool IsNotInStock { get; set; }
-    }
+    public long ProductId { get; set; }
+    public bool IsNotInStock { get; set; }
 }

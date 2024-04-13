@@ -4,17 +4,16 @@ using BlogManagement.Infrastructure.EFCore.Mappings;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace BlogManagement.Infrastructure.EFCore
+namespace BlogManagement.Infrastructure.EFCore;
+
+public class BlogDbContext(DbContextOptions<BlogDbContext> options) : DbContext(options)
 {
-    public class BlogDbContext : DbContext
+    public DbSet<ArticleCategory> ArticleCategories { get; set; }
+    public DbSet<Article> Articles { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public DbSet<ArticleCategory> ArticleCategories { get; set; }
-        public DbSet<Article> Articles { get; set; }
-        public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options) { }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            Assembly assembly = typeof(ArticleCategoryMapping).Assembly;
-            modelBuilder.ApplyConfigurationsFromAssembly(assembly);
-        }
+        Assembly assembly = typeof(ArticleCategoryMapping).Assembly;
+        modelBuilder.ApplyConfigurationsFromAssembly(assembly);
     }
 }

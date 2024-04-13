@@ -1,24 +1,23 @@
-﻿using Framework.Infrastructure;
+﻿using Common.Infrastructure;
 using System.Collections.Generic;
 
-namespace InventoryManagement.Infrastructure.Configuration.Permissions
+namespace InventoryManagement.Infrastructure.Configuration.Permissions;
+
+public class InventoryPermissionExposer : IPermissionExposer
 {
-    public class InventoryPermissionExposer : IPermissionExposer
+    public Dictionary<string, List<PermissionDto>> Expose() => new()
     {
-        public Dictionary<string, List<PermissionDto>> Expose() => new Dictionary<string, List<PermissionDto>>
         {
+            "Inventory", new List<PermissionDto>
             {
-                "Inventory", new List<PermissionDto>
-                {
-                    new PermissionDto(InventoryPermissions.ListInventory, "ListInventory"),
-                    new PermissionDto(InventoryPermissions.SearchInventory, "SearchInventory"),
-                    new PermissionDto(InventoryPermissions.CreateInventory, "CreateInventory"),
-                    new PermissionDto(InventoryPermissions.EditInventory, "EditInventory"),
-                    new PermissionDto(InventoryPermissions.Increase, "Increase"),
-                    new PermissionDto(InventoryPermissions.Decrease, "Decrease"),
-                    new PermissionDto(InventoryPermissions.OperationLog, "OperationLog"),
-                }
+                new(InventoryPermissions.ListInventory, "ListInventory"),
+                new(InventoryPermissions.SearchInventory, "SearchInventory"),
+                new(InventoryPermissions.CreateInventory, "CreateInventory"),
+                new(InventoryPermissions.EditInventory, "EditInventory"),
+                new(InventoryPermissions.Increase, "Increase"),
+                new(InventoryPermissions.Decrease, "Decrease"),
+                new(InventoryPermissions.OperationLog, "OperationLog"),
             }
-        };
-    }
+        }
+    };
 }

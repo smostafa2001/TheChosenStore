@@ -1,51 +1,46 @@
-﻿using Framework.Application;
-using Framework.Infrastructure;
+﻿using Common.Application;
+using Common.Infrastructure;
 using ShopManagement.Application.Contracts.ProductCategoryAggregate;
 using ShopManagement.Domain.ProductCategoryAggregate;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ShopManagement.Infrastructure.EFCore.Repository
+namespace ShopManagement.Infrastructure.EFCore.Repository;
+
+public class ProductCategoryRepository(ShopDbContext context) : BaseRepository<long, ProductCategory>(context), IProductCategoryRepository
 {
-    public class ProductCategoryRepository : BaseRepository<long, ProductCategory>, IProductCategoryRepository
+    public EditProductCategory GetDetails(long id) => context.ProductCategories.Select(pc => new EditProductCategory()
     {
-        private readonly ShopDbContext _context;
+        Id = pc.Id,
+        Description = pc.Description,
+        Name = pc.Name,
+        Keywords = pc.Keywords,
+        MetaDescription = pc.MetaDescription,
+        PictureAlt = pc.PictureAlt,
+        PictureTitle = pc.PictureTitle,
+        Slug = pc.Slug
+    }).FirstOrDefault(x => x.Id == id);
 
-        public ProductCategoryRepository(ShopDbContext context) : base(context) => _context = context;
+    public List<ProductCategoryViewModel> GetProductCategories() => [.. context.ProductCategories.Select(pc => new ProductCategoryViewModel
+    {
+        Id = pc.Id,
+        Name = pc.Name
+    })];
+    public string GetSlug(long id) => context.ProductCategories.Select(pc => new { pc.Id, pc.Slug }).FirstOrDefault(pc => pc.Id == id).Slug;
 
-        public EditProductCategory GetDetails(long id) => _context.ProductCategories.Select(pc => new EditProductCategory()
+    public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
+    {
+        var query = context.ProductCategories.Select(pc => new ProductCategoryViewModel
         {
             Id = pc.Id,
-            Description = pc.Description,
+            Picture = pc.Picture,
             Name = pc.Name,
-            Keywords = pc.Keywords,
-            MetaDescription = pc.MetaDescription,
-            PictureAlt = pc.PictureAlt,
-            PictureTitle = pc.PictureTitle,
-            Slug = pc.Slug
-        }).FirstOrDefault(x => x.Id == id);
+            CreationDate = pc.CreationDate.ToFarsi()
+        });
 
-        public List<ProductCategoryViewModel> GetProductCategories() => _context.ProductCategories.Select(pc => new ProductCategoryViewModel
-        {
-            Id = pc.Id,
-            Name = pc.Name
-        }).ToList();
-        public string GetSlug(long id) => _context.ProductCategories.Select(pc=>new {pc.Id, pc.Slug }).FirstOrDefault(pc=>pc.Id == id).Slug;
+        if (!string.IsNullOrWhiteSpace(searchModel.Name))
+            query = query.Where(x => x.Name.Contains(searchModel.Name));
 
-        public List<ProductCategoryViewModel> Search(ProductCategorySearchModel searchModel)
-        {
-            var query = _context.ProductCategories.Select(pc => new ProductCategoryViewModel
-            {
-                Id = pc.Id,
-                Picture = pc.Picture,
-                Name = pc.Name,
-                CreationDate = pc.CreationDate.ToFarsi()
-            });
-
-            if (!string.IsNullOrWhiteSpace(searchModel.Name))
-                query = query.Where(x => x.Name.Contains(searchModel.Name));
-
-            return query.OrderByDescending(x => x.Id).ToList();
-        }
+        return [.. query.OrderByDescending(x => x.Id)];
     }
 }
