@@ -9,19 +9,20 @@ Welcome to The Chosen Store, a comprehensive Web Shop application featuring an A
 - Online and on-site payment options for customers
 - Responsive front-end using Vanilla JS, jQuery, and AJAX
 
+
 ## Installation
 
 ### Prerequisites
 
 - [.NET SDK](https://dotnet.microsoft.com/download) installed on your machine
-- [Entity Framework Core tools](https://docs.microsoft.com/en-us/ef/core/cli/dotnet) for managing database migrations
+- [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) for database on your machine
 
 ### Getting Started
 
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-repository.git
+   git clone https://github.com/smostafa2001/TheChosenStore.git
    ```
 
 2. Navigate to the project directory:
@@ -30,7 +31,15 @@ Welcome to The Chosen Store, a comprehensive Web Shop application featuring an A
    cd TheChosenStore
    ```
 
-3. Update EF Core database:
+3. Change connection string:
+
+   ```bash
+   cd Host
+   ```
+   Modify appsettings.Development.json and change the value of "TheChosenStore" to the connection string of your machine.
+   It can be [SQL Server Username/Password, Or Windows AuthN](https://www.connectionstrings.com/sql-server/).
+
+5. Update EF Core database:
 
    ```bash
    dotnet ef database update
@@ -38,7 +47,7 @@ Welcome to The Chosen Store, a comprehensive Web Shop application featuring an A
 
    This command will apply any pending migrations and update the database schema according to your model changes.
 
-4. Run the application:
+6. Run the application:
 
    ```bash
    dotnet run
