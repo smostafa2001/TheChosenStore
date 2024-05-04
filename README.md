@@ -7,8 +7,15 @@ Welcome to The Chosen Store, a comprehensive Web Shop application featuring an A
 - Manage products, orders, inventory, and discounts
 - Share articles and allow customer comments
 - Online and on-site payment options for customers
-- Responsive front-end using Vanilla JS, jQuery, and AJAX
+- Responsive front-end
 
+## Technologies
+
+- EF Core
+- ASP.NET Core Razor Pages
+- Onion Achitecture
+- Vanilla JS, jQuery, AJAX
+- Bootstrap
 
 ## Installation
 
