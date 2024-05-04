@@ -1,6 +1,4 @@
 ﻿using Common.Infrastructure;
-using DecorativeStoreQuery.Contracts.InventoryAggregate;
-using DecorativeStoreQuery.Query;
 using InventoryManagement.Application.Contracts.InventoryAggregate;
 using InventoryManagement.Application.Implementations;
 using InventoryManagement.Domain.InventoryAggregate;
@@ -9,6 +7,8 @@ using InventoryManagement.Infrastructure.EFCore;
 using InventoryManagement.Infrastructure.EFCore.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TheChosenStoreQuery.Contracts.InventoryAggregate;
+using TheChosenStoreQuery.Query;
 
 namespace InventoryManagement.Infrastructure.Configuration;
 

@@ -1,5 +1,5 @@
-using DecorativeStoreQuery.Contracts.ProductCategoryAggregate;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using TheChosenStoreQuery.Contracts.ProductCategoryAggregate;
 
 namespace Host.Pages;
 

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DecorativeStoreQuery\DecorativeStoreQuery.csproj" />
+    <ProjectReference Include="..\TheChosenStoreQuery\TheChosenStoreQuery.csproj" />
     <ProjectReference Include="..\InventoryManagement.Application.Contracts\InventoryManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\InventoryManagement.Application.Implementations\InventoryManagement.Application.Implementations.csproj" />
     <ProjectReference Include="..\InventoryManagement.Domain\InventoryManagement.Domain.csproj" />

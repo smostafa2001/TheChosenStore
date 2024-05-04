@@ -1,12 +1,12 @@
 ﻿using Common.Application.ZarinPal;
-using DecorativeStoreQuery.Contracts.CartAggregate;
-using DecorativeStoreQuery.Contracts.ProductAggregate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Nancy.Json;
 using ShopManagement.Application.Contracts.OrderAggregate;
 using System.Globalization;
+using TheChosenStoreQuery.Contracts.CartAggregate;
+using TheChosenStoreQuery.Contracts.ProductAggregate;
 
 namespace Host.Pages;
 

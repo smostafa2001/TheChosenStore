@@ -1,8 +1,8 @@
-using DecorativeStoreQuery.Contracts.ProductAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Nancy.Json;
 using ShopManagement.Application.Contracts.OrderAggregate;
+using TheChosenStoreQuery.Contracts.ProductAggregate;
 
 namespace Host.Pages;
 

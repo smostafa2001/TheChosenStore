@@ -9,7 +9,7 @@
         <ProjectReference Include="..\BlogManagement.Application.Implementations\BlogManagement.Application.Implementations.csproj" />
         <ProjectReference Include="..\BlogManagement.Domain\BlogManagement.Domain.csproj" />
         <ProjectReference Include="..\BlogManagement.Infrastructure.EFCore\BlogManagement.Infrastructure.EFCore.csproj" />
-        <ProjectReference Include="..\DecorativeStoreQuery\DecorativeStoreQuery.csproj" />
+        <ProjectReference Include="..\TheChosenStoreQuery\TheChosenStoreQuery.csproj" />
     </ItemGroup>
 
 </Project>

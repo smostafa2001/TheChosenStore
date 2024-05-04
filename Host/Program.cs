@@ -16,7 +16,7 @@ using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("DecorativeStore");
+var connectionString = builder.Configuration.GetConnectionString("TheChosenStore");
 builder.Services.AddHttpContextAccessor();
 
 ShopManagementBootstrapper.Configure(builder.Services, connectionString);

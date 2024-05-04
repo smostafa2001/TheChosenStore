@@ -1,5 +1,5 @@
-﻿using DecorativeStoreQuery.Contracts.ProductAggregate;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using TheChosenStoreQuery.Contracts.ProductAggregate;
 
 namespace Host.ViewComponents;
 

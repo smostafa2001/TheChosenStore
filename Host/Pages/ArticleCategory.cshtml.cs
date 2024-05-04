@@ -1,6 +1,6 @@
-using DecorativeStoreQuery.Contracts.ArticleAggregate;
-using DecorativeStoreQuery.Contracts.ArticleCategoryAggregate;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using TheChosenStoreQuery.Contracts.ArticleAggregate;
+using TheChosenStoreQuery.Contracts.ArticleCategoryAggregate;
 
 namespace Host.Pages;
 

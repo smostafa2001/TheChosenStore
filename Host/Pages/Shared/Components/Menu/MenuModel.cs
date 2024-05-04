@@ -1,5 +1,5 @@
-﻿using DecorativeStoreQuery.Contracts.ArticleCategoryAggregate;
-using DecorativeStoreQuery.Contracts.ProductCategoryAggregate;
+﻿using TheChosenStoreQuery.Contracts.ArticleCategoryAggregate;
+using TheChosenStoreQuery.Contracts.ProductCategoryAggregate;
 
 namespace Host.Pages.Shared.Components.Menu;
 

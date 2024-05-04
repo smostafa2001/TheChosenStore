@@ -1,8 +1,8 @@
 using CommentManagement.Application.Contracts.CommentAggregate;
 using CommentManagement.Infrastructure.EFCore;
-using DecorativeStoreQuery.Contracts.ProductAggregate;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using TheChosenStoreQuery.Contracts.ProductAggregate;
 
 namespace Host.Pages;
 

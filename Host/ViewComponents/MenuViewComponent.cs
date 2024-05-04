@@ -1,7 +1,7 @@
-﻿using DecorativeStoreQuery.Contracts.ArticleCategoryAggregate;
-using DecorativeStoreQuery.Contracts.ProductCategoryAggregate;
-using Host.Pages.Shared.Components.Menu;
+﻿using Host.Pages.Shared.Components.Menu;
 using Microsoft.AspNetCore.Mvc;
+using TheChosenStoreQuery.Contracts.ArticleCategoryAggregate;
+using TheChosenStoreQuery.Contracts.ProductCategoryAggregate;
 
 namespace Host.ViewComponents;
 

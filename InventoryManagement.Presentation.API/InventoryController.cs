@@ -1,7 +1,7 @@
-﻿using DecorativeStoreQuery.Contracts.InventoryAggregate;
-using InventoryManagement.Application.Contracts.InventoryAggregate;
+﻿using InventoryManagement.Application.Contracts.InventoryAggregate;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using TheChosenStoreQuery.Contracts.InventoryAggregate;
 
 namespace InventoryManagement.Presentation.API;
 

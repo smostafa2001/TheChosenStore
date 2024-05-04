@@ -5,11 +5,11 @@ using BlogManagement.Domain.ArticleAggregate;
 using BlogManagement.Domain.ArticleCategoryAggregate;
 using BlogManagement.Infrastructure.EFCore;
 using BlogManagement.Infrastructure.EFCore.Repository;
-using DecorativeStoreQuery.Contracts.ArticleAggregate;
-using DecorativeStoreQuery.Contracts.ArticleCategoryAggregate;
-using DecorativeStoreQuery.Query;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TheChosenStoreQuery.Contracts.ArticleAggregate;
+using TheChosenStoreQuery.Contracts.ArticleCategoryAggregate;
+using TheChosenStoreQuery.Query;
 
 namespace BlogManagement.Infrastructure.Configuration;
 

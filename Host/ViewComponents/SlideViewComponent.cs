@@ -1,5 +1,5 @@
-﻿using DecorativeStoreQuery.Contracts.SlideAggregate;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using TheChosenStoreQuery.Contracts.SlideAggregate;
 
 namespace Host.ViewComponents;
 

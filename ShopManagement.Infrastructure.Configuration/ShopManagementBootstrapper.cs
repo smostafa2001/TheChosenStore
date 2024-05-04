@@ -1,9 +1,4 @@
 ﻿using Common.Infrastructure;
-using DecorativeStoreQuery.Contracts.CartAggregate;
-using DecorativeStoreQuery.Contracts.ProductAggregate;
-using DecorativeStoreQuery.Contracts.ProductCategoryAggregate;
-using DecorativeStoreQuery.Contracts.SlideAggregate;
-using DecorativeStoreQuery.Query;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShopManagement.Application.Contracts.OrderAggregate;
@@ -22,6 +17,11 @@ using ShopManagement.Infrastructure.Configuration.Permissions;
 using ShopManagement.Infrastructure.EFCore;
 using ShopManagement.Infrastructure.EFCore.Repository;
 using ShopManagement.Infrastructure.InventoryACL;
+using TheChosenStoreQuery.Contracts.CartAggregate;
+using TheChosenStoreQuery.Contracts.ProductAggregate;
+using TheChosenStoreQuery.Contracts.ProductCategoryAggregate;
+using TheChosenStoreQuery.Contracts.SlideAggregate;
+using TheChosenStoreQuery.Query;
 
 namespace ShopManagement.Infrastructure.Configuration;
 

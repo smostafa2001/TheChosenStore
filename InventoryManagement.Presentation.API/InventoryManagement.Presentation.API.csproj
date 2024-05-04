@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DecorativeStoreQuery\DecorativeStoreQuery.csproj" />
+    <ProjectReference Include="..\TheChosenStoreQuery\TheChosenStoreQuery.csproj" />
     <ProjectReference Include="..\InventoryManagement.Application.Contracts\InventoryManagement.Application.Contracts.csproj" />
   </ItemGroup>
 
